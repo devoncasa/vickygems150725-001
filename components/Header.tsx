@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink as RouterNavLink, useNavigate, useLocation } from 'react-router-dom';
 import { NAV_LINKS } from '../constants';
-import { CartIcon, MenuIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon, ChevronLeftIcon } from './IconComponents';
+import { CartIcon, MenuIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon, ChevronLeftIcon, GlobeIcon } from './IconComponents';
 import { NavLink as NavLinkType } from '../types';
 import { useLanguage } from '../i18n/LanguageContext';
 import { LanguageCode } from '../i18n/config';
@@ -11,7 +11,7 @@ interface HeaderProps {
 }
 
 const LanguageSwitcher: React.FC<{isMobile?: boolean}> = ({ isMobile = false }) => {
-    const { lang, setLang, availableLanguages } = useLanguage();
+    const { lang, setLang, availableLanguages, t } = useLanguage();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -25,12 +25,15 @@ const LanguageSwitcher: React.FC<{isMobile?: boolean}> = ({ isMobile = false }) 
     if (isMobile) {
         return (
             <div className="px-3 py-2">
-                 <label htmlFor="lang-switcher-mobile" className="block text-sm font-medium text-[var(--c-text-secondary)]">{availableLanguages[lang]?.name || 'Language'}</label>
+                 <label htmlFor="lang-switcher-mobile" className="flex items-center text-sm font-medium text-[var(--c-text-secondary)] mb-1">
+                    <GlobeIcon className="w-5 h-5 me-2 flex-shrink-0" />
+                    <span>{t('nav_language_switcher_label' as any)}</span>
+                 </label>
                  <select
                     id="lang-switcher-mobile"
                     value={lang}
                     onChange={(e) => handleLangChange(e.target.value as LanguageCode)}
-                    className="mt-1 block w-full ps-3 pe-10 py-2 text-base border-[var(--c-border)] bg-[var(--c-footer-bg)] text-[var(--c-footer-text)] focus:outline-none focus:ring-[var(--c-accent-primary)] focus:border-[var(--c-accent-primary)] sm:text-sm rounded-md"
+                    className="block w-full ps-3 pe-10 py-2 text-base border-[var(--c-border)] bg-[var(--c-surface)] text-[var(--c-text-primary)] focus:outline-none focus:ring-[var(--c-accent-primary)] focus:border-[var(--c-accent-primary)] sm:text-sm rounded-md"
                 >
                     {Object.entries(availableLanguages).map(([code, { name }]) => (
                         <option key={code} value={code} className="bg-[var(--c-footer-bg)] text-[var(--c-footer-text)]">{name}</option>
@@ -46,7 +49,7 @@ const LanguageSwitcher: React.FC<{isMobile?: boolean}> = ({ isMobile = false }) 
                 id="lang-switcher-desktop"
                 value={lang}
                 onChange={(e) => handleLangChange(e.target.value as LanguageCode)}
-                className="text-sm appearance-none bg-transparent text-[var(--c-text-secondary)] hover:text-[var(--c-accent-gold)] pe-6 py-2 rounded-md focus:outline-none cursor-pointer"
+                className="text-sm appearance-none bg-transparent text-[var(--c-text-secondary)] hover:text-gray-700 pe-6 py-2 rounded-md focus:outline-none cursor-pointer"
             >
                 {Object.entries(availableLanguages).map(([code, { name }]) => (
                     <option key={code} value={code} className="bg-[var(--c-footer-bg)] text-[var(--c-footer-text)]">{name}</option>
@@ -102,7 +105,7 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
     const DesktopNav = () => {
         const linkClasses = "py-2 px-1 lg:px-2 text-sm uppercase tracking-wider main-nav-link flex items-center gap-1";
         const activeLinkClasses = "active font-semibold";
-        const inactiveLinkClasses = "text-[var(--c-text-primary)] opacity-80";
+        const inactiveLinkClasses = "opacity-80";
 
         return (
             <nav className="hidden lg:flex items-center space-x-4">
@@ -192,11 +195,11 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
         <>
             <header ref={headerRef} className="bg-[var(--c-bg)]/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm border-b border-[var(--c-border)]">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-24">
+                    <div className="flex items-center justify-between h-20 lg:h-16">
                         <div className="flex-shrink-0">
                             <Link to={getTranslatedPath('/')} className="flex items-center gap-3">
-                                <img src="https://i.postimg.cc/Qd8yW639/vkambergems-logo-small.png" alt="Vicky Amber & Gems Logo" className="h-16 w-auto"/>
-                                <span className="font-serif text-base sm:text-lg lg:text-xl font-bold text-[var(--c-heading)]">
+                                <img src="https://i.postimg.cc/Qd8yW639/vkambergems-logo-small.png" alt="Vicky Amber & Gems Logo" className="h-14 lg:h-12 w-auto"/>
+                                <span className="font-serif text-base sm:text-lg lg:text-lg font-bold text-[var(--c-heading)]">
                                     Vicky Amber & Gems
                                 </span>
                             </Link>
@@ -256,10 +259,10 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
                     </button>
                 </div>
                 <div className="flex-grow overflow-y-auto">
-                    <MobileNav />
-                    <div className="mt-4 border-t border-[var(--c-border)] pt-4">
-                         <LanguageSwitcher isMobile={true} />
+                    <div className="bg-[var(--c-surface-alt)] border-b border-[var(--c-border)]">
+                        <LanguageSwitcher isMobile={true} />
                     </div>
+                    <MobileNav />
                 </div>
             </div>
         </>

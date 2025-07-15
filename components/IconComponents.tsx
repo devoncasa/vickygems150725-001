@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 export const CartIcon: React.FC<{ className?: string }> = ({ className }) => (
@@ -36,6 +35,15 @@ export const ChevronLeftIcon: React.FC<{ className?: string }> = ({ className })
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
     </svg>
 );
+
+export const GlobeIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.95 9.176a9.003 9.003 0 00-2.95-3.854M4.05 9.176a9.003 9.003 0 012.95-3.854M2.25 12h19.5" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a8.963 8.963 0 01-4.47-1.503m8.94 0A8.963 8.963 0 0012 21z" />
+    </svg>
+);
+
 
 export const ChatBubbleIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
