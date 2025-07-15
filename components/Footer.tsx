@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext';
+import { PhoneIcon, EmailIcon, WhatsAppIcon } from './IconComponents';
 
 export const Footer: React.FC = () => {
   const { lang, t } = useLanguage();
@@ -15,7 +15,9 @@ export const Footer: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-xl font-serif text-[var(--c-heading)]">{t('footer_address_title')}</h3>
-              <p className="mt-2 text-sm opacity-80">{t('footer_address_detail')}</p>
+              <address className="mt-2 text-sm opacity-80 not-italic">
+                {t('footer_address_detail')}
+              </address>
             </div>
             <div>
               <h3 className="text-lg font-semibold text-[var(--c-heading)]">{t('footer_explore_title')}</h3>
@@ -29,15 +31,34 @@ export const Footer: React.FC = () => {
                 <li><Link to={getTranslatedPath('/contact')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Contact_Us')}</Link></li>
               </ul>
             </div>
-             <div>
+            <div>
               <h3 className="text-lg font-semibold text-[var(--c-heading)]">{t('footer_contact_title')}</h3>
-              <address className="mt-2 text-sm opacity-80 not-italic space-y-2">
-                <p><strong>{t('footer_contact_phones_title')}</strong></p>
-                <p>{t('footer_contact_vicky')}</p>
-                <p>{t('footer_contact_office')}</p>
-                <p><strong>{t('footer_contact_email_title')}</strong> {t('footer_contact_email_1')}</p>
-                <p>{t('footer_contact_email_2')}</p>
-              </address>
+              <div className="mt-4 space-y-4 text-sm">
+                <div className="flex items-start">
+                  <PhoneIcon className="w-5 h-5 mt-0.5 text-[var(--c-accent-primary)] flex-shrink-0" />
+                  <div className="ms-3">
+                    <p className="font-semibold text-[var(--c-text-primary)]">{t('footer_contact_phones_title')}</p>
+                    <div className="mt-1 space-y-1">
+                      <div className="flex items-center gap-2">
+                        <a href="tel:+66631959922" className="text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors">{t('footer_contact_vicky')}</a>
+                        <a href="https://wa.me/66631959922" target="_blank" rel="noopener noreferrer" aria-label="Chat with Vicky on WhatsApp">
+                          <WhatsAppIcon className="w-4 h-4 text-green-600 hover:text-green-500 transition-colors" />
+                        </a>
+                      </div>
+                      <a href="tel:+66818519922" className="block text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors">{t('footer_contact_office')}</a>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <EmailIcon className="w-5 h-5 mt-0.5 text-[var(--c-accent-primary)] flex-shrink-0" />
+                  <div className="ms-3">
+                    <p className="font-semibold text-[var(--c-text-primary)]">{t('footer_contact_email_title')}</p>
+                    <a href="mailto:info.vkamber@gmail.com?cc=vkamber91@gmail.com" className="block text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors">
+                      {t('footer_contact_email_1')}
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
             <div>
                 <h3 className="text-lg font-semibold text-[var(--c-heading)]">{t('footer_follow_us_title')}</h3>
@@ -66,8 +87,15 @@ export const Footer: React.FC = () => {
                 </div>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-[var(--c-heading)]/10 text-center text-sm opacity-70">
-            <p>{t('footer_copyright', { year: new Date().getFullYear() })}</p>
+          <div className="mt-12 pt-8 border-t border-[var(--c-heading)]/10 text-center">
+             <Link to={getTranslatedPath('/')} aria-label="Back to Homepage">
+              <img 
+                  src="https://i.postimg.cc/Prt96m87/VKGems-logo-small-web.webp" 
+                  alt="Vicky Amber & Gems Logo" 
+                  className="h-10 w-auto block mx-auto mb-4"
+              />
+            </Link>
+            <p className="text-sm opacity-70">{t('footer_copyright', { year: new Date().getFullYear() })}</p>
           </div>
         </div>
       </footer>

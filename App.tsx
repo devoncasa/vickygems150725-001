@@ -17,7 +17,6 @@ import BlogPostPage from './pages/BlogPostPage';
 import PricingGuidePage from './pages/PricingGuidePage';
 import AmberColorsPage from './pages/AmberColorsPage';
 import ScrollToTop from './components/ScrollToTop';
-import { Chatbot } from './components/Chatbot';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import CareGuidePage from './pages/CareGuidePage';
 import PreOrderPolicyPage from './pages/PreOrderPolicyPage';
@@ -65,7 +64,6 @@ const Layout: React.FC = () => {
                 <Outlet context={{ setCartCount }} />
             </main>
             <Footer />
-            <Chatbot />
         </div>
     );
 };

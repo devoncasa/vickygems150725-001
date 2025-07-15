@@ -234,6 +234,7 @@
       }
     </style>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap');
       :root {
         /* New Pastel Earth Tones Palette */
         --c-bg: #F8F5F2; /* Soft Sand */
@@ -265,6 +266,21 @@
         background-color: var(--c-bg);
         color: var(--c-text-primary);
         font-family: 'Inter', sans-serif;
+      }
+
+      /* New Header Background Pattern for Luxury Feel */
+      header {
+          position: relative;
+          isolation: isolate; /* Creates a new stacking context for z-index */
+      }
+      header::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: -1;
+          /* A fine-lined, seamless geometric pattern inspired by gemstone facets. Color is a muted cognac from the site's palette. */
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23A56C50' fill-opacity='1'%3E%3Cpath fill-rule='evenodd' d='M11 0l5 20-5 20-5-20L1 0h10zm30 0l5 20-5 20-5-20L31 0h10zm30 0l5 20-5 20-5-20L61 0h10zM11 40l5 20-5 20-5-20L1 40h10zm30 0l5 20-5 20-5-20L31 40h10zm30 0l5 20-5 20-5-20L61 40h10z'/%3E%3C/g%3E%3C/svg%3E");
+          opacity: 0.05;
       }
       
       html[lang="th"] body { font-family: 'Noto Sans Thai', 'Inter', sans-serif; }
@@ -406,6 +422,16 @@
           padding: 8px 16px;
         }
       }
+
+      .logo-text {
+        font-family: 'Tenor Sans', sans-serif;
+        text-transform: none;
+        letter-spacing: 1.5px;
+        background: linear-gradient(45deg, #B48A3A, #A02D2D);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
     </style>
     <style>
       /* Bead styles for Bracelet Builder PREVIEW */
@@ -472,10 +498,11 @@
       }
       
       /* New Header Navigation Styles - Redesigned for Tuesday, July 15, 2025 */
-      @media (min-width: 1024px) { /* Applies only to desktop navigation */
+      @media (min-width: 768px) { /* Applies to desktop navigation */
           .main-nav-link {
               position: relative;
               color: #333333;
+              font-size: 0.7rem; /* 30% smaller font for sleeker look */
               padding-bottom: 0.5rem; /* Create space for the underline */
               transition: color 0.3s ease-in-out;
               text-decoration: none;
@@ -487,7 +514,7 @@
               bottom: 0; /* Position at the bottom of the padded area */
               width: 100%;
               height: 2px;
-              background: linear-gradient(to right, var(--c-accent-gold, #FFBF00), #dc2626); /* Gold to Pigeon Blood Red */
+              background: linear-gradient(to right, var(--c-accent-gold, #FFBF00), #991b1b); /* Gold to 'Pigeon Blood' red */
               transform: scaleX(0);
               transform-origin: center;
               transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
@@ -658,6 +685,19 @@
       .placeholder--red-cherry-amber { background: linear-gradient(135deg, #ef4444, #b91c1c); }
       .placeholder--pigeon-blood-red-amber { background: linear-gradient(135deg, #dc2626, #991b1b); }
       .placeholder--black-amber { background: linear-gradient(135deg, #4b5563, #111827); }
+    </style>
+    <style>
+      /* Global Footer Enhancements */
+      footer h3.text-xl,
+      footer h3.text-lg,
+      footer p.text-sm,
+      footer ul.text-sm,
+      footer address.text-sm,
+      footer div.text-sm,
+      footer.md\:hidden span.text-xs {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+      }
     </style>
   <script type="importmap">
 {

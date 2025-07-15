@@ -103,12 +103,12 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
     const ChevronIcon = dir === 'rtl' ? ChevronLeftIcon : ChevronRightIcon;
 
     const DesktopNav = () => {
-        const linkClasses = "py-2 px-1 lg:px-2 text-sm uppercase tracking-wider main-nav-link flex items-center gap-1";
+        const linkClasses = "py-1 px-1 md:px-2 uppercase tracking-wider main-nav-link flex items-center gap-1";
         const activeLinkClasses = "active font-semibold";
         const inactiveLinkClasses = "opacity-80";
 
         return (
-            <nav className="hidden lg:flex items-center space-x-4">
+            <nav className="hidden md:flex items-center space-x-4">
                 {NAV_LINKS.map((link) => (
                     <div 
                         key={link.name} 
@@ -194,22 +194,23 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
     return (
         <>
             <header ref={headerRef} className="bg-[var(--c-bg)]/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm border-b border-[var(--c-border)]">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-20 lg:h-16">
-                        <div className="flex-shrink-0">
-                            <Link to={getTranslatedPath('/')} className="flex items-center gap-3">
-                                <img src="https://i.postimg.cc/Qd8yW639/vkambergems-logo-small.png" alt="Vicky Amber & Gems Logo" className="h-14 lg:h-12 w-auto"/>
-                                <span className="font-serif text-base sm:text-lg lg:text-lg font-bold text-[var(--c-heading)]">
-                                    Vicky Amber & Gems
-                                </span>
-                            </Link>
+                <div className="container mx-auto px-4 sm:px-6 md:px-8">
+                    <div className="flex items-center justify-between h-20 md:h-18">
+                        <div className="flex items-center md:gap-x-8">
+                            <div className="flex-shrink-0">
+                                <Link to={getTranslatedPath('/')} className="flex items-center gap-3">
+                                    <img src="https://i.postimg.cc/Prt96m87/VKGems-logo-small-web.webp" alt="Vicky Amber & Gems Logo" className="h-14 w-auto"/>
+                                    <span className="logo-text text-xl sm:text-2xl font-normal">
+                                        Vicky Amber & Gems
+                                    </span>
+                                </Link>
+                            </div>
+                            <DesktopNav />
                         </div>
 
-                        <DesktopNav />
-
                         <div className="flex items-center">
-                            <div className="hidden lg:block border-s border-[var(--c-border)] mx-2 h-6"></div>
-                            <div className="hidden lg:block">
+                            <div className="hidden md:block border-s border-[var(--c-border)] mx-2 h-6"></div>
+                            <div className="hidden md:block">
                                <LanguageSwitcher />
                             </div>
 
@@ -221,7 +222,7 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
                                     </span>
                                 )}
                             </button>
-                            <div className="lg:hidden ms-2">
+                            <div className="md:hidden ms-2">
                                 <button
                                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                                     className="p-2 rounded-md text-[var(--c-text-primary)] opacity-80 hover:bg-[var(--c-accent-primary)]/10"
@@ -240,14 +241,14 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
             {/* Mobile Menu Overlay & Panel */}
             {isMenuOpen && (
                 <div 
-                    className="mobile-nav-overlay lg:hidden" 
+                    className="mobile-nav-overlay md:hidden" 
                     onClick={() => setIsMenuOpen(false)}
                     aria-hidden="true"
                 ></div>
             )}
             <div 
                 id="mobile-nav-panel"
-                className={`mobile-nav-panel lg:hidden ${isMenuOpen ? 'open' : ''}`}
+                className={`mobile-nav-panel md:hidden ${isMenuOpen ? 'open' : ''}`}
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="mobile-menu-heading"

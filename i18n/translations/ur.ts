@@ -1,5 +1,4 @@
 
-
 export const translations = {
     // --- Header & Nav ---
     'nav_Home': 'مرکزی صفحہ',
@@ -55,7 +54,7 @@ export const translations = {
     'footer_contact_email_1': 'info.vkamber@gmail.com',
     'footer_contact_email_2': 'سی سی: vkamber91@gmail.com',
     'footer_follow_us_title': 'ہمیں فالو کریں',
-    'footer_copyright': '© {{year}} وکی عنبر اینڈ جیمز کمپنی لمیٹڈ۔ جملہ حقوق محفوظ ہیں۔ ٹیکس آئی ڈی: 0105560075361',
+    'footer_copyright': '© {{year}} وکی عنبر اینڈ فاین جیمز کمپنی لمیٹڈ۔ جملہ حقوق محفوظ ہیں۔ ٹیکس آئی ڈی: 0105560075361',
     'footer_mobile_shop': 'دکان',
     'footer_mobile_preorder': 'پری آرڈر',
     'footer_mobile_blog': 'بلاگ',

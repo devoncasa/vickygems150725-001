@@ -405,7 +405,7 @@ export const translations = {
     'seo_amber_colors_tones_keywords': 'colores de gemas, gemas de myanmar, color del rubí birmano, zafiro birmano, colores de la espinela, peridoto, circón, piedra de luna, tonos de ámbar, variedad de colores',
     
     // --- New Amber Spectrum Section ---
-    'spectrum_section_title': 'El Espectro del Ámbar: Descubre tu Energía',
+    'spectrum_section_title': 'El Espectro del Ámbar: Encuentra tu Energía',
     'spectrum_section_subtitle': 'Cada color de ámbar resuena con una frecuencia única. Explora sus propiedades espirituales para encontrar la energía que se alinea con tu viaje.',
     'spectrum_read_more': 'Descubre Más',
     'spectrum_read_less': 'Mostrar Menos',
