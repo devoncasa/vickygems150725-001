@@ -170,7 +170,7 @@ export const translations = {
     'bracelet_builder_wrist_size_desc': "ปรับแถบเลื่อนตามขนาดข้อมือของคุณ เราจะคำนวณจำนวนเม็ดอำพันเพื่อให้พอดี",
     'bracelet_builder_fit_title': '2. เลือกความพอดีของคุณ',
     'bracelet_builder_fit_desc': 'เลือกวิธีที่คุณต้องการให้สร้อยข้อมือของคุณสวมใส่บนข้อมือ',
-    'bracelet_builder_fit_perfect': 'พอดีเป๊ะ',
+    'bracelet_builder_fit_perfect': 'พอดีข้อมือแต่ไม่คับ',
     'bracelet_builder_fit_perfect_desc': 'สวมใส่ได้พอดีกับขนาดข้อมือของคุณ เพิ่มความยาวเล็กน้อย (~0.5 ซม.) เพื่อความสบาย',
     'bracelet_builder_fit_loose': 'หลวมสบาย (สำหรับผู้หญิง)',
     'bracelet_builder_fit_loose_desc': 'สวมใส่แบบหลวมๆ สบายๆ เพิ่มความยาวประมาณ 1.5 ซม. สำหรับสไตล์สร้อยข้อมือคลาสสิก',

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SectionDivider from '../components/SectionDivider';
@@ -8,7 +7,7 @@ import JsonLd from '../components/JsonLd';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const PricingGuidePage: React.FC = () => {
-    const { lang } = useLanguage();
+    const { lang, t } = useLanguage();
 
     const webPageSchema = {
         "@context": "https://schema.org",
@@ -82,7 +81,7 @@ const PricingGuidePage: React.FC = () => {
                                 <p className="mt-2 text-[var(--c-text-primary)]/80">For most colors, the Quality Tier (Standard, Select, Premium) directly corresponds to the amber's clarity. "Premium" pieces are exceptionally clear with minimal inclusions, while "Standard" pieces might have more visible natural patterns or "swirls."</p>
                             </div>
                             <div className="p-6 bg-[var(--c-accent-primary)]/30 border-l-4 border-[var(--c-accent-primary-hover)] rounded-r-lg">
-                                <h3 className="text-2xl font-semibold">Exception: <Link to="/amber-colors#mila" className="text-[var(--c-accent-primary-hover)] hover:underline">Mila Amber</Link> & Richness</h3>
+                                <h3 className="text-2xl font-semibold">Exception: <Link to={`/${lang}/amber-colors#mila`} className="text-[var(--c-accent-primary-hover)] hover:underline">Mila Amber</Link> & Richness</h3>
                                 <p className="mt-2 text-[var(--c-text-primary)]/80">Mila amber is unique. Its value isn't just in clarity but in its 'richness'—the depth and complexity of its semi-liquid, semi-solid internal structure. A "Premium" Mila piece has an almost molten-gold appearance, a quality far rarer than simple clarity.</p>
                             </div>
                         </div>
@@ -109,7 +108,7 @@ const PricingGuidePage: React.FC = () => {
                         <div className="mt-16 text-center not-prose">
                             <h3 className="text-3xl">See It in Action</h3>
                             <p className="mt-2 text-[var(--c-text-secondary)]">Ready to see how these rules come together? Use our builder to create your pre-order and watch the transparent price breakdown update with every choice you make.</p>
-                            <Link to="/build-your-set" className="mt-6 inline-block btn-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg">
+                            <Link to={`/${lang}/build-your-set`} className="mt-6 inline-block btn-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg">
                                 Build Your Custom Pre-Order
                             </Link>
                         </div>

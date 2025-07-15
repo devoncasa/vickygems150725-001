@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SectionDivider from '../components/SectionDivider';
@@ -115,7 +114,7 @@ const AboutPage: React.FC = () => {
                              <p className="text-lg text-[var(--c-text-secondary)] max-w-2xl mx-auto">
                                 We invite you to explore our collections and discover a piece of ancient history that resonates with your spirit. Experience the warmth, beauty, and timeless energy of the world's oldest amber.
                              </p>
-                             <Link to="/collection" className="mt-8 inline-block btn-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg text-lg">
+                             <Link to={`/${lang}/collection`} className="mt-8 inline-block btn-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg text-lg">
                                 Explore the Collection
                             </Link>
                         </div>

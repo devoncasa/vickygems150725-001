@@ -401,8 +401,8 @@ const BraceletBuilder: React.FC = () => {
                 </div>
                  <div className="mt-4 text-center space-y-3">
                      <div className="flex items-center gap-4">
-                        <button onClick={handleAddBeadToPattern} className="btn-primary flex-1">{t('bracelet_builder_add_bead')}</button>
-                        <button onClick={handleRemoveBeadFromPattern} className="btn-primary flex-1" disabled={pattern.length <= 1}>{t('bracelet_builder_remove_bead')}</button>
+                        <button onClick={handleAddBeadToPattern} className="btn-primary btn--compact flex-1">{t('bracelet_builder_add_bead')}</button>
+                        <button onClick={handleRemoveBeadFromPattern} className="btn-primary btn--compact flex-1" disabled={pattern.length <= 1}>{t('bracelet_builder_remove_bead')}</button>
                     </div>
                     <button onClick={handleAutoDesign} className="btn-primary btn--intelligent">
                         {t('bracelet_builder_auto_design')}
@@ -416,8 +416,8 @@ const BraceletBuilder: React.FC = () => {
                 <p className="text-sm text-[var(--c-text-secondary)] mb-4 text-center">{t('bracelet_builder_preview_desc')}</p>
                 
                 <div ref={captureAreaRef} className="bg-[var(--c-bg)] p-4 my-4 rounded-lg border border-[var(--c-border)]">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
-                        <div className="lg:col-span-2 aspect-square relative flex items-center justify-center mx-auto w-2/3 lg:w-full">
+                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-center">
+                        <div className="lg:col-span-4 aspect-square relative flex items-center justify-center mx-auto w-2/3 lg:w-full">
                             <div className="w-full h-full relative">
                                 {finalBeads.length > 0 ? renderBraceletPreview() : (
                                     <div className="absolute inset-0 flex items-center justify-center text-center text-stone-500">
