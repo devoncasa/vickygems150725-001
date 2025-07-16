@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SectionDivider from '../components/SectionDivider';
@@ -61,8 +60,8 @@ const PrivacyPolicyPage: React.FC = () => {
                         
                         <h2>3. How We Use Your Information</h2>
                         <SectionDivider/>
+                         <p>We use the information we collect for various purposes, including to:</p>
                         <div className="space-y-4">
-                            <p>We use the information we collect for various purposes, including to:</p>
                             <ul>
                                 <li>Process and fulfill your orders.</li>
                                 <li>Communicate with you about your account or orders.</li>
@@ -76,8 +75,8 @@ const PrivacyPolicyPage: React.FC = () => {
 
                         <h2>4. How We Share Your Information</h2>
                         <SectionDivider/>
+                         <p>We do not sell, trade, or otherwise transfer your personal information to outside parties except in the following circumstances:</p>
                         <div className="space-y-4">
-                            <p>We do not sell, trade, or otherwise transfer your personal information to outside parties except in the following circumstances:</p>
                             <ul>
                                 <li><strong>Service Providers:</strong> We may share your information with third-party service providers who perform services on our behalf, such as payment processing, shipping, and marketing.</li>
                                 <li><strong>Legal Compliance:</strong> We may disclose your information if required by law, such as to comply with a subpoena or other legal process.</li>
@@ -95,9 +94,9 @@ const PrivacyPolicyPage: React.FC = () => {
                         
                         <h2>6. Your Rights and Choices</h2>
                         <SectionDivider/>
+                        <p>You have certain rights regarding your personal information, including the right to:</p>
                         <div className="space-y-4">
-                            <p>You have certain rights regarding your personal information, including the right to:</p>
-                            <ul>
+                             <ul>
                                 <li>Access, correct, or delete your personal information.</li>
                                 <li>Opt-out of receiving marketing communications from us.</li>
                                 <li>Object to or restrict the processing of your personal information.</li>

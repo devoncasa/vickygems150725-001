@@ -10,7 +10,7 @@ const formatCurrency = (amount: number) => {
 };
 
 const BraceletBuilder: React.FC = () => {
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
     // --- State ---
     const [wristSize, setWristSize] = useState<number>(16.5);
     const [fitPreference, setFitPreference] = useState<'perfect' | 'loose'>('loose');
@@ -21,6 +21,7 @@ const BraceletBuilder: React.FC = () => {
     ]);
     const [selectedPatternIndex, setSelectedPatternIndex] = useState<number | null>(null);
     const [isProcessing, setIsProcessing] = useState(false);
+    const [notification, setNotification] = useState<string | null>(null);
     const captureAreaRef = useRef<HTMLDivElement>(null);
     
     // --- Calculations ---
@@ -214,6 +215,7 @@ const BraceletBuilder: React.FC = () => {
     const handleAction = async (action: 'capture' | 'submit') => {
         if (!captureAreaRef.current || finalBeads.length <= 0 || isProcessing) return;
         setIsProcessing(true);
+        setNotification(null);
     
         const designCode = `VAG-CUSTOM-${Date.now()}`;
         const filename = `${designCode}.png`;
@@ -251,15 +253,19 @@ const BraceletBuilder: React.FC = () => {
             document.body.removeChild(link);
     
             if (action === 'submit') {
-                alert(t('bracelet_builder_alert_submit_success'));
-                window.open('https://www.facebook.com/vkmmamber', '_blank', 'noopener,noreferrer');
+                const howToOrderLink = `${window.location.origin}/#/${lang}/policies/pre-order`;
+                const clipboardMessage = t('bracelet_builder_clipboard_message' as any, { link: howToOrderLink });
+                
+                await navigator.clipboard.writeText(clipboardMessage);
+                setNotification(t('bracelet_builder_alert_submit_success_new_instructions' as any));
+                window.open('https://www.facebook.com/messages/t/VKMMAmber', '_blank', 'noopener,noreferrer');
             } else {
-                alert(t('bracelet_builder_alert_capture_success'));
+                setNotification(t('bracelet_builder_alert_capture_success' as any));
             }
     
         } catch (err) {
             console.error('Failed to process action:', err);
-            alert(t('bracelet_builder_alert_error'));
+            setNotification(t('bracelet_builder_alert_error' as any));
         } finally {
             if (action === 'submit' && captureAreaRef.current && captureAreaRef.current.contains(watermarkOverlay)) {
                 captureAreaRef.current.removeChild(watermarkOverlay);
@@ -325,17 +331,24 @@ const BraceletBuilder: React.FC = () => {
             {/* --- Step 1: Wrist Size --- */}
             <div className="bg-[var(--c-surface)] p-6 rounded-lg shadow-sm border border-[var(--c-border)]">
                 <h3 className="font-semibold text-lg text-[var(--c-heading)]">{t('bracelet_builder_wrist_size_title')}</h3>
-                <p className="text-sm text-[var(--c-text-secondary)] mb-3">{t('bracelet_builder_wrist_size_desc')}</p>
-                <div className="flex items-center gap-4">
+                <p className="text-sm text-[var(--c-text-secondary)] mb-4">{t('bracelet_builder_wrist_size_desc')}</p>
+                <div className="relative pt-2">
                     <input
                         type="range"
                         id="wristSize"
-                        min="12" max="25" step="0.25"
-                        value={wristSize}
-                        onChange={e => setWristSize(Number(e.target.value))}
-                        className="w-full h-2 bg-[var(--c-surface-alt)] rounded-lg appearance-none cursor-pointer accent-[var(--c-accent-primary)]"
+                        min="120"
+                        max="250"
+                        step="1"
+                        value={wristSize * 10}
+                        onChange={e => setWristSize(Number(e.target.value) / 10)}
+                        className="w-full custom-slider"
+                        aria-labelledby="wrist-size-label"
                     />
-                    <span className="font-bold text-lg text-[var(--c-accent-primary)] w-24 text-center">{wristSize.toFixed(2)} cm</span>
+                    <div id="wrist-size-label" className="text-center mt-3">
+                        <output htmlFor="wristSize" className="font-bold text-2xl text-[var(--c-accent-primary)] bg-[var(--c-surface-alt)] px-4 py-2 rounded-lg shadow-inner border border-[var(--c-border)]">
+                            {wristSize.toFixed(1)} cm
+                        </output>
+                    </div>
                 </div>
             </div>
 
@@ -417,7 +430,7 @@ const BraceletBuilder: React.FC = () => {
                 
                 <div ref={captureAreaRef} className="bg-[var(--c-bg)] p-4 my-4 rounded-lg border border-[var(--c-border)]">
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-center">
-                        <div className="lg:col-span-4 aspect-square relative flex items-center justify-center mx-auto w-2/3 lg:w-full">
+                        <div className="lg:col-span-3 aspect-square relative flex items-center justify-center mx-auto w-2/3 lg:w-full">
                             <div className="w-full h-full relative">
                                 {finalBeads.length > 0 ? renderBraceletPreview() : (
                                     <div className="absolute inset-0 flex items-center justify-center text-center text-stone-500">
@@ -426,13 +439,13 @@ const BraceletBuilder: React.FC = () => {
                                 )}
                             </div>
                         </div>
-                        <div className="lg:col-span-1 p-4 bg-[var(--c-surface)] rounded-lg border border-[var(--c-border)] h-full self-stretch flex flex-col">
+                        <div className="lg:col-span-2 p-4 bg-[var(--c-surface)] rounded-lg border border-[var(--c-border)] h-full self-stretch flex flex-col">
                             <h4 className="text-lg font-bold mb-3 text-center text-[var(--c-heading)]">{t('bracelet_builder_spec_title')}</h4>
                              {finalBeads.length > 0 ? (
                                 <>
                                     <div className="space-y-2 text-sm flex-grow">
                                         <div className="flex justify-between"><span>{t('bracelet_builder_summary_wrist_size')}</span> <strong className="text-[var(--c-accent-primary)]">{wristSize.toFixed(2)} cm</strong></div>
-                                        <div className="flex justify-between"><span>{t('bracelet_builder_summary_fit_preference')}</span> <strong>{t(fitPreference === 'loose' ? 'bracelet_builder_fit_loose' : 'bracelet_builder_fit_perfect')}</strong></div>
+                                        <div className="flex justify-between"><span>{t('bracelet_builder_summary_fit_preference')}</span> <strong>{t(fitPreference === 'loose' ? 'bracelet_builder_fit_loose' : 'bracelet_builder_fit_perfect' as any)}</strong></div>
                                         <div className="flex justify-between"><span>{t('bracelet_builder_summary_total_beads')}:</span> <strong>{summary.beadCount}</strong></div>
                                         <div className="flex justify-between"><span>{t('bracelet_builder_summary_est_weight')}:</span> <strong>{summary.totalWeight.toFixed(2)} g</strong></div>
                                         <div className="mt-2 pt-2 border-t border-[var(--c-border)]">
@@ -458,6 +471,12 @@ const BraceletBuilder: React.FC = () => {
                         </div>
                     </div>
                 </div>
+                
+                {notification && (
+                    <div className="mt-4 text-center text-sm bg-[var(--c-accent-secondary)]/20 text-[var(--c-accent-secondary-hover)] p-3 rounded-md border border-[var(--c-accent-secondary)]/30">
+                        {notification}
+                    </div>
+                )}
 
                 {/* --- Actions --- */}
                 <div className="mt-6 flex flex-col sm:flex-row gap-4">

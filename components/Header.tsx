@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink as RouterNavLink, useNavigate, useLocation } from 'react-router-dom';
 import { NAV_LINKS } from '../constants';
@@ -9,6 +11,17 @@ import { LanguageCode } from '../i18n/config';
 interface HeaderProps {
     cartCount: number;
 }
+
+const prefetchScript = (href: string) => {
+    // Check if a prefetch link for this href already exists
+    if (document.querySelector(`link[rel="modulepreload"][href="${href}"]`)) {
+        return;
+    }
+    const link = document.createElement('link');
+    link.rel = 'modulepreload';
+    link.href = href;
+    document.head.appendChild(link);
+};
 
 const LanguageSwitcher: React.FC<{isMobile?: boolean}> = ({ isMobile = false }) => {
     const { lang, setLang, availableLanguages, t } = useLanguage();
@@ -102,6 +115,14 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
     const getTranslationKey = (name: string) => `nav_${name.replace(/ /g, '_')}`;
     const ChevronIcon = dir === 'rtl' ? ChevronLeftIcon : ChevronRightIcon;
 
+    const handlePrefetch = (path?: string) => {
+        if (!path) return;
+        // This is a conceptual demonstration. In a real build system (like Vite),
+        // you would prefetch the specific JS chunk for that route.
+        // Here, we preload the main script as a placeholder.
+        prefetchScript('/index.tsx');
+    };
+
     const DesktopNav = () => {
         const linkClasses = "py-1 px-1 md:px-2 uppercase tracking-wider main-nav-link flex items-center gap-1";
         const activeLinkClasses = "active font-semibold";
@@ -113,24 +134,35 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
                     <div 
                         key={link.name} 
                         className="relative"
-                        onMouseLeave={() => link.submenus && setOpenDesktopSubmenu(null)}
                     >
-                        <RouterNavLink
-                            to={link.path ? getTranslatedPath(link.path) : '#'}
-                            onMouseEnter={() => link.submenus && setOpenDesktopSubmenu(link.name)}
+                        <button
+                            onMouseEnter={() => handlePrefetch(link.path)}
                             onClick={(e) => {
-                                if (!link.path) {
-                                    e.preventDefault();
-                                    setOpenDesktopSubmenu(openDesktopSubmenu === link.name ? null : link.name);
-                                } else {
-                                    setOpenDesktopSubmenu(null);
+                                if (link.path) {
+                                    // If it has a path, let the NavLink handle it
+                                    return;
                                 }
+                                e.preventDefault();
+                                setOpenDesktopSubmenu(openDesktopSubmenu === link.name ? null : link.name);
                             }}
-                             className={({ isActive }) => `${linkClasses} ${link.path && isActive ? activeLinkClasses : inactiveLinkClasses}`}
+                            className="w-full"
                         >
-                            <span>{t(getTranslationKey(link.name) as any)}</span>
-                            {link.submenus && <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${openDesktopSubmenu === link.name ? 'rotate-180' : ''}`} />}
-                        </RouterNavLink>
+                            <RouterNavLink
+                                to={link.path ? getTranslatedPath(link.path) : '#'}
+                                 onClick={(e) => {
+                                    if (!link.path) {
+                                        e.preventDefault();
+                                        setOpenDesktopSubmenu(openDesktopSubmenu === link.name ? null : link.name);
+                                    } else {
+                                        setOpenDesktopSubmenu(null);
+                                    }
+                                }}
+                                 className={({ isActive }) => `${linkClasses} ${link.path && isActive ? activeLinkClasses : inactiveLinkClasses}`}
+                            >
+                                <span>{t(getTranslationKey(link.name) as any)}</span>
+                                {link.submenus && <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${openDesktopSubmenu === link.name ? 'rotate-180' : ''}`} />}
+                            </RouterNavLink>
+                        </button>
                         {link.submenus && (
                             <div className={`absolute top-full start-0 mt-2 min-w-[250px] max-h-[80vh] overflow-y-auto bg-[var(--c-surface)] shadow-xl rounded-md border border-[var(--c-border)] p-2 z-30 transition-all duration-300 ${openDesktopSubmenu === link.name ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2 pointer-events-none'}`}>
                                 {link.submenus.map(submenu => (
@@ -195,20 +227,22 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
         <>
             <header ref={headerRef} className="bg-[var(--c-bg)]/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm border-b border-[var(--c-border)]">
                 <div className="container mx-auto px-4 sm:px-6 md:px-8">
-                    <div className="flex items-center justify-between h-20 md:h-18">
-                        <div className="flex items-center md:gap-x-8">
-                            <div className="flex-shrink-0">
-                                <Link to={getTranslatedPath('/')} className="flex items-center gap-3">
-                                    <img src="https://i.postimg.cc/Prt96m87/VKGems-logo-small-web.webp" alt="Vicky Amber & Gems Logo" className="h-14 w-auto"/>
-                                    <span className="logo-text text-xl sm:text-2xl font-normal">
-                                        Vicky Amber & Gems
-                                    </span>
-                                </Link>
-                            </div>
-                            <DesktopNav />
+                    <div className="grid grid-cols-2 md:grid-cols-3 items-center h-28">
+                        {/* Column 1: Logo */}
+                        <div className="flex justify-start">
+                             <Link to={getTranslatedPath('/')} className="flex items-center gap-4">
+                                <img src="https://i.postimg.cc/vZjGRFTg/0716-1-unscreen-1.gif" alt="Vicky Amber & Gems Animated Logo" className="h-24 w-auto"/>
+                                <img src="https://i.postimg.cc/ydqBdwMJ/vkgems-name-logo-small.webp" alt="Vicky Amber & Gems" className="hidden md:block h-12 w-auto" />
+                            </Link>
                         </div>
 
-                        <div className="flex items-center">
+                        {/* Column 2: Desktop Navigation (Centered) */}
+                        <div className="hidden md:flex justify-center">
+                            <DesktopNav />
+                        </div>
+                        
+                        {/* Column 3: Icons and Mobile Menu */}
+                        <div className="flex items-center justify-end">
                             <div className="hidden md:block border-s border-[var(--c-border)] mx-2 h-6"></div>
                             <div className="hidden md:block">
                                <LanguageSwitcher />

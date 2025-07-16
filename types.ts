@@ -137,12 +137,19 @@ export interface MaterialDetail {
   imageUrl: string;
 }
 
+export interface Author {
+    name: string;
+    title: string;
+    imageUrl: string;
+    bio: string;
+}
+
 export interface BlogPost {
   id: string;
   title: string;
   category: 'Soul' | 'Science';
   summary: string;
-  author: string;
+  author: Author;
   date: string;
   featuredImage: string;
   readingTime: number;

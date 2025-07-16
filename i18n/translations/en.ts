@@ -1,3 +1,4 @@
+
 export const translations = {
     // --- Header & Nav ---
     'nav_Home': 'Home',
@@ -195,7 +196,8 @@ export const translations = {
     'bracelet_builder_cta_submit': 'Submit Design for Pre-Order',
     'bracelet_builder_cta_processing': 'Processing...',
     'bracelet_builder_alert_capture_success': 'Design image saved to your downloads!',
-    'bracelet_builder_alert_submit_success': "Your design image has been saved. You will now be redirected to our Facebook page. Please send the saved image to our team to discuss your pre-order.",
+    'bracelet_builder_alert_submit_success_new_instructions': 'Message copied to clipboard! Please paste it into the Facebook chat that will open to finalize your pre-order.',
+    'bracelet_builder_clipboard_message': "Hello! I would like to pre-order this custom bracelet design I've saved. Please let me know about availability and the final price for shipping to my location. To learn more about the pre-order process, please visit: {{link}}",
     'bracelet_builder_alert_error': 'An error occurred. Please try again or contact us directly.',
     
     // --- Bead Customization Modal ---
@@ -504,4 +506,9 @@ export const translations = {
     'spectrum_pigeon_blood_red_aspect_wellbeing': 'A potent stimulant for life force (Chi), boosting physical vitality and providing a strong protective shield.',
     'spectrum_pigeon_blood_red_day': 'Tuesday',
     'spectrum_pigeon_blood_red_zodiac': 'Dragon',
+    'cookie_title': 'Our Use of Cookies',
+    'cookie_description': 'We use cookies to provide a better website experience.',
+    'cookie_learn_more': 'Learn More',
+    'cookie_decline': 'Decline',
+    'cookie_accept': 'Accept',
 };

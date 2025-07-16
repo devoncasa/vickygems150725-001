@@ -1,4 +1,5 @@
 
+
 export const translations = {
     // --- Header & Nav ---
     'nav_Home': 'مرکزی صفحہ',
@@ -196,7 +197,8 @@ export const translations = {
     'bracelet_builder_cta_submit': 'پری آرڈر کے لیے ڈیزائن جمع کروائیں',
     'bracelet_builder_cta_processing': 'پروسیسنگ...',
     'bracelet_builder_alert_capture_success': 'ڈیزائن کی تصویر آپ کے ڈاؤن لوڈز میں محفوظ ہو گئی ہے!',
-    'bracelet_builder_alert_submit_success': "آپ کے ڈیزائن کی تصویر محفوظ کر لی گئی ہے۔ اب آپ کو ہمارے فیس بک پیج پر بھیج دیا جائے گا۔ براہ کرم اپنے پری آرڈر پر بات کرنے کے لیے محفوظ کردہ تصویر ہماری ٹیم کو بھیجیں۔",
+    'bracelet_builder_alert_submit_success_new_instructions': 'پیغام کلپ بورڈ پر کاپی ہو گیا ہے! براہ کرم اسے فیس بک چیٹ ونڈو میں پیسٹ کریں جو آپ کے پری آرڈر کو حتمی شکل دینے کے لیے کھلے گی۔',
+    'bracelet_builder_clipboard_message': "ہیلو! میں اس کسٹم بریسلٹ ڈیزائن کو پری آرڈر کرنا چاہتا/چاہتی ہوں جسے میں نے محفوظ کیا ہے۔ براہ کرم مجھے دستیابی اور میرے مقام پر شپنگ کے لیے حتمی قیمت بتائیں۔ پری آرڈر کے عمل کے بارے میں مزید جاننے کے لیے، براہ کرم ملاحظہ کریں: {{link}}",
     'bracelet_builder_alert_error': 'ایک خرابی پیش آگئی۔ براہ کرم دوبارہ کوشش کریں یا ہم سے براہ راست رابطہ کریں۔',
     
     // --- Bead Customization Modal ---
@@ -468,4 +470,9 @@ export const translations = {
     'spectrum_pigeon_blood_red_aspect_wellbeing': 'زندگی کی قوت (چی) کے لیے ایک طاقتور محرک، جسمانی زندگی کو بڑھاتا ہے اور ایک مضبوط حفاظتی ڈھال فراہم کرتا ہے۔',
     'spectrum_pigeon_blood_red_day': 'منگل',
     'spectrum_pigeon_blood_red_zodiac': 'ڈریگن',
+    'cookie_title': 'ہماری کوکیز کا استعمال',
+    'cookie_description': 'ہم بہتر ویب سائٹ کا تجربہ فراہم کرنے کے لیے کوکیز کا استعمال کرتے ہیں۔',
+    'cookie_learn_more': 'مزید جانیں',
+    'cookie_decline': 'مسترد کریں',
+    'cookie_accept': 'قبول کریں',
 };

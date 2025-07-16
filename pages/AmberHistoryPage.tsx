@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import SectionDivider from '../components/SectionDivider';
 import useScrollAnimation from '../hooks/useScrollAnimation';
@@ -73,8 +72,19 @@ const AmberHistoryPage: React.FC = () => {
                         <h2>A Glimpse into a Prehistoric World</h2>
                         <SectionDivider/>
                         <div className="space-y-4">
-                            <p>Burmese amber, or Burmite, is a direct portal to the Cretaceous period, over 99 million years ago. While dinosaurs roamed the Earth, ancient conifers in what is now Myanmar exuded resin that trapped a complete ecosystem within its embrace.</p>
-                            <p>Unlike younger ambers, Burmite preserves a vanished world, containing the most diverse range of prehistoric life found in fossilized resin. For centuries, it was known to local people, used in medicine and as amulets. It entered the Silk Road trade during the Chinese Han Dynasty, where it was prized as “hu po” (Tiger's soul) and reserved for royalty, symbolizing power and purity.</p>
+                            <p>
+                                <strong>Burmese amber</strong>, or Burmite, is a direct portal to the Cretaceous period, over 99 million years ago. While dinosaurs roamed the Earth, ancient conifers in what is now Myanmar exuded resin that trapped a complete ecosystem within its embrace.
+                            </p>
+                            <p>
+                                Unlike younger ambers, Burmite preserves a vanished world, containing the most diverse range of prehistoric life found in fossilized resin.
+                            </p>
+                        </div>
+
+                        <h3 className="mt-8">How was Burmese Amber used historically?</h3>
+                        <div className="space-y-4">
+                           <p>
+                                For centuries, it was known to local people, who used it in traditional medicine and as protective amulets. It entered the Silk Road trade during the Chinese Han Dynasty (206 BC – 220 AD), where it was highly prized as “hu po” (琥珀, meaning "Tiger's soul"). Due to its rarity and mystical associations, it was often reserved for royalty, symbolizing power, purity, and longevity.
+                           </p>
                         </div>
                         <div className="not-prose">
                            <ImageWithAlt src="https://placehold.co/800x450/A56C50/FFFFFF?text=Prehistoric+Amber" alt="An artistic depiction of a prehistoric forest with large conifers exuding resin, with a dinosaur in the background." />

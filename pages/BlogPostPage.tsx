@@ -1,4 +1,5 @@
 
+
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { BLOG_POSTS, BACKGROUND_IMAGES } from '../constants';
@@ -6,6 +7,7 @@ import SectionDivider from '../components/SectionDivider';
 import JsonLd from '../components/JsonLd';
 import SEO from '../components/SEO';
 import { useLanguage } from '../i18n/LanguageContext';
+import AuthorBio from '../components/AuthorBio';
 
 const GemstoneToolsArticleContent = () => {
     // This is now just a placeholder, as the real content will come from i18n
@@ -48,7 +50,7 @@ const BlogPostPage: React.FC = () => {
         "image": post.featuredImage,
         "author": {
             "@type": "Person",
-            "name": post.author,
+            "name": post.author.name,
              "url": window.location.origin
         },
         "publisher": {
@@ -88,7 +90,7 @@ const BlogPostPage: React.FC = () => {
                         </Link>
                         <h1 className="text-4xl md:text-6xl mt-4 font-bold tracking-tight">{post.title}</h1>
                         <p className="mt-6 text-[var(--c-text-secondary)]">
-                            By {post.author} on {post.date} &bull; {post.readingTime} min read
+                            By {post.author.name} on {post.date} &bull; {post.readingTime} min read
                         </p>
                     </header>
 
@@ -109,6 +111,10 @@ const BlogPostPage: React.FC = () => {
                         <p>Another paragraph could focus on the scientific aspects, explaining the geological formation, chemical properties, and methods of identification, providing readers with a comprehensive understanding.</p>
                         <p>Finally, a concluding paragraph would summarize the key takeaways, connecting the historical, spiritual, and scientific threads to reinforce the value and meaning of the gemstone, encouraging readers to explore further.</p>
                     </div>
+
+                    <SectionDivider />
+
+                    <AuthorBio author={post.author} />
 
                 </article>
             </div>

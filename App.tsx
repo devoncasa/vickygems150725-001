@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Outlet, useParams, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
@@ -43,6 +44,7 @@ import AmberFutureTechPage from './pages/AmberFutureTechPage';
 import AmberMarketsPage from './pages/AmberMarketsPage';
 import AmberReligionPage from './pages/AmberReligionPage';
 import AmberColorsAndTonesPage from './pages/AmberColorsAndTonesPage';
+import CookieConsentBanner from './components/CookieConsentBanner';
 
 // i18n imports
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
@@ -64,6 +66,7 @@ const Layout: React.FC = () => {
                 <Outlet context={{ setCartCount }} />
             </main>
             <Footer />
+            <CookieConsentBanner />
         </div>
     );
 };

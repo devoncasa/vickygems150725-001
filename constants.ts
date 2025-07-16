@@ -1,5 +1,4 @@
-
-import { Product, Material, Amulet, MaterialDetail, BlogPost, AmberColorDetail, Metal, BeadSize, AmberSpectrumDetail, NavLink, ShopCategory } from './types';
+import { Product, Material, Amulet, MaterialDetail, BlogPost, AmberColorDetail, Metal, BeadSize, AmberSpectrumDetail, NavLink, ShopCategory, Author } from './types';
 
 export const BACKGROUND_IMAGES = [
   'https://i.postimg.cc/Xq6LWZ0y/Vicky-Amber-Gems-background-001.jpg',
@@ -43,11 +42,6 @@ export const BACKGROUND_IMAGES = [
   'https://i.postimg.cc/Vv27d7M5/Vicky-Amber-Gems-background-0044.jpg',
   'https://i.postimg.cc/DybjtTkG/Vicky-Amber-Gems-background-0045.jpg',
   'https://i.postimg.cc/G3fg7pNr/Vicky-Amber-Gems-background-0046.jpg',
-  'https://i.postimg.cc/TYG0HW9z/Vicky-Amber-Gems-background-005.jpg',
-  'https://i.postimg.cc/3r29BZgj/Vicky-Amber-Gems-background-006.jpg',
-  'https://i.postimg.cc/Vv9RkYYZ/Vicky-Amber-Gems-background-007.jpg',
-  'https://i.postimg.cc/XJCLtftb/Vicky-Amber-Gems-background-008.jpg',
-  'https://i.postimg.cc/yN5nfQQj/Vicky-Amber-Gems-background-009.jpg',
 ];
 
 export const NAV_LINKS: NavLink[] = [
@@ -68,6 +62,7 @@ export const NAV_LINKS: NavLink[] = [
   {
     name: 'All About Burmese Amber',
     submenus: [
+        { name: 'Comprehensive Infographic', path: '/#infographic-section' },
         { name: 'History of Burmese Amber', path: '/amber-guide/history' },
         { name: 'Where Burmese Amber is Found', path: '/amber-guide/location' },
         { name: 'Why Oldest Amber is in Myanmar', path: '/amber-guide/uniqueness' },
@@ -268,7 +263,7 @@ export const PRODUCTS: Product[] = [
     price: 69550,
     isNewArrival: true,
     story: 'A celebration of diversity, this necklace showcases a spectrum of natural Burmese amber colors, from light honey to deep cherry red. Each bead is a unique piece of history.',
-    energyProperties: ['Harmony', 'Balance', 'Joy'],
+    energyProperties: ['Harmony', 'Balance', 'Joy', 'Prosperity'],
     media: {
       mainImageUrl: 'https://placehold.co/600x600/C8A97E/2a2a2a?text=Multicolor+Amber',
       gallery: []
@@ -655,6 +650,12 @@ export const MATERIAL_DETAILS: MaterialDetail[] = [
     }
 ];
 
+const VICKY_AUTHOR: Author = {
+    name: "Vicky Sinchoury",
+    title: "Founder & Certified Gemologist",
+    imageUrl: "https://placehold.co/100x100/7E746A/FFFFFF?text=VS",
+    bio: "Vicky Sinchoury is a certified gemologist and the founder of Vicky Amber & Gems. With over a decade of experience in sourcing and authenticating rare Burmese amber, she is passionate about bridging the gap between ancient gemological wisdom and modern scientific verification."
+};
 
 export const BLOG_POSTS: BlogPost[] = [
     {
@@ -662,7 +663,7 @@ export const BLOG_POSTS: BlogPost[] = [
         category: 'Soul',
         title: "The 100-Million-Year Journey of Burmite Amber",
         summary: "Delve into the ancient history of Burmese Amber, from prehistoric resin in the Cretaceous period to a treasured gemstone today. Discover the timeline of this incredible natural wonder.",
-        author: "Vicky Sinchoury",
+        author: VICKY_AUTHOR,
         date: "October 12, 2023",
         featuredImage: "https://placehold.co/1200x675/8A5E3C/FBF9F6?text=Amber's+Journey",
         readingTime: 6
@@ -672,7 +673,7 @@ export const BLOG_POSTS: BlogPost[] = [
         category: 'Science',
         title: "A Buyer's Guide: 3 Methods to Identify Fake Amber",
         summary: "In a market flooded with imitations, knowing how to spot real Burmite is essential. Learn simple, lab-proven tests you can perform, from the saltwater method to observing its unique fluorescence under UV light.",
-        author: "Vicky Sinchoury",
+        author: VICKY_AUTHOR,
         date: "October 05, 2023",
         featuredImage: "https://placehold.co/1200x675/88929B/FFFFFF?text=Amber+Authentication",
         readingTime: 8
@@ -682,7 +683,7 @@ export const BLOG_POSTS: BlogPost[] = [
         category: 'Soul',
         title: "Mindful Objects: Using Amber in Modern Wellness",
         summary: "Color and texture are energy, and the properties of your gemstone can profoundly influence your practice. Discover how the warmth and ancient history of amber can ground your modern wellness journey.",
-        author: "Vicky Sinchoury",
+        author: VICKY_AUTHOR,
         date: "September 28, 2023",
         featuredImage: "https://placehold.co/1200x675/C8A97E/2a2a2a?text=Mindful+Objects",
         readingTime: 5
@@ -692,7 +693,7 @@ export const BLOG_POSTS: BlogPost[] = [
         category: 'Science',
         title: "Inside the Lab: How We Certify Our Burmese Amber",
         summary: "Transparency is key to trust. This article details the scientific processes we use, including spectroscopy and microscopic analysis, to verify the authenticity and origin of every piece of amber we sell.",
-        author: "Vicky Sinchoury",
+        author: VICKY_AUTHOR,
         date: "September 20, 2023",
         featuredImage: "https://placehold.co/1200x675/88929B/FFFFFF?text=Lab+Certification",
         readingTime: 7
@@ -702,7 +703,7 @@ export const BLOG_POSTS: BlogPost[] = [
         category: 'Science',
         title: "Gemstone Identification | Burmese Amber & Gemological Tools",
         summary: "Explore how Burmese amber and gemstones are identified using gemological tools like FTIR, UV light, and Raman spectroscopy. Learn more about authentic testing techniques.",
-        author: "Vicky Sinchoury",
+        author: VICKY_AUTHOR,
         date: "October 20, 2023",
         featuredImage: "https://placehold.co/1200x675/2a2a2a/FBF9F6?text=Gemological+Tools",
         readingTime: 12

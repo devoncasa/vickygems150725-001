@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link, useOutletContext } from 'react-router-dom';
 import { PRODUCTS, BLESSING_PRICE, BEAD_SPECS, SHOP_CATEGORIES, BACKGROUND_IMAGES } from '../constants';
@@ -8,15 +7,78 @@ import { calculateFinalPrice } from '../utils/priceLogic';
 import { BeadSize, Product } from '../types';
 import SEO from '../components/SEO';
 import { useLanguage } from '../i18n/LanguageContext';
+import { useUserPreferences } from '../hooks/useUserPreferences';
+import { ChevronDownIcon } from '../components/IconComponents';
 
 interface OutletContextType {
   setCartCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
+const ProductFaq: React.FC<{product: Product}> = ({ product }) => {
+    const { lang, t } = useLanguage();
+    const [open, setOpen] = useState<number | null>(null);
+
+    const faqData = [
+        {
+            q: `Is this real ${product.material}?`,
+            a: `Absolutely. We guarantee that this ${product.name} is made from 100% authentic, natural ${product.material}. Every piece is verified by our expert gemologists. You can learn more about our commitment on the <a href="/#/${lang}/our-guarantee" class="text-[var(--c-accent-primary)] hover:underline">Our Guarantee</a> page.`
+        },
+        {
+            q: `How should I care for this piece?`,
+            a: `To maintain its beauty, clean gently with a soft cloth and lukewarm water. Avoid harsh chemicals and extreme temperatures. For detailed instructions, please visit our <a href="/#/${lang}/policies/care-guide" class="text-[var(--c-accent-primary)] hover:underline">Care Guide</a>.`
+        },
+        {
+            q: `What is the return policy?`,
+            a: `Due to the personal nature of our items, we only accept returns for incorrect shipments or authenticity issues proven by a certified lab. Please review our full <a href="/#/${lang}/policies/returns" class="text-[var(--c-accent-primary)] hover:underline">Return Policy</a> before purchasing.`
+        }
+    ];
+
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.map(item => ({
+            "@type": "Question",
+            "name": item.q,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.a.replace(/<[^>]*>?/gm, '')
+            }
+        }))
+    };
+
+    const toggle = (index: number) => {
+        setOpen(open === index ? null : index);
+    }
+    
+    return (
+        <div className="pt-4 border-t border-[var(--c-border)]">
+            <JsonLd data={faqSchema} />
+            <h3 className="text-xl font-semibold text-[var(--c-heading)] mb-2">Frequently Asked Questions</h3>
+            <div className="divide-y divide-[var(--c-border)]">
+                {faqData.map((item, index) => (
+                    <div key={index} className="py-2">
+                        <h4>
+                            <button onClick={() => toggle(index)} className="w-full flex justify-between items-center text-left text-lg font-semibold text-[var(--c-text-primary)]">
+                                <span>{item.q}</span>
+                                <ChevronDownIcon className={`w-5 h-5 transition-transform ${open === index ? 'rotate-180' : ''}`} />
+                            </button>
+                        </h4>
+                        <div className={`mt-2 text-sm text-[var(--c-text-secondary)] ps-2 overflow-hidden transition-all duration-300 ease-in-out ${open === index ? 'max-h-40' : 'max-h-0'}`}>
+                            <p dangerouslySetInnerHTML={{ __html: item.a }}></p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+
 const ProductDetailPage: React.FC = () => {
     const { setCartCount } = useOutletContext<OutletContextType>();
     const { productId } = useParams<{ productId: string }>();
     const { lang, t } = useLanguage();
+    const { trackProductView } = useUserPreferences();
     const product = PRODUCTS.find(p => p.id === productId);
 
     const [selectedBeadSize, setSelectedBeadSize] = useState<BeadSize | null>(product?.specifications.beadSize_mm || null);
@@ -29,14 +91,9 @@ const ProductDetailPage: React.FC = () => {
         if (product) {
             setSelectedBeadSize(product.specifications.beadSize_mm || null);
             setMainImage(product.media.mainImageUrl);
+            trackProductView(product);
         }
-    }, [product]);
-
-    useEffect(() => {
-        if (product && product.media.mainImageUrl) {
-            setMainImage(product.media.mainImageUrl);
-        }
-    }, [productId, product]);
+    }, [product, trackProductView]);
 
     const productCategory = useMemo(() => {
         if (!product) return '';
@@ -283,6 +340,8 @@ const ProductDetailPage: React.FC = () => {
                             </div>
                         </div>
                         
+                        <ProductFaq product={product} />
+
                         <div className="pt-6 border-t border-[var(--c-border)] space-y-4">
                             <div className="flex justify-between items-center">
                                 <span className="text-lg text-[var(--c-text-primary)] opacity-90">{t('product_total_price')}</span>
