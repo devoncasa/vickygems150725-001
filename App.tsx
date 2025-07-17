@@ -134,22 +134,6 @@ const App: React.FC = () => {
                         <Route path="policies/returns" element={<ReturnPolicyPage />} />
                         <Route path="policies/privacy" element={<PrivacyPolicyPage />} />
 
-                        {/* Amber Guide Pages */}
-                        <Route path="amber-guide/history" element={<AmberHistoryPage />} />
-                        <Route path="amber-guide/location" element={<AmberLocationPage />} />
-                        <Route path="amber-guide/uniqueness" element={<AmberUniquenessPage />} />
-                        <Route path="amber-guide/formation" element={<AmberFormationPage />} />
-                        <Route path="amber-guide/properties" element={<AmberPropertiesPage />} />
-                        <Route path="amber-guide/authentication" element={<AmberAuthPage />} />
-                        <Route path="amber-guide/industry-use" element={<AmberIndustryUsePage />} />
-                        <Route path="amber-guide/comparison-ambers" element={<AmberComparisonAmbersPage />} />
-                        <Route path="amber-guide/comparison-minerals" element={<AmberComparisonMineralsPage />} />
-                        <Route path="amber-guide/availability" element={<AmberAvailabilityPage />} />
-                        <Route path="amber-guide/regulations" element={<AmberRegulationsPage />} />
-                        <Route path="amber-guide/future-trends" element={<AmberFutureTrendsPage />} />
-                        <Route path="amber-guide/future-tech" element={<AmberFutureTechPage />} />
-                        <Route path="amber-guide/markets" element={<AmberMarketsPage />} />
-                        <Route path="amber-guide/religion" element={<AmberReligionPage />} />
                     </Route>
                     {/* Redirect from root to default language */}
                     <Route path="*" element={<Navigate to={`/${DEFAULT_LANG}/`} replace />} />
