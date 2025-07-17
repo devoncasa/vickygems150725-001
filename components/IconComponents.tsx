@@ -73,3 +73,9 @@ export const SparkleIcon: React.FC<{ className?: string }> = ({ className }) => 
         <path d="M12 2L13.4142 10.5858L22 12L13.4142 13.4142L12 22L10.5858 13.4142L2 12L10.5858 10.5858L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
 );
+
+export const ExternalLinkIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+  </svg>
+);

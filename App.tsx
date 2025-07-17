@@ -46,6 +46,7 @@ import AmberReligionPage from './pages/AmberReligionPage';
 import AmberColorsAndTonesPage from './pages/AmberColorsAndTonesPage';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import Chatbot from './components/Chatbot';
+import UnderConstructionBanner from './components/UnderConstructionBanner';
 
 // i18n imports
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
@@ -61,6 +62,7 @@ const Layout: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen" dir={dir}>
+            <UnderConstructionBanner />
             <Header cartCount={cartCount} />
             {!isHomePage && <Breadcrumbs />}
             <main className="flex-grow pb-16 md:pb-0">
