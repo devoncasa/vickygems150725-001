@@ -1,5 +1,5 @@
 {
-  "name": "vicky-amber-&-gems-16072025",
+  "name": "vicky-lux-gems-16072025",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,11 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-router-dom": "7.6.3",
-    "html-to-image": "1.11.13",
-    "@google/genai": "1.9.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.3",
+    "html-to-image": "^1.11.13",
+    "@google/genai": "latest"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

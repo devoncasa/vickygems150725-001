@@ -4,6 +4,7 @@ import { BEAD_SPECS, AMBER_COLOR_DETAILS } from '../constants';
 import { toPng } from 'html-to-image';
 import BeadCustomizationModal from './BeadCustomizationModal';
 import { useLanguage } from '../i18n/LanguageContext';
+import { SparkleIcon } from './IconComponents';
 
 const formatCurrency = (amount: number) => {
     return `฿${amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
@@ -23,6 +24,10 @@ const BraceletBuilder: React.FC = () => {
     const [isProcessing, setIsProcessing] = useState(false);
     const [notification, setNotification] = useState<string | null>(null);
     const captureAreaRef = useRef<HTMLDivElement>(null);
+
+    // New state and refs for dynamic scaling
+    const [scale, setScale] = useState(1);
+    const previewContainerRef = useRef<HTMLDivElement>(null);
     
     // --- Calculations ---
     const { finalBeads, summary } = useMemo(() => {
@@ -63,7 +68,7 @@ const BraceletBuilder: React.FC = () => {
 
         return {
             finalBeads: calculatedBeads,
-            summary: { totalPrice, totalWeight, totalLength: currentLength_mm, beadCount: calculatedBeads.length, comfortFit_cm }
+            summary: { totalPrice, totalWeight, totalLength: currentLength_mm, beadCount: calculatedBeads.length, comfortFit_cm: comfortFit_cm }
         };
     }, [wristSize, pattern, fitPreference]);
     
@@ -97,6 +102,27 @@ const BraceletBuilder: React.FC = () => {
         const totalCircumference = finalBeads.reduce((sum, bead) => sum + (bead.size * SCALING_FACTOR), 0);
         return totalCircumference / (2 * Math.PI);
     }, [finalBeads]);
+
+    // Dynamic scaling logic
+    useEffect(() => {
+        if (previewContainerRef.current && finalBeads.length > 0) {
+            const SCALING_FACTOR = 2.5;
+            const containerWidth = previewContainerRef.current.offsetWidth;
+            
+            // The visual diameter is the circle diameter + the diameter of the largest bead
+            const maxBeadDiameter = Math.max(...finalBeads.map(b => b.size * SCALING_FACTOR));
+            const braceletVisualDiameter = (displayRadius * 2) + maxBeadDiameter;
+
+            if (braceletVisualDiameter > containerWidth) {
+                const newScale = containerWidth / braceletVisualDiameter;
+                setScale(newScale);
+            } else {
+                setScale(1);
+            }
+        } else {
+            setScale(1); // Reset scale if no beads
+        }
+    }, [displayRadius, finalBeads]);
 
 
     // --- Handlers ---
@@ -412,13 +438,20 @@ const BraceletBuilder: React.FC = () => {
                         )
                     })}
                 </div>
-                 <div className="mt-4 text-center space-y-3">
-                     <div className="flex items-center gap-4">
-                        <button onClick={handleAddBeadToPattern} className="btn-primary btn--compact flex-1">{t('bracelet_builder_add_bead')}</button>
-                        <button onClick={handleRemoveBeadFromPattern} className="btn-primary btn--compact flex-1" disabled={pattern.length <= 1}>{t('bracelet_builder_remove_bead')}</button>
+                 <div className="mt-4 text-center space-y-4">
+                    <div className="flex items-center justify-center gap-4">
+                        <button onClick={handleAddBeadToPattern} className="btn-glass btn-glass-standard">
+                           {t('bracelet_builder_add_bead')}
+                        </button>
+                        <button onClick={handleRemoveBeadFromPattern} className="btn-glass btn-glass-standard" disabled={pattern.length <= 1}>
+                            {t('bracelet_builder_remove_bead')}
+                        </button>
                     </div>
-                    <button onClick={handleAutoDesign} className="btn-primary btn--intelligent">
-                        {t('bracelet_builder_auto_design')}
+                    <button onClick={handleAutoDesign} className="btn-glass btn-glass-special w-full">
+                        <span className="btn-text">
+                            <SparkleIcon className="sparkle-icon" />
+                            {t('bracelet_builder_auto_design')}
+                        </span>
                     </button>
                 </div>
             </div>
@@ -430,8 +463,18 @@ const BraceletBuilder: React.FC = () => {
                 
                 <div ref={captureAreaRef} className="bg-[var(--c-bg)] p-4 my-4 rounded-lg border border-[var(--c-border)]">
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-center">
-                        <div className="lg:col-span-3 aspect-square relative flex items-center justify-center mx-auto w-2/3 lg:w-full">
-                            <div className="w-full h-full relative">
+                        <div 
+                            ref={previewContainerRef}
+                            className="lg:col-span-3 aspect-square relative flex items-center justify-center mx-auto w-full overflow-hidden"
+                        >
+                            <div 
+                                className="w-full h-full relative"
+                                style={{
+                                    transform: `scale(${scale})`,
+                                    transition: 'transform 0.4s ease',
+                                    transformOrigin: 'center'
+                                }}
+                            >
                                 {finalBeads.length > 0 ? renderBraceletPreview() : (
                                     <div className="absolute inset-0 flex items-center justify-center text-center text-stone-500">
                                         <p>{t('bracelet_builder_preview_placeholder')}</p>

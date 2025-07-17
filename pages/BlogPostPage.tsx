@@ -35,7 +35,7 @@ const BlogPostPage: React.FC = () => {
     }
     
     // Dynamic SEO values
-    const seoTitle = `${post.title} | Vicky Amber & Gems`;
+    const seoTitle = `${post.title} | Vicky Lux Gems`;
     const seoDesc = post.summary;
     const seoKeywords = post.title.split(' ').concat(post.category === 'Science' ? ['gemology', 'science'] : ['history', 'spiritual']).join(', ');
 
@@ -55,7 +55,7 @@ const BlogPostPage: React.FC = () => {
         },
         "publisher": {
             "@type": "Organization",
-            "name": "Vicky Amber & Gems",
+            "name": "Vicky Lux Gems",
             "logo": {
                 "@type": "ImageObject",
                 "url": "https://i.postimg.cc/Qd8yW639/vkambergems-logo-small.png"

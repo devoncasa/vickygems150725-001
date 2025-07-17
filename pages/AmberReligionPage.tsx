@@ -57,6 +57,7 @@ const AmberReligionPage: React.FC = () => {
             <SEO
                 titleKey="seo_amber_religion_title"
                 descriptionKey="seo_amber_religion_desc"
+                keywordsKey="seo_amber_religion_keywords"
                 imageUrl="https://i.postimg.cc/59QDMv8j/Vicky-Amber-Gems-background-0025.jpg"
             />
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">

@@ -32,7 +32,7 @@ const WarrantyPolicyPage: React.FC = () => {
                     <div className="mt-12 prose prose-lg lg:prose-xl max-w-none text-[var(--c-text-primary)]/90 mx-auto">
                         <h2>1. Our Commitment to Quality</h2>
                         <SectionDivider/>
-                        <p>At Vicky Amber & Gems, we stand behind the quality and craftsmanship of our products. Each piece is created with meticulous care and is inspected to ensure it meets our high standards before it reaches you. Our warranty reflects our confidence in the durability of our jewelry.</p>
+                        <p>At Vicky Lux Gems, we stand behind the quality and craftsmanship of our products. Each piece is created with meticulous care and is inspected to ensure it meets our high standards before it reaches you. Our warranty reflects our confidence in the durability of our jewelry.</p>
                         <div className="not-prose"><ImageWithAlt src="https://placehold.co/800x450/F0EBE6/534B42?text=Quality+Inspection" alt="A gemologist's hands using tweezers to inspect a finished gemstone under a bright light." /></div>
 
                         <h2>2. Warranty Coverage</h2>
@@ -54,7 +54,7 @@ const WarrantyPolicyPage: React.FC = () => {
                             <li>Accidental damage, misuse, or improper care.</li>
                             <li>Exposure to harsh chemicals, extreme temperatures, or moisture.</li>
                             <li>Loss or theft of the item.</li>
-                            <li>Repairs or alterations performed by a third party not authorized by Vicky Amber & Gems.</li>
+                            <li>Repairs or alterations performed by a third party not authorized by Vicky Lux Gems.</li>
                         </ul>
                         <p>Please refer to our Care Guide for instructions on how to properly maintain your jewelry.</p>
                         <div className="not-prose"><ImageWithAlt src="https://placehold.co/800x450/F0EBE6/534B42?text=Damaged+Jewelry" alt="A piece of jewelry with visible scratches and a small chip, indicating accidental damage." /></div>
@@ -82,7 +82,7 @@ const WarrantyPolicyPage: React.FC = () => {
 
                         <h2>6. Disclaimer</h2>
                         <SectionDivider/>
-                        <p>Vicky Amber & Gems reserves the right to reject any warranty claim that does not meet our policy criteria. This warranty gives you specific legal rights, and you may also have other rights which vary by jurisdiction.</p>
+                        <p>Vicky Lux Gems reserves the right to reject any warranty claim that does not meet our policy criteria. This warranty gives you specific legal rights, and you may also have other rights which vary by jurisdiction.</p>
                         
                         <h2>7. Contact Us</h2>
                         <SectionDivider/>

@@ -57,6 +57,7 @@ const AmberFutureTechPage: React.FC = () => {
              <SEO
                 titleKey="seo_amber_future_tech_title"
                 descriptionKey="seo_amber_future_tech_desc"
+                keywordsKey="seo_amber_future_tech_keywords"
                 imageUrl="https://i.postimg.cc/L6z7JpCp/Vicky-Amber-Gems-background-0023.jpg"
             />
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">

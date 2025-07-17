@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link, useOutletContext } from 'react-router-dom';
 import { PRODUCTS, BLESSING_PRICE, BEAD_SPECS, SHOP_CATEGORIES, BACKGROUND_IMAGES } from '../constants';
@@ -156,7 +157,7 @@ const ProductDetailPage: React.FC = () => {
         );
     }
     
-    const seoTitle = `${product.name} (${selectedBeadSize}mm) - Vicky Amber & Gems`;
+    const seoTitle = `${product.name} (${selectedBeadSize}mm) - Vicky Lux Gems`;
     const seoDesc = t('seo_product_detail_desc', { 
         productName: product.name, 
         beadSize: `${selectedBeadSize}mm`,
@@ -180,7 +181,7 @@ const ProductDetailPage: React.FC = () => {
         "mpn": `${product.sku}-${selectedBeadSize}MM`,
         "brand": {
             "@type": "Brand",
-            "name": "Vicky Amber & Gems"
+            "name": "Vicky Lux Gems"
         },
         "inLanguage": lang,
         "review": {

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SectionDivider from '../components/SectionDivider';
@@ -19,7 +20,7 @@ const PricingGuidePage: React.FC = () => {
         "isPartOf": {
             "@type": "WebSite",
             "url": window.location.origin,
-            "name": "Vicky Amber & Gems"
+            "name": "Vicky Lux Gems"
         }
     };
 
@@ -44,7 +45,7 @@ const PricingGuidePage: React.FC = () => {
 
                     <div className="mt-12 prose prose-lg lg:prose-xl max-w-none text-[var(--c-text-primary)]/90 mx-auto">
                         <p className="lead">
-                            At Vicky Amber & Gems, we believe that understanding the value of your piece is as important as its beauty. Our pricing is a direct reflection of rarity, quality, and craftsmanship. This guide provides a transparent look at how we determine the price of our authentic Burmese amber.
+                            At Vicky Lux Gems, we believe that understanding the value of your piece is as important as its beauty. Our pricing is a direct reflection of rarity, quality, and craftsmanship. This guide provides a transparent look at how we determine the price of our authentic Burmese amber.
                         </p>
                         <div className="flex flex-col md:flex-row gap-8 items-center not-prose my-12">
                              <div className="flex-shrink-0 w-full md:w-2/5 h-64 bg-[var(--c-surface-alt)] rounded-lg flex items-center justify-center overflow-hidden">

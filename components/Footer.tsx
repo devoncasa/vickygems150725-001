@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -90,8 +91,8 @@ export const Footer: React.FC = () => {
           <div className="mt-12 pt-8 border-t border-[var(--c-heading)]/10 text-center">
              <Link to={getTranslatedPath('/')} aria-label="Back to Homepage">
               <img 
-                  src="https://i.postimg.cc/Prt96m87/VKGems-logo-small-web.webp" 
-                  alt="Vicky Amber & Gems Logo" 
+                  src="https://i.postimg.cc/Prt96m87/VKGems_logo_small_web.webp" 
+                  alt="Vicky Lux Gems Logo" 
                   className="h-10 w-auto block mx-auto mb-4"
               />
             </Link>

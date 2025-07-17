@@ -19,7 +19,7 @@ const OurGuaranteePage: React.FC = () => {
         "isPartOf": {
             "@type": "WebSite",
             "url": window.location.origin,
-            "name": "Vicky Amber & Gems"
+            "name": "Vicky Lux Gems"
         }
     };
 
@@ -45,7 +45,7 @@ const OurGuaranteePage: React.FC = () => {
                     <div className="mt-12 prose prose-lg lg:prose-xl max-w-none text-[var(--c-text-primary)]/90 mx-auto">
                         <div className="space-y-4">
                             <p>
-                               At Vicky Amber & Gems, our foundation is built on an unwavering commitment to authenticity.
+                               At Vicky Lux Gems, our foundation is built on an unwavering commitment to authenticity.
                             </p>
                             <p>
                                 We understand that you are not just purchasing a gemstone, but a piece of natural history. Our guarantee is our promise that you are receiving genuine, ethically sourced, and scientifically verified Burmite amber.
@@ -94,7 +94,7 @@ const OurGuaranteePage: React.FC = () => {
                                 <h2 className="text-4xl mt-0">Certificate of Authenticity</h2>
                                 <SectionDivider />
                                 <p className="text-[var(--c-text-secondary)]">
-                                   Every item from Vicky Amber & Gems is accompanied by our official Certificate of Authenticity. This document is our written promise to you, confirming:
+                                   Every item from Vicky Lux Gems is accompanied by our official Certificate of Authenticity. This document is our written promise to you, confirming:
                                 </p>
                                 <ul className="mt-4 space-y-2 text-[var(--c-text-secondary)] list-disc list-inside">
                                     <li>The item's <strong>genuine nature</strong> as authentic Burmese Amber.</li>
@@ -104,7 +104,7 @@ const OurGuaranteePage: React.FC = () => {
                                 </ul>
                             </div>
                             <div className="flex-shrink-0 w-full md:w-1/3 h-48 bg-[var(--c-surface-alt)] rounded-lg flex items-center justify-center text-center overflow-hidden">
-                                 <img src="https://placehold.co/400x300/F0EBE6/534B42?text=Certificate" alt="Vicky Amber & Gems Certificate of Authenticity" className="w-full h-full object-cover" loading="lazy"/>
+                                 <img src="https://placehold.co/400x300/F0EBE6/534B42?text=Certificate" alt="Vicky Lux Gems Certificate of Authenticity" className="w-full h-full object-cover" loading="lazy"/>
                             </div>
                         </div>
                     </div>

@@ -1,11 +1,13 @@
-
 import React, { useState, useEffect, useRef } from 'react';
+import { CloseIcon } from './IconComponents';
 
 const InfographicSection: React.FC = () => {
     const [isExpanded, setIsExpanded] = useState(false);
     const contentRef = useRef<HTMLDivElement>(null);
     const observerRef = useRef<IntersectionObserver | null>(null);
+    const [flippedCardId, setFlippedCardId] = useState<string | null>(null);
 
+    // This effect handles animations for elements inside the expanded content
     useEffect(() => {
         if (!isExpanded || !contentRef.current) {
             if (observerRef.current) {
@@ -65,21 +67,34 @@ const InfographicSection: React.FC = () => {
         };
     }, [isExpanded]);
     
-    // Toggle function for mobile clicks and hover on desktop
-    const toggleExpansion = () => {
-        setIsExpanded(prev => !prev);
-    };
+    // --- New Event Handlers for Hybrid Interaction ---
 
-    const handleMouseEnter = () => {
-        if (window.innerWidth > 768) { // Only trigger on desktop
+    const handleMouseEnterSection = () => {
+        if (window.innerWidth > 1023) {
             setIsExpanded(true);
         }
     };
-    
-    const handleMouseLeave = () => {
-        if (window.innerWidth > 768) { // Only trigger on desktop
+
+    const handleMouseLeaveSection = () => {
+        if (window.innerWidth > 1023) {
             setIsExpanded(false);
         }
+    };
+
+    const handleTeaserClick = () => {
+        if (window.innerWidth <= 1023) {
+            setIsExpanded(true);
+        }
+    };
+
+    const handleCloseClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setIsExpanded(false);
+    };
+    
+    const handleCardClick = (e: React.MouseEvent, cardId: string) => {
+        e.stopPropagation(); // The Core Fix: Prevents the click from bubbling to parent elements.
+        setFlippedCardId(prevId => prevId === cardId ? null : cardId);
     };
 
 
@@ -88,7 +103,6 @@ const InfographicSection: React.FC = () => {
             background-color: #FDFBF8;
             transition: all 0.5s ease-in-out;
             position: relative;
-            overflow: hidden;
             border-top: 1px solid var(--c-border);
             border-bottom: 1px solid var(--c-border);
         }
@@ -103,11 +117,15 @@ const InfographicSection: React.FC = () => {
             background-position: center;
             position: relative;
             color: white;
-            transition: transform 0.5s ease;
+            transition: opacity 0.5s ease, height 0.7s ease, padding 0.7s ease, visibility 0.7s;
             cursor: pointer;
         }
-        .expandable-infographic-section:not(.expanded) .infographic-teaser:hover {
-            transform: scale(1.02);
+        .expandable-infographic-section.expanded .infographic-teaser {
+            opacity: 0;
+            height: 0;
+            padding: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
         .infographic-teaser::before {
             content: '';
@@ -139,21 +157,23 @@ const InfographicSection: React.FC = () => {
                 opacity: 1;
             }
         }
-
+        
         .infographic-content-wrapper {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: default;
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
         }
-        .infographic-content-wrapper.expanded {
-            max-height: 5000px; /* A large value to accommodate content */
+        .expandable-infographic-section.expanded .infographic-content-wrapper {
+            grid-template-rows: 1fr;
+        }
+        .infographic-content-wrapper > div {
+            overflow: hidden;
         }
 
         .infographic-section {
             padding: 4rem 1rem;
             position: relative;
-            overflow: hidden;
             font-family: 'Tenor Sans', sans-serif;
             color: #3a3a3a;
         }
@@ -178,7 +198,7 @@ const InfographicSection: React.FC = () => {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-color: rgba(253, 251, 248, 0.85);
+            background-color: rgba(253, 251, 248, 0.5);
         }
         .content-container {
             position: relative;
@@ -203,6 +223,7 @@ const InfographicSection: React.FC = () => {
             background-color: transparent;
             perspective: 1000px;
             min-height: 280px;
+            cursor: pointer;
         }
         .gem-card-inner {
             position: relative; width: 100%; height: 100%;
@@ -212,7 +233,7 @@ const InfographicSection: React.FC = () => {
             box-shadow: 0 10px 30px rgba(0,0,0,0.07);
             border-radius: 0.5rem;
         }
-        .gem-card:hover .gem-card-inner {
+        .gem-card-inner.is-flipped {
             transform: rotateY(180deg);
         }
         .gem-card-front, .gem-card-back {
@@ -300,25 +321,35 @@ const InfographicSection: React.FC = () => {
     return (
         <section 
             className={`expandable-infographic-section ${isExpanded ? 'expanded' : ''}`}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onClick={toggleExpansion}
-            role="button"
-            aria-expanded={isExpanded}
-            tabIndex={0}
+            onMouseEnter={handleMouseEnterSection}
+            onMouseLeave={handleMouseLeaveSection}
+            role="region"
+            aria-labelledby="infographic-title"
         >
             <style>{styles}</style>
             
-            <div className="infographic-teaser" style={{backgroundImage: "url('https://i.postimg.cc/yY0H0PRS/vkgems-info-Stories-in-Stone-Legendary-Gems-background.webp')"}}>
-                <h2 className="text-3xl md:text-4xl" style={{fontFamily: "'Cormorant Garamond', serif"}}>An Interactive Guide to the Treasures of Myanmar</h2>
+            <div 
+                className="infographic-teaser" 
+                onClick={handleTeaserClick}
+                role="button"
+                aria-expanded={isExpanded}
+                tabIndex={0}
+                style={{backgroundImage: "url('https://i.postimg.cc/yY0H0PRS/vkgems-info-Stories-in-Stone-Legendary-Gems-background.webp')"}}
+            >
+                <h2 id="infographic-title" className="text-3xl md:text-4xl text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>An Interactive Guide to the Treasures of Myanmar</h2>
+                <p className="text-white/90 text-sm uppercase tracking-widest mt-2">Infographic</p>
                 <div className="hover-prompt">Hover or Click to Explore</div>
             </div>
 
-            <div 
-                className={`infographic-content-wrapper ${isExpanded ? 'expanded' : ''}`}
-                style={{maxHeight: isExpanded ? (contentRef.current?.scrollHeight || 0) : 0}}
-            >
+            <div className={`infographic-content-wrapper ${isExpanded ? 'expanded' : ''}`}>
                 <div ref={contentRef}>
+                     <button 
+                        onClick={handleCloseClick} 
+                        className="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/20 text-white hover:bg-black/40 lg:hidden"
+                        aria-label="Close infographic"
+                    >
+                        <CloseIcon className="w-6 h-6" />
+                    </button>
                     <header className="text-center py-16 px-4 infographic-section" style={{paddingTop: '4rem', paddingBottom: '4rem'}}>
                         <h1 className="text-5xl md:text-7xl font-bold text-[#904a21] mb-4">The Treasures of Myanmar</h1>
                         <p className="text-xl max-w-3xl mx-auto text-gray-600">A journey into the ancient origins and geological wonders of Burmese Amber and the world's most coveted gemstones.</p>
@@ -433,14 +464,13 @@ const InfographicSection: React.FC = () => {
                                         <p className="mt-4 text-gray-600">"The Sunrise Ruby," a 25.59-carat Burmese gem, set a world record.</p>
                                     </div>
                                 </div>
-
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-                                    <div className="gem-card fade-in-up" style={{transitionDelay: '500ms'}}><div className="gem-card-inner"><div className="gem-card-front"><img src="https://i.postimg.cc/vHrJ4mRr/vkgems-info-amber-flipping-card.webp" alt="Burmese Amber"/><div><h3 className="text-2xl mb-2">Burmese Amber</h3><p><strong>Hardness:</strong> 2.5 - 3.0 Mohs</p><p><strong>Defining Trait:</strong> A 99-million-year-old time capsule.</p></div></div><div className="gem-card-back"><div className="text-sm w-full"><h4 className="text-lg font-bold mb-2 text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>Burmite: A Prehistoric Time Capsule</h4><p className="mb-3 text-white/90 text-xs leading-relaxed">As the world's oldest gem-quality amber, Burmite is a direct portal to the Cretaceous period. Formed nearly 100 million years ago, it offers an unparalleled window into the age of dinosaurs, preserving an entire ecosystem with unmatched scientific and gemological significance.</p><ul className="space-y-1 text-xs text-white/90 list-disc list-inside"><li><strong>Primary Source:</strong> Hukawng Valley, Myanmar</li><li><strong>Key Identifier:</strong> Superior hardness (2.5-3.0 Mohs) and the presence of Cretaceous-era biological inclusions.</li><li><strong>Spiritual Belief:</strong> Believed to hold ancient Earth wisdom, providing grounding, protection, and a connection to deep time.</li><li><strong>Did You Know?:</strong> It is the only amber known to have trapped feathers from non-avian dinosaurs.</li></ul></div></div></div></div>
-                                    <div className="gem-card fade-in-up" style={{transitionDelay: '600ms'}}><div className="gem-card-inner"><div className="gem-card-front"><img src="https://i.postimg.cc/QNTGrb0n/vkgems-info-ruby-flipping-card.webp" alt="Ruby"/><div><h3 className="text-2xl mb-2">Ruby</h3><p><strong>Hardness:</strong> 9 Mohs</p><p><strong>Defining Trait:</strong> The legendary "Pigeon's Blood" red.</p></div></div><div className="gem-card-back"><div className="text-sm w-full"><h4 className="text-lg font-bold mb-2 text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>The Essence of Ruby: A Stone of Kings</h4><p className="mb-3 text-white/90 text-xs leading-relaxed">Sourced from the legendary Mogok Valley, the Burmese ruby is revered as the "King of Gems." Its fiery glow has long been associated with power, passion, and protection, making it the ultimate talisman for royalty and leaders throughout history.</p><ul className="space-y-1 text-xs text-white/90 list-disc list-inside"><li><strong>Primary Source:</strong> Mogok Valley, Myanmar</li><li><strong>Key Identifier:</strong> Unmatched 'Pigeon's Blood' red color with strong natural fluorescence that makes it glow from within.</li><li><strong>Spiritual Belief:</strong> A powerful talisman for vitality, courage, and passion. It is thought to stimulate the heart chakra and bestow invincibility upon its wearer.</li><li><strong>Did You Know?:</strong> In ancient times, Burmese warriors would embed rubies under their skin, believing it made them invincible in battle.</li></ul></div></div></div></div>
-                                    <div className="gem-card fade-in-up" style={{transitionDelay: '700ms'}}><div className="gem-card-inner"><div className="gem-card-front"><img src="https://i.postimg.cc/TYC1h47Q/vkgems-info-sapphire-flipping-card-1.webp" alt="Sapphire"/><div><h3 className="text-2xl mb-2">Sapphire</h3><p><strong>Hardness:</strong> 9 Mohs</p><p><strong>Defining Trait:</strong> A rich, intense, and velvety "Burma Blue" color.</p></div></div><div className="gem-card-back"><div className="text-sm w-full"><h4 className="text-lg font-bold mb-2 text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>Burma Blue: A Glimpse of the Celestial</h4><p className="mb-3 text-white/90 text-xs leading-relaxed">The velvety, royal blue color of a Burmese sapphire is the global benchmark for this celestial gem. Historically linked to divinity and truth, its deep, unchanging hue is a symbol of wisdom, nobility, and divine favor.</p><ul className="space-y-1 text-xs text-white/90 list-disc list-inside"><li><strong>Primary Source:</strong> Mogok, Myanmar</li><li><strong>Key Identifier:</strong> A rich, velvety, pure "Royal Blue" hue that maintains its exceptional color in all forms of lighting.</li><li><strong>Spiritual Belief:</strong> A stone of wisdom, prophecy, and mental clarity. It's believed to calm the mind and connect the wearer to higher spiritual realms.</li><li><strong>Did You Know?:</strong> Fine Burmese sapphires can be more valuable than diamonds, and often have microscopic rutile silk inclusions that give them a soft, unique luster.</li></ul></div></div></div></div>
-                                    <div className="gem-card fade-in-up" style={{transitionDelay: '800ms'}}><div className="gem-card-inner"><div className="gem-card-front"><img src="https://i.postimg.cc/1X6Lcm8Z/vkgems-info-jadeite-flipping-card.webp" alt="Jadeite"/><div><h3 className="text-2xl mb-2">Jadeite</h3><p><strong>Hardness:</strong> 6.5 - 7 Mohs</p><p><strong>Defining Trait:</strong> The vibrant, translucent green known as "Imperial Jade."</p></div></div><div className="gem-card-back"><div className="text-sm w-full"><h4 className="text-lg font-bold mb-2 text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>Imperial Jadeite: The Stone of Heaven</h4><p className="mb-3 text-white/90 text-xs leading-relaxed">Jadeite holds supreme cultural importance in Asia, where the prized "Imperial Green" was reserved for emperors. It is more than a gem; it's a spiritual conduit, believed to bridge the physical and metaphysical worlds with its protective and healing energy.</p><ul className="space-y-1 text-xs text-white/90 list-disc list-inside"><li><strong>Primary Source:</strong> Hpakant, Myanmar</li><li><strong>Key Identifier:</strong> A vibrant, semi-translucent emerald-green color with a fine, smooth texture and a characteristic "oily" luster.</li><li><strong>Spiritual Belief:</strong> Embodies virtues of wisdom, courage, and justice, acting as a powerful protector against evil and a bringer of good health and fortune.</li><li><strong>Did You Know?:</strong> Jadeite is significantly rarer and harder than Nephrite, the other type of jade. Top-grade Imperial Jadeite can be one of the most expensive gems on earth per carat.</li></ul></div></div></div></div>
-                                    <div className="gem-card fade-in-up" style={{transitionDelay: '900ms'}}><div className="gem-card-inner"><div className="gem-card-front"><img src="https://i.postimg.cc/R0p5vpk2/vkgems-info-spinel-flipping-card.webp" alt="Spinel"/><div><h3 className="text-2xl mb-2">Spinel</h3><p><strong>Hardness:</strong> 8 Mohs</p><p><strong>Defining Trait:</strong> A fiery array of colors, especially vibrant red and pink.</p></div></div><div className="gem-card-back"><div className="text-sm w-full"><h4 className="text-lg font-bold mb-2 text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>Spinel: The Great Impostor of Royalty</h4><p className="mb-3 text-white/90 text-xs leading-relaxed">For centuries, spinel was famously mistaken for ruby, gracing some of the world's most famous crown jewels. Today, its exceptional brilliance and fiery range of vibrant colors are celebrated in their own right, making it a collector's favorite.</p><ul className="space-y-1 text-xs text-white/90 list-disc list-inside"><li><strong>Primary Source:</strong> Mogok & Pein Pyit, Myanmar</li><li><strong>Key Identifier:</strong> Exceptional brilliance and fire that often surpasses ruby, available in a vast range of vivid colors from red to cobalt blue.</li><li><strong>Spiritual Belief:</strong> A stone of revitalization and hope. It is believed to reduce stress, replenish energy levels, and inspire new beginnings and perseverance.</li><li><strong>Did You Know?:</strong> The UK's 170-carat "Black Prince's Ruby," set in the Imperial State Crown, is actually one of the world's largest uncut red spinels.</li></ul></div></div></div></div>
-                                    <div className="gem-card fade-in-up" style={{transitionDelay: '1000ms'}}><div className="gem-card-inner"><div className="gem-card-front"><img src="https://i.postimg.cc/NMyhF7YF/vkgems-info-peridot-flipping-card.webp" alt="Peridot"/><div><h3 className="text-2xl mb-2">Peridot</h3><p><strong>Hardness:</strong> 6.5 - 7 Mohs</p><p><strong>Defining Trait:</strong> A distinctive and brilliant olive or "bottle-green" hue.</p></div></div><div className="gem-card-back"><div className="text-sm w-full"><h4 className="text-lg font-bold mb-2 text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>Peridot: Gem of the Sun</h4><p className="mb-3 text-white/90 text-xs leading-relaxed">Revered by ancient Egyptians as the "gem of the sun," peridot is famed for its unique olive-green glow that never changes, even in artificial light. Its vibrant energy has been treasured for over 3,500 years as a symbol of light and renewal.</p><ul className="space-y-1 text-xs text-white/90 list-disc list-inside"><li><strong>Primary Source:</strong> Pyaung Gaung, Myanmar</li><li><strong>Key Identifier:</strong> Its signature olive-green color is idiochromatic, meaning the color comes from the mineral's basic chemical structure itself.</li><li><strong>Spiritual Belief:</strong> A stone of compassion, it's believed to balance emotions, cleanse the mind of jealousy, and protect against nightmares.</li><li><strong>Did You Know?:</strong> Many historians believe that Cleopatra's famous "emeralds" were actually fine peridots, a testament to its ancient allure.</li></ul></div></div></div></div>
+                                    <div className="gem-card fade-in-up" style={{transitionDelay: '500ms'}} onClick={(e) => handleCardClick(e, 'amber')}><div className={`gem-card-inner ${flippedCardId === 'amber' ? 'is-flipped' : ''}`}><div className="gem-card-front"><img src="https://i.postimg.cc/vHrJ4mRr/vkgems-info-amber-flipping-card.webp" alt="Burmese Amber"/><div><h3 className="text-2xl mb-2">Burmese Amber</h3><p><strong>Hardness:</strong> 2.5 - 3.0 Mohs</p><p><strong>Defining Trait:</strong> A 99-million-year-old time capsule.</p></div></div><div className="gem-card-back"><div className="text-sm w-full"><h4 className="text-lg font-bold mb-2 text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>Burmite: A Prehistoric Time Capsule</h4><p className="mb-3 text-white/90 text-xs leading-relaxed">The world's oldest amber, Burmite is a 99-million-year-old time capsule offering a direct portal to the age of dinosaurs.</p><ul className="space-y-1 text-xs text-white/90 list-disc list-inside"><li><strong>Source:</strong> Hukawng Valley, Myanmar</li><li><strong>Identifier:</strong> Superior hardness & Cretaceous-era inclusions.</li><li><strong>Belief:</strong> Holds ancient Earth wisdom for grounding and protection.</li><li><strong>Did You Know?:</strong> It's the only amber known to contain non-avian dinosaur feathers.</li></ul></div></div></div></div>
+                                    <div className="gem-card fade-in-up" style={{transitionDelay: '600ms'}} onClick={(e) => handleCardClick(e, 'ruby')}><div className={`gem-card-inner ${flippedCardId === 'ruby' ? 'is-flipped' : ''}`}><div className="gem-card-front"><img src="https://i.postimg.cc/QNTGrb0n/vkgems-info-ruby-flipping-card.webp" alt="Ruby"/><div><h3 className="text-2xl mb-2">Ruby</h3><p><strong>Hardness:</strong> 9 Mohs</p><p><strong>Defining Trait:</strong> The legendary "Pigeon's Blood" red.</p></div></div><div className="gem-card-back"><div className="text-sm w-full"><h4 className="text-lg font-bold mb-2 text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>The Essence of Ruby: A Stone of Kings</h4><p className="mb-3 text-white/90 text-xs leading-relaxed">Revered as the 'King of Gems,' ruby from Myanmar's Mogok Valley is the ultimate historical talisman of power, passion, and protection.</p><ul className="space-y-1 text-xs text-white/90 list-disc list-inside"><li><strong>Source:</strong> Mogok Valley, Myanmar</li><li><strong>Identifier:</strong> 'Pigeon's Blood' red color with a strong natural glow.</li><li><strong>Belief:</strong> A talisman for vitality, courage, and passion.</li><li><strong>Did You Know?:</strong> Ancient Burmese warriors embedded rubies in their skin for invincibility.</li></ul></div></div></div></div>
+                                    <div className="gem-card fade-in-up" style={{transitionDelay: '700ms'}} onClick={(e) => handleCardClick(e, 'sapphire')}><div className={`gem-card-inner ${flippedCardId === 'sapphire' ? 'is-flipped' : ''}`}><div className="gem-card-front"><img src="https://i.postimg.cc/TYC1h47Q/vkgems-info-sapphire-flipping-card-1.webp" alt="Sapphire"/><div><h3 className="text-2xl mb-2">Sapphire</h3><p><strong>Hardness:</strong> 9 Mohs</p><p><strong>Defining Trait:</strong> A rich, intense, and velvety "Burma Blue" color.</p></div></div><div className="gem-card-back"><div className="text-sm w-full"><h4 className="text-lg font-bold mb-2 text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>Burma Blue: A Glimpse of the Celestial</h4><p className="mb-3 text-white/90 text-xs leading-relaxed">The benchmark for celestial gems, the velvety 'Burma Blue' sapphire is a timeless symbol of wisdom, nobility, and divine truth.</p><ul className="space-y-1 text-xs text-white/90 list-disc list-inside"><li><strong>Source:</strong> Mogok, Myanmar</li><li><strong>Identifier:</strong> Rich, velvety 'Royal Blue' hue that holds its color in any light.</li><li><strong>Belief:</strong> A stone of wisdom, clarity, and spiritual connection.</li><li><strong>Did You Know?:</strong> Fine Burmese sapphires can be more valuable than diamonds.</li></ul></div></div></div></div>
+                                    <div className="gem-card fade-in-up" style={{transitionDelay: '800ms'}} onClick={(e) => handleCardClick(e, 'jadeite')}><div className={`gem-card-inner ${flippedCardId === 'jadeite' ? 'is-flipped' : ''}`}><div className="gem-card-front"><img src="https://i.postimg.cc/1X6Lcm8Z/vkgems-info-jadeite-flipping-card.webp" alt="Jadeite"/><div><h3 className="text-2xl mb-2">Jadeite</h3><p><strong>Hardness:</strong> 6.5 - 7 Mohs</p><p><strong>Defining Trait:</strong> The vibrant, translucent green known as "Imperial Jade."</p></div></div><div className="gem-card-back"><div className="text-sm w-full"><h4 className="text-lg font-bold mb-2 text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>Imperial Jadeite: The Stone of Heaven</h4><p className="mb-3 text-white/90 text-xs leading-relaxed">More than a gem, prized 'Imperial Green' jadeite is a spiritual conduit believed to bridge the physical and metaphysical worlds.</p><ul className="space-y-1 text-xs text-white/90 list-disc list-inside"><li><strong>Source:</strong> Hpakant, Myanmar</li><li><strong>Identifier:</strong> Vibrant, semi-translucent green with a characteristic oily luster.</li><li><strong>Belief:</strong> Embodies wisdom and courage; a protector that brings good fortune.</li><li><strong>Did You Know?:</strong> Jadeite is much rarer than Nephrite, the other jade, and can be one of the most expensive gems per carat.</li></ul></div></div></div></div>
+                                    <div className="gem-card fade-in-up" style={{transitionDelay: '900ms'}} onClick={(e) => handleCardClick(e, 'spinel')}><div className={`gem-card-inner ${flippedCardId === 'spinel' ? 'is-flipped' : ''}`}><div className="gem-card-front"><img src="https://i.postimg.cc/R0p5vpk2/vkgems-info-spinel-flipping-card.webp" alt="Spinel"/><div><h3 className="text-2xl mb-2">Spinel</h3><p><strong>Hardness:</strong> 8 Mohs</p><p><strong>Defining Trait:</strong> A fiery array of colors, especially vibrant red and pink.</p></div></div><div className="gem-card-back"><div className="text-sm w-full"><h4 className="text-lg font-bold mb-2 text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>Spinel: The Great Impostor of Royalty</h4><p className="mb-3 text-white/90 text-xs leading-relaxed">Famously mistaken for ruby in crown jewels, spinel is now celebrated for its exceptional brilliance and fiery range of vibrant colors.</p><ul className="space-y-1 text-xs text-white/90 list-disc list-inside"><li><strong>Source:</strong> Mogok & Pein Pyit, Myanmar</li><li><strong>Identifier:</strong> Brilliant fire, often surpassing ruby, in a vast color range.</li><li><strong>Belief:</strong> A stone of revitalization, hope, and new beginnings.</li><li><strong>Did You Know?:</strong> The UK's 'Black Prince's Ruby' is actually a massive 170-carat red spinel.</li></ul></div></div></div></div>
+                                    <div className="gem-card fade-in-up" style={{transitionDelay: '1000ms'}} onClick={(e) => handleCardClick(e, 'peridot')}><div className={`gem-card-inner ${flippedCardId === 'peridot' ? 'is-flipped' : ''}`}><div className="gem-card-front"><img src="https://i.postimg.cc/NMyhF7YF/vkgems-info-peridot-flipping-card.webp" alt="Peridot"/><div><h3 className="text-2xl mb-2">Peridot</h3><p><strong>Hardness:</strong> 6.5 - 7 Mohs</p><p><strong>Defining Trait:</strong> A distinctive and brilliant olive or "bottle-green" hue.</p></div></div><div className="gem-card-back"><div className="text-sm w-full"><h4 className="text-lg font-bold mb-2 text-white" style={{fontFamily: "'Cormorant Garamond', serif"}}>Peridot: Gem of the Sun</h4><p className="mb-3 text-white/90 text-xs leading-relaxed">Famed for its unique olive-green glow that never changes, peridot has been treasured for over 3,500 years as a symbol of light and renewal.</p><ul className="space-y-1 text-xs text-white/90 list-disc list-inside"><li><strong>Source:</strong> Pyaung Gaung, Myanmar</li><li><strong>Identifier:</strong> Its signature olive-green color comes from its core chemical structure.</li><li><strong>Belief:</strong> A stone of compassion that balances emotions and protects from negativity.</li><li><strong>Did You Know?:</strong> Historians believe Cleopatra's famed 'emeralds' were actually fine peridots.</li></ul></div></div></div></div>
                                 </div>
                             </div>
                         </section>

@@ -17,7 +17,7 @@ const ContactPage: React.FC = () => {
     const businessSchema = {
         "@context": "https://schema.org",
         "@type": "JewelryStore",
-        "name": "Vicky Amber & Gems",
+        "name": "Vicky Lux Gems",
         "image": "https://i.postimg.cc/Qd8yW639/vkambergems-logo-small.png",
         "url": window.location.origin,
         "telephone": "+66631959922",
@@ -78,7 +78,7 @@ const ContactPage: React.FC = () => {
                                 <div>
                                     <h3 className="font-semibold text-[var(--c-heading)] text-lg">Our Showroom</h3>
                                     <address className="not-italic text-sm mt-1">
-                                        Vicky Amber & Gems Co., Ltd.<br/>
+                                        Vicky Lux Gems Co., Ltd.<br/>
                                         919/1 Jewelry Trade Center Building<br/>
                                         BB038, Silom Rd., Silom, Bangrak<br/>
                                         Bangkok 10500 THAILAND

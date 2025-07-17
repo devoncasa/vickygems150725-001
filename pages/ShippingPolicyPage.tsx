@@ -80,7 +80,7 @@ const ShippingPolicyPage: React.FC = () => {
                         <SectionDivider/>
                         <div className="space-y-4">
                            <p>
-                                Vicky Amber & Gems is not responsible for any customs duties, taxes, or import fees that may be charged upon delivery. These charges are the responsibility of the recipient and are determined by the customs agency of the destination country.
+                                Vicky Lux Gems is not responsible for any customs duties, taxes, or import fees that may be charged upon delivery. These charges are the responsibility of the recipient and are determined by the customs agency of the destination country.
                             </p>
                              <p>
                                 We recommend contacting your local customs office for more information on potential charges.

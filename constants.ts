@@ -1,3 +1,4 @@
+
 import { Product, Material, Amulet, MaterialDetail, BlogPost, AmberColorDetail, Metal, BeadSize, AmberSpectrumDetail, NavLink, ShopCategory, Author } from './types';
 
 export const BACKGROUND_IMAGES = [
@@ -42,6 +43,25 @@ export const BACKGROUND_IMAGES = [
   'https://i.postimg.cc/Vv27d7M5/Vicky-Amber-Gems-background-0044.jpg',
   'https://i.postimg.cc/DybjtTkG/Vicky-Amber-Gems-background-0045.jpg',
   'https://i.postimg.cc/G3fg7pNr/Vicky-Amber-Gems-background-0046.jpg',
+];
+
+export const HERO_SLIDESHOW_IMAGES = [
+    'https://i.postimg.cc/cLNN457q/hero-section-background-vicky-001.jpg',
+    'https://i.postimg.cc/90rcZR0v/hero-section-background-vicky-0010.jpg',
+    'https://i.postimg.cc/FRP9Ygry/hero-section-background-vicky-0011.jpg',
+    'https://i.postimg.cc/V6sfsH8s/hero-section-background-vicky-0012.jpg',
+    'https://i.postimg.cc/Qd5xfTmD/hero-section-background-vicky-0013.jpg',
+    'https://i.postimg.cc/nLJVghSD/hero-section-background-vicky-0014.jpg',
+    'https://i.postimg.cc/vHCZ7zWX/hero-section-background-vicky-0015.jpg',
+    'https://i.postimg.cc/CLRKftfz/hero-section-background-vicky-0016.jpg',
+    'https://i.postimg.cc/02Ssvqwd/hero-section-background-vicky-002.jpg',
+    'https://i.postimg.cc/2jMDg5VS/hero-section-background-vicky-003.jpg',
+    'https://i.postimg.cc/kG0PSTkb/hero-section-background-vicky-004.jpg',
+    'https://i.postimg.cc/RFbBSSdG/hero-section-background-vicky-005.jpg',
+    'https://i.postimg.cc/76L4rG3f/hero-section-background-vicky-006.jpg',
+    'https://i.postimg.cc/PqyH7z8g/hero-section-background-vicky-007.jpg',
+    'https://i.postimg.cc/JzwRHhL2/hero-section-background-vicky-008.jpg',
+    'https://i.postimg.cc/44SfZ5FZ/hero-section-background-vicky-009.jpg',
 ];
 
 export const NAV_LINKS: NavLink[] = [
@@ -654,7 +674,7 @@ const VICKY_AUTHOR: Author = {
     name: "Vicky Sinchoury",
     title: "Founder & Certified Gemologist",
     imageUrl: "https://placehold.co/100x100/7E746A/FFFFFF?text=VS",
-    bio: "Vicky Sinchoury is a certified gemologist and the founder of Vicky Amber & Gems. With over a decade of experience in sourcing and authenticating rare Burmese amber, she is passionate about bridging the gap between ancient gemological wisdom and modern scientific verification."
+    bio: "Vicky Sinchoury is a certified gemologist and the founder of Vicky Lux Gems. With over a decade of experience in sourcing and authenticating rare Burmese amber, she is passionate about bridging the gap between ancient gemological wisdom and modern scientific verification."
 };
 
 export const BLOG_POSTS: BlogPost[] = [

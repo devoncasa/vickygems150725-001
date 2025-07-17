@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SectionDivider from '../components/SectionDivider';
@@ -20,7 +21,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 <div className="max-w-4xl mx-auto">
                     {/* Header */}
                     <div className="text-center mb-12">
-                        <h1 className="text-5xl font-bold tracking-tight">Vicky Amber & Gems | Privacy Policy</h1>
+                        <h1 className="text-5xl font-bold tracking-tight">Vicky Lux Gems | Privacy Policy</h1>
                         <p className="mt-4 text-xl text-[var(--c-text-secondary)]">Last Updated: October 12, 2023</p>
                     </div>
 
@@ -29,7 +30,7 @@ const PrivacyPolicyPage: React.FC = () => {
                         <SectionDivider/>
                         <div className="space-y-4">
                             <p>
-                                Welcome to Vicky Amber & Gems. We are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or make a purchase.
+                                Welcome to Vicky Lux Gems. We are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner. This Privacy Policy outlines how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or make a purchase.
                             </p>
                         </div>
 

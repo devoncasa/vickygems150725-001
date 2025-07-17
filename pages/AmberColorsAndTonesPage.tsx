@@ -66,6 +66,7 @@ const AmberColorsAndTonesPage: React.FC = () => {
              <SEO
                 titleKey="seo_amber_colors_tones_title"
                 descriptionKey="seo_amber_colors_tones_desc"
+                keywordsKey="seo_amber_colors_tones_keywords"
                 imageUrl="https://i.postimg.cc/ZY9zKXzb/Vicky-Amber-Gems-background-0034.jpg"
             />
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">

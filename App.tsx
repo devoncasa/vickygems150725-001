@@ -45,6 +45,7 @@ import AmberMarketsPage from './pages/AmberMarketsPage';
 import AmberReligionPage from './pages/AmberReligionPage';
 import AmberColorsAndTonesPage from './pages/AmberColorsAndTonesPage';
 import CookieConsentBanner from './components/CookieConsentBanner';
+import Chatbot from './components/Chatbot';
 
 // i18n imports
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
@@ -67,6 +68,7 @@ const Layout: React.FC = () => {
             </main>
             <Footer />
             <CookieConsentBanner />
+            <Chatbot />
         </div>
     );
 };

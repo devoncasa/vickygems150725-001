@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink as RouterNavLink, useNavigate, useLocation } from 'react-router-dom';
 import { NAV_LINKS } from '../constants';
@@ -124,12 +123,12 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
     };
 
     const DesktopNav = () => {
-        const linkClasses = "py-1 px-1 md:px-2 uppercase tracking-wider main-nav-link flex items-center gap-1";
+        const linkClasses = "py-1 px-1 lg:px-2 uppercase tracking-wider main-nav-link flex items-center gap-1";
         const activeLinkClasses = "active font-semibold";
         const inactiveLinkClasses = "opacity-80";
 
         return (
-            <nav className="hidden md:flex items-center space-x-4">
+            <nav className="hidden lg:flex items-center space-x-4">
                 {NAV_LINKS.map((link) => (
                     <div 
                         key={link.name} 
@@ -227,28 +226,32 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
         <>
             <header ref={headerRef} className="bg-[var(--c-bg)]/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm border-b border-[var(--c-border)]">
                 <div className="container mx-auto px-4 sm:px-6 md:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-3 items-center h-28">
-                        {/* Column 1: Logo */}
-                        <div className="flex justify-start">
-                             <Link to={getTranslatedPath('/')} className="flex items-center gap-4">
-                                <img src="https://i.postimg.cc/vZjGRFTg/0716-1-unscreen-1.gif" alt="Vicky Amber & Gems Animated Logo" className="h-24 w-auto"/>
-                                <img src="https://i.postimg.cc/ydqBdwMJ/vkgems-name-logo-small.webp" alt="Vicky Amber & Gems" className="hidden md:block h-12 w-auto" />
+                    <div className="flex items-center justify-between h-28">
+                        
+                        {/* --- Left Side: Logo --- */}
+                        <div className="flex-shrink-0">
+                            <Link to={getTranslatedPath('/')} className="logo-group flex items-center">
+                                {/* Animated emblem */}
+                                <img src="https://i.postimg.cc/vZjGRFTg/0716-1-unscreen-1.gif" alt="Vicky Lux Gems Animated Logo" className="header-animated-emblem"/>
+                                {/* Name logo */}
+                                <img src="https://i.postimg.cc/ydqBdwMJ/vkgems-name-logo-small.webp" alt="Vicky Lux Gems" className="header-name-logo"/>
                             </Link>
                         </div>
 
-                        {/* Column 2: Desktop Navigation (Centered) */}
-                        <div className="hidden md:flex justify-center">
+                        {/* --- Center: Desktop Navigation --- */}
+                        <div className="hidden lg:flex justify-center flex-grow">
                             <DesktopNav />
                         </div>
-                        
-                        {/* Column 3: Icons and Mobile Menu */}
-                        <div className="flex items-center justify-end">
-                            <div className="hidden md:block border-s border-[var(--c-border)] mx-2 h-6"></div>
-                            <div className="hidden md:block">
-                               <LanguageSwitcher />
-                            </div>
 
-                            <button className="relative p-2 rounded-full hover:bg-[var(--c-accent-primary)]/10 transition-colors ms-2" aria-label="View shopping cart">
+                        {/* --- Right Side: Icons --- */}
+                        <div className="flex items-center">
+                            {/* Desktop Language Switcher */}
+                            <div className="hidden lg:flex items-center">
+                                <div className="border-s border-[var(--c-border)] mx-2 h-6"></div>
+                                <LanguageSwitcher />
+                            </div>
+                             {/* Cart Icon (All Sizes) */}
+                            <button className="relative p-2 rounded-full hover:bg-[var(--c-accent-primary)]/10 transition-colors lg:ms-2" aria-label="View shopping cart">
                                 <CartIcon className="h-6 w-6 text-[var(--c-text-primary)] opacity-80" />
                                 {cartCount > 0 && (
                                     <span className="absolute -top-1 -end-1 block h-5 w-5 rounded-full bg-[var(--c-accent-secondary)] text-white text-xs flex items-center justify-center border-2 border-[var(--c-bg)]">
@@ -256,17 +259,16 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
                                     </span>
                                 )}
                             </button>
-                            <div className="md:hidden ms-2">
-                                <button
-                                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                    className="p-2 rounded-md text-[var(--c-text-primary)] opacity-80 hover:bg-[var(--c-accent-primary)]/10"
-                                    aria-label="Toggle menu"
-                                    aria-controls="mobile-nav-panel"
-                                    aria-expanded={isMenuOpen}
-                                >
-                                    <MenuIcon className="h-6 w-6" />
-                                </button>
-                            </div>
+                            {/* Mobile Menu Button */}
+                             <button
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className="p-2 rounded-md text-[var(--c-text-primary)] opacity-80 hover:bg-[var(--c-accent-primary)]/10 lg:hidden mobile-menu-button"
+                                aria-label="Toggle menu"
+                                aria-controls="mobile-nav-panel"
+                                aria-expanded={isMenuOpen}
+                            >
+                                <MenuIcon className="h-6 w-6 mobile-menu-icon" />
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -275,14 +277,14 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
             {/* Mobile Menu Overlay & Panel */}
             {isMenuOpen && (
                 <div 
-                    className="mobile-nav-overlay md:hidden" 
+                    className="mobile-nav-overlay lg:hidden" 
                     onClick={() => setIsMenuOpen(false)}
                     aria-hidden="true"
                 ></div>
             )}
             <div 
                 id="mobile-nav-panel"
-                className={`mobile-nav-panel md:hidden ${isMenuOpen ? 'open' : ''}`}
+                className={`mobile-nav-panel lg:hidden ${isMenuOpen ? 'open' : ''}`}
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="mobile-menu-heading"

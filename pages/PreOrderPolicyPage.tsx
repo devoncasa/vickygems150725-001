@@ -34,7 +34,7 @@ const PreOrderPolicyPage: React.FC = () => {
                         <SectionDivider/>
                         <div className="space-y-4">
                             <p>
-                                At Vicky Amber & Gems, our pre-order service allows you to commission a custom piece of Burmese amber jewelry tailored to your exact specifications. We work closely with you to bring your vision to life, combining your preferences with our expertise in gemology and craftsmanship.
+                                At Vicky Lux Gems, our pre-order service allows you to commission a custom piece of Burmese amber jewelry tailored to your exact specifications. We work closely with you to bring your vision to life, combining your preferences with our expertise in gemology and craftsmanship.
                             </p>
                             <p>
                                 Please review the following steps to understand how our pre-order process works.
