@@ -4,6 +4,7 @@ import { BACKGROUND_IMAGES } from '../constants';
 import SEO from '../components/SEO';
 import JsonLd from '../components/JsonLd';
 import { useLanguage } from '../i18n/LanguageContext';
+import { EmailIcon, WhatsAppIcon } from '../components/IconComponents';
 
 const ContactPage: React.FC = () => {
     const { lang, t } = useLanguage();
@@ -86,13 +87,48 @@ const ContactPage: React.FC = () => {
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-[var(--c-heading)] text-lg">Contact Channels</h3>
-                                    <p className="text-sm mt-1"><strong>Mobile/WhatsApp/LINE/WeChat:</strong></p>
-                                    <ul className="text-sm list-disc list-inside ms-1">
-                                        <li>Vicky: +66 (0)63 195 9922</li>
-                                        <li>Office: +66 (0)81 851 9922</li>
-                                    </ul>
-                                    <p className="text-sm mt-2"><strong>Email:</strong> info.vkamber@gmail.com</p>
-                                    <p className="text-sm"><strong>CC:</strong> vkamber91@gmail.com</p>
+                                    <div className="mt-2 space-y-4">
+                                        {/* Vicky's Contact */}
+                                        <div>
+                                            <p className="font-medium">Vicky S.</p>
+                                            <div className="flex items-center gap-3 mt-1">
+                                                <img src="https://i.postimg.cc/13NPXHVW/tel-icon-small.webp" alt="Phone" className="w-5 h-5 text-[var(--c-accent-primary)] flex-shrink-0" />
+                                                <a href="tel:+66631959922" className="text-sm hover:text-[var(--c-accent-primary)] transition-colors">+66 (0)63 195 9922</a>
+                                            </div>
+                                            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2 pl-1">
+                                                <a href="https://wa.me/66631959922" target="_blank" rel="noopener noreferrer" aria-label="Chat with Vicky on WhatsApp" className="flex items-center gap-1.5 text-sm hover:text-green-600 transition-colors">
+                                                    <WhatsAppIcon className="w-5 h-5 text-green-600" />
+                                                    <span>WhatsApp</span>
+                                                </a>
+                                                <a href="https://line.me/ti/p/~vickyamber" target="_blank" rel="noopener noreferrer" aria-label="Contact Vicky on LINE" className="flex items-center gap-1.5 text-sm hover:opacity-80 transition-opacity">
+                                                    <img src="https://i.postimg.cc/TPMxDDrT/Line-icon-small.webp" alt="LINE icon" className="w-5 h-5" />
+                                                    <span>LINE</span>
+                                                </a>
+                                                <a href="https://i.postimg.cc/NfK6M959/wechat-qr-code-placeholder.png" target="_blank" rel="noopener noreferrer" aria-label="Scan WeChat QR Code for Vicky" className="flex items-center gap-1.5 text-sm hover:opacity-80 transition-opacity">
+                                                    <img src="https://i.postimg.cc/BQz4JybL/wechat-icon-small.webp" alt="WeChat icon" className="w-5 h-5" />
+                                                    <span>WeChat</span>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        {/* Office Contact */}
+                                        <div>
+                                            <p className="font-medium">Office</p>
+                                            <div className="flex items-center gap-3 mt-1">
+                                                 <img src="https://i.postimg.cc/13NPXHVW/tel-icon-small.webp" alt="Phone" className="w-5 h-5 text-[var(--c-accent-primary)] flex-shrink-0" />
+                                                <a href="tel:+66818519922" className="text-sm hover:text-[var(--c-accent-primary)] transition-colors">+66 (0)81 851 9922</a>
+                                            </div>
+                                        </div>
+
+                                        {/* Email Contact */}
+                                        <div>
+                                            <p className="font-medium">Email</p>
+                                            <div className="flex items-center gap-3 mt-1">
+                                                <EmailIcon className="w-5 h-5 text-[var(--c-accent-primary)] flex-shrink-0" />
+                                                <a href="mailto:info.vkamber@gmail.com?cc=vkamber91@gmail.com" className="text-sm hover:text-[var(--c-accent-primary)] transition-colors break-all">info.vkamber@gmail.com</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-[var(--c-heading)] text-lg">Follow Us</h3>

@@ -1,5 +1,6 @@
 
 
+
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Outlet, useParams, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
@@ -26,6 +27,12 @@ import WarrantyPolicyPage from './pages/WarrantyPolicyPage';
 import ReturnPolicyPage from './pages/ReturnPolicyPage';
 import GitInfoPage from './pages/GitInfoPage';
 import Breadcrumbs from './components/Breadcrumbs';
+import GlossaryPage from './pages/GlossaryPage';
+
+// Import new Tesbih/Rosary pages
+import CustomTesbihPage from './pages/CustomTesbihPage';
+import CustomRosaryPage from './pages/CustomRosaryPage';
+import TesbihRosaryBuilderPage from './pages/TesbihRosaryBuilderPage';
 
 // Import new Amber Guide pages
 import AmberHistoryPage from './pages/AmberHistoryPage';
@@ -116,14 +123,20 @@ const App: React.FC = () => {
                         <Route path="blog" element={<BlogPage />} />
                         <Route path="blog/:postId" element={<BlogPostPage />} />
                         
+                        {/* Customizer Pages */}
+                        <Route path="custom-tesbih" element={<CustomTesbihPage />} />
+                        <Route path="custom-rosary" element={<CustomRosaryPage />} />
+                        <Route path="tesbih-rosary-builder" element={<TesbihRosaryBuilderPage />} />
+
                         {/* Detailed Content Pages */}
                         <Route path="our-guarantee" element={<OurGuaranteePage />} />
                         <Route path="pricing-guide" element={<PricingGuidePage />} />
                         <Route path="amber-colors" element={<AmberColorsPage />} />
                         <Route path="about" element={<AboutPage />} />
-
+                        
                         {/* New Standalone Pages */}
                         <Route path="faqs" element={<FaqPage />} />
+                        <Route path="glossary" element={<GlossaryPage />} />
                         <Route path="contact" element={<ContactPage />} />
                         <Route path="git-info" element={<GitInfoPage />} />
                         

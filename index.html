@@ -468,6 +468,35 @@
       .btn-glass-special:hover:not(:disabled) .sparkle-icon {
           transform: rotate(90deg) scale(1.1);
       }
+
+      /* --- Footer Background --- */
+      .footer-with-bg {
+        position: relative;
+        isolation: isolate;
+      }
+      .footer-with-bg::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background-image: url('https://i.postimg.cc/FssVhkSn/footer-background.webp');
+        background-size: cover;
+        background-position: center;
+      }
+      .footer-with-bg::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background-color: rgba(61, 53, 46, 0.92); /* Dark overlay based on --c-footer-bg */
+      }
+      .footer-with-bg h3 {
+        color: var(--c-accent-primary); /* Lighter headings for contrast */
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      }
+      .footer-with-bg .font-semibold.text-\[var\(--c-text-primary\)\] {
+        color: var(--c-footer-text); /* Ensure contact subheadings are also light */
+      }
     </style>
   <link rel="stylesheet" href="/index.css">
 </head>

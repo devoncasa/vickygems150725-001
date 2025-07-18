@@ -1,3 +1,4 @@
+
 import React, { useMemo } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
 import { PRODUCTS, BLOG_POSTS, BACKGROUND_IMAGES, HERO_SLIDESHOW_IMAGES } from '../constants';
@@ -217,7 +218,36 @@ const HomePage: React.FC = () => {
                         </div>
                     </AnimatedSection>
                 </div>
-                
+                 
+                {/* New Custom Creations Section */}
+                <div style={{ backgroundColor: 'rgba(108, 90, 78, 0.1)' }}>
+                    <AnimatedSection className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+                        <div className="max-w-4xl mx-auto text-center">
+                            <h2 className="text-4xl font-bold">{t('home_custom_creations_title')}</h2>
+                            <p className="mt-4 text-lg text-[var(--c-text-primary)] opacity-90">{t('home_custom_creations_subtitle')}</p>
+                            <SectionDivider />
+                        </div>
+                        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                            <Link to={getTranslatedPath('/custom-tesbih')} className="group block relative rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden aspect-w-4 aspect-h-3">
+                                <img src="https://placehold.co/800x600/5C3A21/FFFFFF?text=Custom+Tesbih" alt="Custom Tesbih" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                                <div className="absolute bottom-0 left-0 p-6 text-white">
+                                    <h3 className="text-3xl font-bold font-serif">{t('home_custom_tesbih_title')}</h3>
+                                    <p className="mt-2 opacity-90">{t('home_custom_tesbih_desc')}</p>
+                                </div>
+                            </Link>
+                             <Link to={getTranslatedPath('/custom-rosary')} className="group block relative rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden aspect-w-4 aspect-h-3">
+                                <img src="https://placehold.co/800x600/A3A3A3/FFFFFF?text=Custom+Rosary" alt="Custom Rosary" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                                <div className="absolute bottom-0 left-0 p-6 text-white">
+                                    <h3 className="text-3xl font-bold font-serif">{t('home_custom_rosary_title')}</h3>
+                                    <p className="mt-2 opacity-90">{t('home_custom_rosary_desc')}</p>
+                                </div>
+                            </Link>
+                        </div>
+                    </AnimatedSection>
+                </div>
+
                 <div style={{ backgroundColor: 'rgba(108, 120, 108, 0.1)' }}>
                     <AnimatedSection className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
                         <div className="max-w-4xl mx-auto bg-[var(--c-surface)] p-8 rounded-lg shadow-lg border border-[var(--c-border)] text-center">

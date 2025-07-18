@@ -1,5 +1,6 @@
 
-import { Product, Material, Amulet, MaterialDetail, BlogPost, AmberColorDetail, Metal, BeadSize, AmberSpectrumDetail, NavLink, ShopCategory, Author } from './types';
+
+import { Product, Material, Amulet, MaterialDetail, BlogPost, AmberColorDetail, Metal, BeadSize, AmberSpectrumDetail, NavLink, ShopCategory, Author, TesbihRosaryMaterial, TesbihRosaryGrade } from './types';
 
 export const BACKGROUND_IMAGES = [
   'https://i.postimg.cc/Xq6LWZ0y/Vicky-Amber-Gems-background-001.jpg',
@@ -81,6 +82,14 @@ export const NAV_LINKS: NavLink[] = [
   },
   { name: 'Blogs', path: '/blog' },
   { name: 'Shop', path: '/collection' },
+  { 
+    name: 'Custom Jewelry',
+    submenus: [
+      { name: 'Custom Tesbih', path: '/custom-tesbih' },
+      { name: 'Custom Rosary', path: '/custom-rosary' },
+      { name: 'Build Amber Set', path: '/build-your-set' },
+    ]
+  },
   { name: 'Get to Know GIT', path: '/git-info' },
   { name: 'FAQs', path: '/faqs' },
   { name: 'Contact Us', path: '/contact' }
@@ -704,6 +713,36 @@ export const BLOG_POSTS: BlogPost[] = [
         date: "October 20, 2023",
         featuredImage: "https://placehold.co/1200x675/2a2a2a/FBF9F6?text=Gemological+Tools",
         readingTime: 12
+    },
+    {
+        id: 'article-6-tesbih-materials',
+        category: 'Craftsmanship',
+        title: "The Art of Tasbih: Choosing the Right Materials for Your Prayer Beads",
+        summary: "A deep dive into the spiritual and physical properties of popular materials used for Tesbih (Tasbih), such as Agarwood (Oud), Jade, and Lapis Lazuli. Understand how material choice can enhance your devotional practice.",
+        author: VICKY_AUTHOR,
+        date: "July 19, 2025",
+        featuredImage: "https://placehold.co/1200x675/6B4F3A/FFFFFF?text=Tasbih+Materials",
+        readingTime: 7
+    },
+    {
+        id: 'article-7-rosary-guide',
+        category: 'Soul',
+        title: "A Guide to the Rosary: More Than Just Beads",
+        summary: "Explore the profound history and structure of the Catholic Rosary. This guide explains the significance of the Crucifix, Centerpiece, and the meaning behind the decades of beads, helping you create a more meaningful custom piece.",
+        author: VICKY_AUTHOR,
+        date: "July 22, 2025",
+        featuredImage: "https://placehold.co/1200x675/C0C0C0/3D352E?text=Rosary+Guide",
+        readingTime: 8
+    },
+    {
+        id: 'article-8-amber-vs-agarwood',
+        category: 'Craftsmanship',
+        title: "Burmese Amber vs. Agarwood: Which is Right for Your Prayer Beads?",
+        summary: "A comparative guide for connoisseurs of fine spiritual objects. We compare the ancient, grounding energy of Burmese Amber with the sacred, aromatic tranquility of Agarwood (Oud) for use in prayer beads.",
+        author: VICKY_AUTHOR,
+        date: "July 25, 2025",
+        featuredImage: "https://placehold.co/1200x675/B27732/2a2a2a?text=Amber+vs+Oud",
+        readingTime: 6
     }
 ];
 
@@ -832,3 +871,184 @@ export const AMBER_SPECTRUM_DATA: AmberSpectrumDetail[] = [
 
 /** @deprecated Use BLOG_POSTS instead */
 export const KNOWLEDGE_ARTICLES = BLOG_POSTS;
+
+
+// --- New Constants for Tesbih & Rosary Builder ---
+export const TESBIH_ROSARY_MATERIALS: TesbihRosaryMaterial[] = [
+    {
+        id: 'baltic_amber',
+        name: 'Amber (Baltic)',
+        description: 'Classic, lightweight, and warm to the touch, prized for its golden hues.',
+        imageUrl: 'https://placehold.co/100x100/FBBF24/3D352E?text=Baltic+Amber',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 120.75,
+            [TesbihRosaryGrade.Premium]: 120.75,
+            [TesbihRosaryGrade.Exceptional]: 120.75,
+        }
+    },
+    {
+        id: 'burmese_amber',
+        name: 'Burmese Amber',
+        description: 'The world\'s oldest and hardest amber, a 99-million-year-old treasure.',
+        imageUrl: 'https://i.postimg.cc/t44s81j2/golden-yellow.webp',
+        prices: { // This is a base price for 'Golden', will be adjusted by type.
+            [TesbihRosaryGrade.Standard]: 727.95,
+            [TesbihRosaryGrade.Premium]: 1091.93,
+            [TesbihRosaryGrade.Exceptional]: 1455.90,
+        }
+    },
+    {
+        id: 'agarwood',
+        name: 'Agarwood (Oud)',
+        description: 'A deeply aromatic and sacred wood, revered for its tranquil and spiritual energy.',
+        imageUrl: 'https://placehold.co/100x100/5C3A21/FFFFFF?text=Oud',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 276.00,
+            [TesbihRosaryGrade.Premium]: 396.75,
+            [TesbihRosaryGrade.Exceptional]: 517.50,
+        }
+    },
+    {
+        id: 'black_onyx',
+        name: 'Black Onyx',
+        description: 'A powerful grounding stone, providing strength and protection.',
+        imageUrl: 'https://placehold.co/100x100/262626/FFFFFF?text=Onyx',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 178.02,
+            [TesbihRosaryGrade.Premium]: 178.02,
+            [TesbihRosaryGrade.Exceptional]: 178.02,
+        }
+    },
+    {
+        id: 'jade',
+        name: 'Jade (Green/White)',
+        description: 'The "Stone of Heaven," symbolizing purity, wisdom, and harmony.',
+        imageUrl: 'https://placehold.co/100x100/34D399/3D352E?text=Jade',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 138.00,
+            [TesbihRosaryGrade.Premium]: 241.50,
+            [TesbihRosaryGrade.Exceptional]: 345.00,
+        }
+    },
+    {
+        id: 'tigers_eye',
+        name: 'Tiger’s Eye',
+        description: 'A stone of courage and motivation, known for its captivating chatoyancy.',
+        imageUrl: 'https://placehold.co/100x100/B45309/FFFFFF?text=Tiger\'s+Eye',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 86.25,
+            [TesbihRosaryGrade.Premium]: 129.38,
+            [TesbihRosaryGrade.Exceptional]: 172.50,
+        }
+    },
+    {
+        id: 'hematite',
+        name: 'Hematite',
+        description: 'A grounding and protective stone with a distinctive metallic luster.',
+        imageUrl: 'https://placehold.co/100x100/4B5563/FFFFFF?text=Hematite',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 51.75,
+            [TesbihRosaryGrade.Premium]: 77.63,
+            [TesbihRosaryGrade.Exceptional]: 103.50,
+        }
+    },
+    {
+        id: 'lapis_lazuli',
+        name: 'Lapis Lazuli',
+        description: 'A celestial blue stone of wisdom, truth, and spiritual enlightenment.',
+        imageUrl: 'https://placehold.co/100x100/2563EB/FFFFFF?text=Lapis',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 207.00,
+            [TesbihRosaryGrade.Premium]: 310.50,
+            [TesbihRosaryGrade.Exceptional]: 414.00,
+        }
+    },
+    {
+        id: 'turquoise',
+        name: 'Turquoise',
+        description: 'A sacred stone of healing, protection, and communication.',
+        imageUrl: 'https://placehold.co/100x100/14B8A6/3D352E?text=Turquoise',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 276.00,
+            [TesbihRosaryGrade.Premium]: 396.75,
+            [TesbihRosaryGrade.Exceptional]: 517.50,
+        }
+    },
+    {
+        id: 'obsidian',
+        name: 'Obsidian',
+        description: 'A volcanic glass known for its powerful protective and truth-enhancing properties.',
+        imageUrl: 'https://placehold.co/100x100/171717/FFFFFF?text=Obsidian',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 34.50,
+            [TesbihRosaryGrade.Premium]: 69.00,
+            [TesbihRosaryGrade.Exceptional]: 103.50,
+        }
+    },
+    {
+        id: 'clear_quartz',
+        name: 'Clear Quartz',
+        description: 'The "Master Healer," known for amplifying energy and intention.',
+        imageUrl: 'https://placehold.co/100x100/F3F4F6/4B5563?text=Quartz',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 51.75,
+            [TesbihRosaryGrade.Premium]: 94.88,
+            [TesbihRosaryGrade.Exceptional]: 138.00,
+        }
+    },
+    {
+        id: 'amethyst',
+        name: 'Amethyst',
+        description: 'A stone of spiritual awareness, tranquility, and sobriety.',
+        imageUrl: 'https://placehold.co/100x100/8B5CF6/FFFFFF?text=Amethyst',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 103.50,
+            [TesbihRosaryGrade.Premium]: 172.50,
+            [TesbihRosaryGrade.Exceptional]: 241.50,
+        }
+    },
+    {
+        id: 'rose_quartz',
+        name: 'Rose Quartz',
+        description: 'The stone of unconditional love, compassion, and emotional healing.',
+        imageUrl: 'https://placehold.co/100x100/FBCFE8/831843?text=Rose+Quartz',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 86.25,
+            [TesbihRosaryGrade.Premium]: 146.63,
+            [TesbihRosaryGrade.Exceptional]: 207.00,
+        }
+    },
+    {
+        id: 'malachite',
+        name: 'Malachite',
+        description: 'A powerful stone of transformation, protection, and positive change.',
+        imageUrl: 'https://placehold.co/100x100/10B981/14532D?text=Malachite',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 138.00,
+            [TesbihRosaryGrade.Premium]: 207.00,
+            [TesbihRosaryGrade.Exceptional]: 276.00,
+        }
+    },
+    {
+        id: 'lava_stone',
+        name: 'Lava Stone',
+        description: 'A grounding stone that strengthens one\'s connection to Mother Earth.',
+        imageUrl: 'https://placehold.co/100x100/404040/FFFFFF?text=Lava',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 34.50,
+            [TesbihRosaryGrade.Premium]: 60.38,
+            [TesbihRosaryGrade.Exceptional]: 86.25,
+        }
+    },
+    {
+        id: 'howlite',
+        name: 'Howlite/Magnesite',
+        description: 'A calming stone used to relieve stress and aid insomnia.',
+        imageUrl: 'https://placehold.co/100x100/E5E7EB/57534E?text=Howlite',
+        prices: {
+            [TesbihRosaryGrade.Standard]: 41.40,
+            [TesbihRosaryGrade.Premium]: 72.45,
+            [TesbihRosaryGrade.Exceptional]: 103.50,
+        }
+    },
+];

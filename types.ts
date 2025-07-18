@@ -27,6 +27,13 @@ export type BeadQuantity = 27 | 54 | 99 | 108;
 export type ClarityTier = 'all' | 'visible' | 'semi-clear' | 'high';
 export type Grade = 'Standard' | 'Silver' | 'High';
 
+// New Grade enum specifically for the Tesbih/Rosary builder to avoid conflicts
+export enum TesbihRosaryGrade {
+  Standard = 'Standard Grade',
+  Premium = 'Premium Grade',
+  Exceptional = 'Exceptional Grade',
+}
+
 export interface NavLink {
   name: string;
   path?: string;
@@ -147,7 +154,7 @@ export interface Author {
 export interface BlogPost {
   id: string;
   title: string;
-  category: 'Soul' | 'Science';
+  category: 'Soul' | 'Science' | 'Craftsmanship';
   summary: string;
   author: Author;
   date: string;
@@ -229,4 +236,39 @@ export interface CustomBraceletFromBuilderDetails {
     estimatedWristSize_cm: number;
     totalWeight_g: number;
     totalPrice: number;
+}
+
+// --- New Types for Tesbih & Rosary Builder ---
+
+export interface TesbihRosaryMaterial {
+    id: string;
+    name: string;
+    description: string;
+    imageUrl: string;
+    prices: {
+        [TesbihRosaryGrade.Standard]: number;
+        [TesbihRosaryGrade.Premium]: number;
+        [TesbihRosaryGrade.Exceptional]: number;
+    }
+}
+
+export interface TesbihRosaryComponent {
+    id: string;
+    name: string;
+    type: 'tassel' | 'imame' | 'disk' | 'crucifix' | 'centerpiece';
+    weight_g: number;
+    price_thb: number; // Can be a fixed price for some components
+    material: string;
+    imageUrl: string;
+}
+
+export interface CustomTesbihRosaryDetails {
+    tradition: 'Tesbih' | 'Rosary';
+    grade: TesbihRosaryGrade;
+    mainBeadMaterial: TesbihRosaryMaterial | AmberColorDetail;
+    beadSize: BeadSize;
+    beadCount: 33 | 99 | 59; // 53 Hail Mary + 6 Our Father
+    totalWeight_g: number;
+    totalPrice: number;
+    // Component details can be added here
 }

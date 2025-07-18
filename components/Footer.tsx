@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext';
-import { PhoneIcon, EmailIcon, WhatsAppIcon } from './IconComponents';
+import { EmailIcon } from './IconComponents';
 
 export const Footer: React.FC = () => {
   const { lang, t } = useLanguage();
@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
   return (
     <>
       {/* Full site footer, now visible on all screen sizes */}
-      <footer className="bg-[var(--c-footer-bg)] text-[var(--c-footer-text)]">
+      <footer className="text-[var(--c-footer-text)] footer-with-bg">
         <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
@@ -27,6 +27,7 @@ export const Footer: React.FC = () => {
                  <li><Link to={getTranslatedPath('/blog')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Blogs')}</Link></li>
                  <li><Link to={getTranslatedPath('/pricing-guide')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_The_Different_Types_of_Amber')}</Link></li>
                  <li><Link to={getTranslatedPath('/amber-colors')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_The_Variety_of_Colors_&_Tones')}</Link></li>
+                 <li><Link to={getTranslatedPath('/glossary')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Glossary_of_Terms')}</Link></li>
                 <li><Link to={getTranslatedPath('/about')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_About_Us_&_Policies')}</Link></li>
                 <li><Link to={getTranslatedPath('/faqs')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_FAQs')}</Link></li>
                 <li><Link to={getTranslatedPath('/contact')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Contact_Us')}</Link></li>
@@ -34,28 +35,45 @@ export const Footer: React.FC = () => {
             </div>
             <div>
               <h3 className="text-lg font-semibold text-[var(--c-heading)]">{t('footer_contact_title')}</h3>
-              <div className="mt-4 space-y-4 text-sm">
-                <div className="flex items-start">
-                  <PhoneIcon className="w-5 h-5 mt-0.5 text-[var(--c-accent-primary)] flex-shrink-0" />
-                  <div className="ms-3">
-                    <p className="font-semibold text-[var(--c-text-primary)]">{t('footer_contact_phones_title')}</p>
-                    <div className="mt-1 space-y-1">
-                      <div className="flex items-center gap-2">
-                        <a href="tel:+66631959922" className="text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors">{t('footer_contact_vicky')}</a>
-                        <a href="https://wa.me/66631959922" target="_blank" rel="noopener noreferrer" aria-label="Chat with Vicky on WhatsApp">
-                          <WhatsAppIcon className="w-4 h-4 text-green-600 hover:text-green-500 transition-colors" />
-                        </a>
-                      </div>
-                      <a href="tel:+66818519922" className="block text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors">{t('footer_contact_office')}</a>
-                    </div>
+              <div className="mt-4 space-y-6 text-sm">
+                {/* Vicky S. (Direct Contact) */}
+                <div>
+                  <p className="font-semibold text-[var(--c-text-primary)] mb-2">{t('footer_vicky_direct_contact')}</p>
+                  <div className="space-y-3">
+                    <a href="tel:+66631959922" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                      <img src="https://i.postimg.cc/13NPXHVW/tel-icon-small.webp" alt="Phone" className="w-5 h-5 flex-shrink-0" />
+                      <span>{t('footer_vicky_phone')}</span>
+                    </a>
+                    <a href="https://wa.me/66631959922" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                      <img src="https://i.postimg.cc/gj3p4y3z/whatsapp.webp" alt="WhatsApp" className="w-5 h-5 flex-shrink-0" />
+                      <span>{t('footer_whatsapp')}</span>
+                    </a>
+                    <a href="https://line.me/ti/p/~vickyamber" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                      <img src="https://i.postimg.cc/TPMxDDrT/Line-icon-small.webp" alt="LINE" className="w-5 h-5 flex-shrink-0" />
+                      <span>{t('footer_line')}</span>
+                    </a>
+                    <a href="https://i.postimg.cc/NfK6M959/wechat-qr-code-placeholder.png" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                      <img src="https://i.postimg.cc/BQz4JybL/wechat-icon-small.webp" alt="WeChat" className="w-5 h-5 flex-shrink-0" />
+                      <span>{t('footer_wechat')}</span>
+                    </a>
+                    <a href="https://m.me/vkmmamber" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                      <img src="https://i.postimg.cc/gJCdvtXt/messenger.webp" alt="Messenger" className="w-5 h-5 flex-shrink-0" />
+                      <span>{t('footer_messenger')}</span>
+                    </a>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <EmailIcon className="w-5 h-5 mt-0.5 text-[var(--c-accent-primary)] flex-shrink-0" />
-                  <div className="ms-3">
-                    <p className="font-semibold text-[var(--c-text-primary)]">{t('footer_contact_email_title')}</p>
-                    <a href="mailto:info.vkamber@gmail.com?cc=vkamber91@gmail.com" className="block text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors">
-                      {t('footer_contact_email_1')}
+                
+                {/* General Inquiries */}
+                <div>
+                  <p className="font-semibold text-[var(--c-text-primary)] mb-2">{t('footer_general_inquiries')}</p>
+                  <div className="space-y-3">
+                    <a href="tel:+66818519922" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                      <img src="https://i.postimg.cc/13NPXHVW/tel-icon-small.webp" alt="Phone" className="w-5 h-5 flex-shrink-0" />
+                      <span>{t('footer_office_phone')}</span>
+                    </a>
+                    <a href="mailto:info.vkamber@gmail.com?cc=vkamber91@gmail.com" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                      <EmailIcon className="w-5 h-5 text-[var(--c-accent-primary)] flex-shrink-0" />
+                      <span>{t('footer_contact_email_1')}</span>
                     </a>
                   </div>
                 </div>
@@ -109,7 +127,7 @@ export const Footer: React.FC = () => {
                   <span className="text-xs">{t('footer_mobile_shop')}</span>
               </Link>
               <Link to={getTranslatedPath('/build-your-set')} className="flex flex-col items-center text-[var(--c-text-secondary)] hover:text-[var(--c-accent-primary)] transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4" /></svg>
                   <span className="text-xs">{t('footer_mobile_preorder')}</span>
               </Link>
               <Link to={getTranslatedPath('/blog')} className="flex flex-col items-center text-[var(--c-text-secondary)] hover:text-[var(--c-accent-primary)] transition-colors">
