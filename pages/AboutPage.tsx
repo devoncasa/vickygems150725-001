@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SectionDivider from '../components/SectionDivider';
@@ -52,7 +53,7 @@ const AboutPage: React.FC = () => {
 
                     <div className="mt-12 prose prose-lg lg:prose-xl max-w-none text-[var(--c-text-primary)]/90 mx-auto">
                         <div className="not-prose">
-                           <ImageWithAlt src="https://placehold.co/1200x675/A56C50/F8F5F2?text=Vicky+Lux+Gems" alt="Hero banner showing an array of beautiful precious gems" />
+                           <ImageWithAlt src="https://placehold.co/1200x675/A56C50/F8F5F2?text=Vicky+Lux+Gems" alt="An array of beautiful precious and ethically sourced Myanmar gems, showcasing their natural beauty." />
                         </div>
                         
                         <h2>Our Story</h2>
@@ -66,7 +67,7 @@ const AboutPage: React.FC = () => {
                                     What started as a simple appreciation for their beauty grew into a commitment to authenticity, ethical sourcing, and scientific verification. Today, Vicky Lux Gems stands as a trusted bridge between the ancient world of gemstones and discerning collectors worldwide.
                                 </p>
                             </div>
-                            <ImageWithAlt src="https://placehold.co/600x600/7E746A/FFFFFF?text=Vicky+Sinchoury" alt="Portrait of Vicky Sinchoury, Founder of Vicky Lux Gems" className="aspect-square" />
+                            <ImageWithAlt src="https://placehold.co/600x600/7E746A/FFFFFF?text=Vicky+Sinchoury" alt="Portrait of Vicky Sinchoury, Founder of Vicky Lux Gems and expert in heirloom quality jewelry." className="aspect-square" />
                         </div>
 
                         <h2>Our Mission</h2>
@@ -79,9 +80,10 @@ const AboutPage: React.FC = () => {
                             <li><strong>Transparency:</strong> Providing clear, honest information about our products, pricing, and processes.</li>
                             <li><strong>Education:</strong> Empowering our clients with the knowledge to appreciate the unique history and qualities of their purchase.</li>
                             <li><strong>Ethical Sourcing:</strong> Working directly with local miners to ensure fair practices and respect for the communities and the land.</li>
+                             <li><strong>Artisanal Craftsmanship:</strong> Ensuring every piece is crafted with the skill and dedication befitting heirloom quality jewelry.</li>
                         </ul>
                         <div className="not-prose">
-                            <ImageWithAlt src="https://placehold.co/1200x675/C8A97E/3D352E?text=High-Quality+Gemstones" alt="Close-up of a high-quality gemstone piece showing its clarity and inclusions" />
+                            <ImageWithAlt src="https://placehold.co/1200x675/C8A97E/3D352E?text=High-Quality+Gemstones" alt="Close-up of a high-quality gemstone piece, an artisanal amber necklace showing its clarity and inclusions." />
                         </div>
 
                         <h2>Our Vision</h2>
@@ -90,7 +92,7 @@ const AboutPage: React.FC = () => {
                             We envision a world where the timeless beauty and spiritual significance of precious gems is accessible to all who seek it. We aim to cultivate a global community of collectors and enthusiasts who value authenticity, history, and the profound connection between humanity and the natural world.
                         </p>
                         <div className="not-prose">
-                            <ImageWithAlt src="https://placehold.co/1200x675/B27732/FFFFFF?text=Gemstone+Mala" alt="Hands holding a string of prayer beads, symbolizing a spiritual connection" />
+                            <ImageWithAlt src="https://placehold.co/1200x675/B27732/FFFFFF?text=Gemstone+Mala" alt="Hands holding a string of meditation beads, symbolizing a spiritual connection through crystal healing jewelry." />
                         </div>
                         
                         <h2>Why Choose Us?</h2>
@@ -101,11 +103,11 @@ const AboutPage: React.FC = () => {
                          <ul>
                             <li><strong>Unwavering Authenticity:</strong> Our guarantee is backed by gemological expertise and scientific testing.</li>
                             <li><strong>Scientific Verification:</strong> We use modern tools to ensure you are getting real, high-quality gems.</li>
-                             <li><strong>Ethical and Direct Sourcing:</strong> A clear, fair supply chain from the mine to you.</li>
-                             <li><strong>Expert Knowledge:</strong> Decades of experience and professional certification at your service.</li>
+                             <li><strong>Ethical and Direct Sourcing:</strong> A clear, fair supply chain for all our ethically sourced Myanmar gems.</li>
+                             <li><strong>Expert Craftsmanship:</strong> Decades of experience ensuring every piece, from a simple string of beads to an artisanal amber necklace, is of heirloom quality.</li>
                         </ul>
                         <div className="not-prose">
-                            <ImageWithAlt src="https://placehold.co/1200x675/9FB8AD/3D352E?text=Gemology" alt="A gemologist carefully inspecting a gemstone with professional tools" />
+                            <ImageWithAlt src="https://placehold.co/1200x675/9FB8AD/3D352E?text=Gemology" alt="A gemologist carefully inspecting a gemstone with professional tools, an expert in identifying real amber." />
                         </div>
 
                         {/* Call to Action */}
@@ -115,7 +117,7 @@ const AboutPage: React.FC = () => {
                              <p className="text-lg text-[var(--c-text-secondary)] max-w-2xl mx-auto">
                                 We invite you to explore our collections and discover a piece of ancient history that resonates with your spirit. Experience the warmth, beauty, and timeless energy of the world's finest gemstones.
                              </p>
-                             <Link to={`/${lang}/collection`} className="mt-8 inline-block btn-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg text-lg">
+                             <Link to="/collection" className="mt-8 inline-block btn-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg text-lg">
                                 Explore the Collection
                             </Link>
                         </div>

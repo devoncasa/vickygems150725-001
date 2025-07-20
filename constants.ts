@@ -1,6 +1,4 @@
-
-
-import { Product, Material, Amulet, MaterialDetail, BlogPost, AmberColorDetail, Metal, BeadSize, AmberSpectrumDetail, NavLink, ShopCategory, Author, TesbihRosaryMaterial, TesbihRosaryGrade } from './types';
+import { Product, Material, Amulet, MaterialDetail, BlogPost, AmberColorDetail, Metal, BeadSize, AmberSpectrumDetail, NavLink, ShopCategory, Author, TesbihRosaryMaterial, TesbihRosaryGrade, PrayerBeadData, TasselShape, TasselMaterial } from './types';
 
 export const BACKGROUND_IMAGES = [
   'https://i.postimg.cc/Xq6LWZ0y/Vicky-Amber-Gems-background-001.jpg',
@@ -85,8 +83,9 @@ export const NAV_LINKS: NavLink[] = [
   { 
     name: 'Custom Jewelry',
     submenus: [
-      { name: 'Custom Tesbih', path: '/custom-tesbih' },
-      { name: 'Custom Rosary', path: '/custom-rosary' },
+      { name: 'Custom Juzu', path: '/prayer-bead-builder/Juzu' },
+      { name: 'Custom Tesbih', path: '/prayer-bead-builder/Tesbih' },
+      { name: 'Custom Rosary', path: '/prayer-bead-builder/Rosary' },
       { name: 'Build Amber Set', path: '/build-your-set' },
     ]
   },
@@ -153,7 +152,7 @@ export const PRODUCTS: Product[] = [
     price: 277344,
     bestseller: true,
     isNewArrival: true,
-    story: 'Crafted from the rarest Mila amber, this 108-bead mala embodies imperial elegance. Its semi-liquid, semi-solid texture creates a dimension of unparalleled richness, making it a highly collectible, investment-grade piece.',
+    story: 'Crafted from the rarest Mila amber, this 108-bead mala embodies imperial elegance. Its semi-liquid, semi-solid texture creates a dimension of unparalleled richness, making it a highly collectible, investment-grade piece.\n\n**A Meaningful Gift:** This mala is more than just jewelry; it is a profound tool for mindfulness and a symbol of enlightenment. It makes a meaningful gift for a spiritual friend, a cherished anniversary gift, or a powerful addition to your own meditation practice. As a piece of heirloom quality jewelry, it carries an energy that can be passed down through generations.',
     energyProperties: ['Prosperity', 'Enlightenment', 'Royal Power'],
     media: {
       mainImageUrl: 'https://placehold.co/600x600/C8A97E/2a2a2a?text=Mila+Amber',
@@ -743,6 +742,36 @@ export const BLOG_POSTS: BlogPost[] = [
         date: "July 25, 2025",
         featuredImage: "https://placehold.co/1200x675/B27732/2a2a2a?text=Amber+vs+Oud",
         readingTime: 6
+    },
+    {
+        id: 'article-9-choose-gemstone-energy',
+        category: 'Soul',
+        title: "How to Choose the Right Gemstone: Matching Your Energy with Ruby, Sapphire, and Amber",
+        summary: "This guide helps you make a personal choice by discussing the metaphysical properties of key gems. We explore how to select gemstones for prosperity and wealth, chakra balancing, and personal intentions.",
+        author: VICKY_AUTHOR,
+        date: "July 28, 2025",
+        featuredImage: "https://placehold.co/1200x675/9FB8AD/3D352E?text=Gemstone+Energy",
+        readingTime: 9
+    },
+    {
+        id: 'article-10-spiritual-significance-mala',
+        category: 'Soul',
+        title: "Beyond the Beads: The Spiritual Significance of Mala and Prayer Beads",
+        summary: "What are prayer beads used for? This article explores the rich history of Mala and Tesbih beads. Learn how materials in crystal healing jewelry impact their use in meditation and mindfulness.",
+        author: VICKY_AUTHOR,
+        date: "August 01, 2025",
+        featuredImage: "https://placehold.co/1200x675/A56C50/FFFFFF?text=Spiritual+Beads",
+        readingTime: 7
+    },
+    {
+        id: 'article-11-pigeon-blood-ruby-guide',
+        category: 'Science',
+        title: "The Connoisseur's Guide to Pigeon's Blood Rubies from Mogok",
+        summary: "A deep dive into one of the world's most legendary gems. This post solidifies our expertise by discussing what defines a 'pigeon's blood ruby,' the legacy of the Mogok mines, and what makes it a piece of heirloom quality jewelry.",
+        author: VICKY_AUTHOR,
+        date: "August 05, 2025",
+        featuredImage: "https://placehold.co/1200x675/A72643/FBF9F6?text=Pigeon's+Blood+Ruby",
+        readingTime: 10
     }
 ];
 
@@ -1052,3 +1081,135 @@ export const TESBIH_ROSARY_MATERIALS: TesbihRosaryMaterial[] = [
         }
     },
 ];
+
+// --- New Constants for Interactive Prayer Bead Customizer ---
+export const PRAYER_BEAD_DATA: PrayerBeadData = {
+  rosary: {
+    name: "Catholic Rosary",
+    imageUrl: "https://i.imgur.com/6m3iS1s.png",
+    components: [
+      {
+        name: "Crucifix",
+        options: ["Sterling Silver", "Gold", "Pewter", "Bronze", "Olivewood", "Walnut", "Resin"]
+      },
+      {
+        name: '"Hail Mary" Beads',
+        options: ["Wood", "Glass", "Crystal", "Jade", "Onyx", "Rose Quartz", "Pearl", "Polymer Clay", "Metal"]
+      },
+      {
+        name: '"Our Father" Beads',
+        options: ["Ornate Metal", "Carved Wood", "Cloisonné", "Lampwork Glass", "Large Semi-Precious Stones"]
+      },
+      {
+        name: "Centerpiece / Medal",
+        options: ["Sterling Silver", "Gold", "Pewter", "Bronze", "Enamel", "Resin with Image"]
+      },
+      {
+        name: "Chain / Cord",
+        options: ["Silver Metal Chain", "Steel Metal Chain", "Nylon Cord", "Paracord"]
+      }
+    ]
+  },
+  tasbih: {
+    name: "Islamic Tasbih / Misbaha",
+    imageUrl: "https://i.imgur.com/L5a2aHk.png",
+    components: [
+      {
+        name: "Main Beads (99)",
+        options: ["Kokka Wood", "Sandalwood", "Amber", "Agate", "Lapis Lazuli", "Tiger's Eye", "Bone", "Horn", "Silver"]
+      },
+      {
+        name: "Disks / Separators",
+        options: ["Silver", "Copper", "Wood", "Bone"]
+      },
+      {
+        name: "Imame / Head Bead",
+        options: ["Carved Matching Wood", "Carved Matching Stone", "Ornate Silver"]
+      },
+      {
+        name: "Tepelik / Tassel Head",
+        options: ["Matching Material", "Custom Silver Piece"]
+      },
+      {
+        name: "Tassel Cord",
+        options: ["Silk", "Nylon", "Cotton Thread"]
+      }
+    ]
+  }
+};
+
+
+// --- New Constants for Unified Prayer Bead Builder ---
+export const PRAYER_BEAD_SIZES = Array.from({ length: (14 - 6) / 0.5 + 1 }, (_, i) => 6 + i * 0.5);
+
+export const calculateBeadWeightGemstone = (size_mm: BeadSize): number => {
+    const density = 2.8; // g/cm³, average for common gemstones
+    const radius_cm = (size_mm / 10) / 2;
+    const volume_cm3 = (4 / 3) * Math.PI * Math.pow(radius_cm, 3);
+    return volume_cm3 * density;
+};
+
+export const JUZU_MATERIAL_PRICES: Record<string, Record<number, number>> = {
+  'Amber (Baltic)': { 6.0: 120.75, 6.5: 126.79, 7.0: 133.13, 7.5: 139.78, 8.0: 146.77, 8.5: 154.11, 9.0: 161.82, 9.5: 169.91, 10.0: 178.40, 10.5: 187.32, 11.0: 196.69, 11.5: 206.52, 12.0: 216.85, 12.5: 227.69, 13.0: 239.08, 13.5: 251.03, 14.0: 263.58 },
+  'Agarwood (Oud)': { 6.0: 276.00, 6.5: 289.80, 7.0: 304.29, 7.5: 319.50, 8.0: 335.48, 8.5: 352.25, 9.0: 369.87, 9.5: 388.36, 10.0: 407.78, 10.5: 428.17, 11.0: 449.57, 11.5: 472.05, 12.0: 495.66, 12.5: 520.44, 13.0: 546.46, 13.5: 573.78, 14.0: 602.47 },
+  'Black Onyx': { 6.0: 178.02, 6.5: 186.92, 7.0: 196.27, 7.5: 206.08, 8.0: 216.38, 8.5: 227.20, 9.0: 238.56, 9.5: 250.49, 10.0: 263.02, 10.5: 276.17, 11.0: 289.98, 11.5: 304.47, 12.0: 319.70, 12.5: 335.68, 13.0: 352.47, 13.5: 370.09, 14.0: 388.60 },
+  'Jade (Green/White)': { 6.0: 138.00, 6.5: 144.90, 7.0: 152.15, 7.5: 159.75, 8.0: 167.74, 8.5: 176.13, 9.0: 184.93, 9.5: 194.18, 10.0: 203.89, 10.5: 214.08, 11.0: 224.79, 11.5: 236.03, 12.0: 247.83, 12.5: 260.22, 13.0: 273.23, 13.5: 286.89, 14.0: 301.24 },
+  'Tiger’s Eye': { 6.0: 86.25, 6.5: 90.56, 7.0: 95.09, 7.5: 99.85, 8.0: 104.84, 8.5: 110.08, 9.0: 115.58, 9.5: 121.36, 10.0: 127.43, 10.5: 133.80, 11.0: 140.49, 11.5: 147.52, 12.0: 154.89, 12.5: 162.64, 13.0: 170.77, 13.5: 179.31, 14.0: 188.27 },
+  'Hematite': { 6.0: 51.75, 6.5: 54.34, 7.0: 57.05, 7.5: 59.91, 8.0: 62.90, 8.5: 66.05, 9.0: 69.35, 9.5: 72.82, 10.0: 76.46, 10.5: 80.28, 11.0: 84.30, 11.5: 88.51, 12.0: 92.94, 12.5: 97.58, 13.0: 102.46, 13.5: 107.58, 14.0: 112.96 },
+  'Lapis Lazuli': { 6.0: 207.00, 6.5: 217.35, 7.0: 228.22, 7.5: 239.63, 8.0: 251.61, 8.5: 264.19, 9.0: 277.40, 9.5: 291.27, 10.0: 305.83, 10.5: 321.12, 11.0: 337.18, 11.5: 354.04, 12.0: 371.74, 12.5: 390.33, 13.0: 409.85, 13.5: 430.34, 14.0: 451.86 },
+  'Turquoise': { 6.0: 276.00, 6.5: 289.80, 7.0: 304.29, 7.5: 319.50, 8.0: 335.48, 8.5: 352.25, 9.0: 369.87, 9.5: 388.36, 10.0: 407.78, 10.5: 428.17, 11.0: 449.57, 11.5: 472.05, 12.0: 495.66, 12.5: 520.44, 13.0: 546.46, 13.5: 573.78, 14.0: 602.47 },
+  'Obsidian': { 6.0: 34.50, 6.5: 36.23, 7.0: 38.04, 7.5: 39.94, 8.0: 41.93, 8.5: 44.03, 9.0: 46.23, 9.5: 48.54, 10.0: 50.97, 10.5: 53.52, 11.0: 56.20, 11.5: 59.01, 12.0: 61.96, 12.5: 65.05, 13.0: 68.31, 13.5: 71.72, 14.0: 75.31 },
+  'Clear Quartz': { 6.0: 51.75, 6.5: 54.34, 7.0: 57.05, 7.5: 59.91, 8.0: 62.90, 8.5: 66.05, 9.0: 69.35, 9.5: 72.82, 10.0: 76.46, 10.5: 80.28, 11.0: 84.30, 11.5: 88.51, 12.0: 92.94, 12.5: 97.58, 13.0: 102.46, 13.5: 107.58, 14.0: 112.96 },
+  'Amethyst': { 6.0: 103.50, 6.5: 108.68, 7.0: 114.11, 7.5: 119.81, 8.0: 125.80, 8.5: 132.10, 9.0: 138.70, 9.5: 145.63, 10.0: 152.92, 10.5: 160.56, 11.0: 168.59, 11.5: 177.02, 12.0: 185.87, 12.5: 195.16, 13.0: 204.92, 13.5: 215.17, 14.0: 225.93 },
+  'Rose Quartz': { 6.0: 86.25, 6.5: 90.56, 7.0: 95.09, 7.5: 99.85, 8.0: 104.84, 8.5: 110.08, 9.0: 115.58, 9.5: 121.36, 10.0: 127.43, 10.5: 133.80, 11.0: 140.49, 11.5: 147.52, 12.0: 154.89, 12.5: 162.64, 13.0: 170.77, 13.5: 179.31, 14.0: 188.27 },
+  'Malachite': { 6.0: 138.00, 6.5: 144.90, 7.0: 152.15, 7.5: 159.75, 8.0: 167.74, 8.5: 176.13, 9.0: 184.93, 9.5: 194.18, 10.0: 203.89, 10.5: 214.08, 11.0: 224.79, 11.5: 236.03, 12.0: 247.83, 12.5: 260.22, 13.0: 273.23, 13.5: 286.89, 14.0: 301.24 },
+  'Lava Stone': { 6.0: 34.50, 6.5: 36.23, 7.0: 38.04, 7.5: 39.94, 8.0: 41.93, 8.5: 44.03, 9.0: 46.23, 9.5: 48.54, 10.0: 50.97, 10.5: 53.52, 11.0: 56.20, 11.5: 59.01, 12.0: 61.96, 12.5: 65.05, 13.0: 68.31, 13.5: 71.72, 14.0: 75.31 },
+  'Howlite/Magnesite': { 6.0: 41.40, 6.5: 43.47, 7.0: 45.64, 7.5: 47.93, 8.0: 50.32, 8.5: 52.84, 9.0: 55.48, 9.5: 58.25, 10.0: 61.17, 10.5: 64.22, 11.0: 67.44, 11.5: 70.81, 12.0: 74.35, 12.5: 78.07, 13.0: 81.97, 13.5: 86.07, 14.0: 90.37 },
+};
+
+export const TASSEL_OPTIONS = {
+    shapes: Object.values(TasselShape),
+    materials: [
+        { name: TasselMaterial.Rayon, price: 500 },
+        { name: TasselMaterial.PureSilk, price: 1500 },
+    ]
+};
+
+export const METAL_COMPONENT_PRICES: Record<string, { [key in TesbihRosaryGrade]: number }> = {
+    'Sterling Silver (925)': {
+        [TesbihRosaryGrade.Standard]: 1035.00,
+        [TesbihRosaryGrade.Premium]: 1200.00,
+        [TesbihRosaryGrade.Exceptional]: 1380.00,
+    },
+    'Brass/Bronze': {
+        [TesbihRosaryGrade.Standard]: 69.00,
+        [TesbihRosaryGrade.Premium]: 120.00,
+        [TesbihRosaryGrade.Exceptional]: 172.50,
+    },
+    'Gold-Plated (over Silver)': {
+        [TesbihRosaryGrade.Standard]: 345.00,
+        [TesbihRosaryGrade.Premium]: 517.50,
+        [TesbihRosaryGrade.Exceptional]: 690.00,
+    },
+    'Silver-Plated (Thai Style)': {
+        [TesbihRosaryGrade.Standard]: 172.50,
+        [TesbihRosaryGrade.Premium]: 258.75,
+        [TesbihRosaryGrade.Exceptional]: 345.00,
+    },
+    'Pewter/Resin': { // For Crucifix etc.
+        [TesbihRosaryGrade.Standard]: 69.00,
+        [TesbihRosaryGrade.Premium]: 172.50,
+        [TesbihRosaryGrade.Exceptional]: 276.00,
+    },
+};
+
+export const METAL_COMPONENT_MATERIALS = Object.keys(METAL_COMPONENT_PRICES);
+
+export const TESBIH_COMPONENT_WEIGHTS = {
+    tepelik: 2.0
+};
+
+export const ROSARY_COMPONENT_WEIGHTS = {
+    centerpiece: 3.0,
+    crucifix: 5.0
+};

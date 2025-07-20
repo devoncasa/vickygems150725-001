@@ -20,18 +20,18 @@ const findNameForPath = (path: string, links: NavLinkType[]): string | null => {
 
 const Breadcrumbs: React.FC = () => {
     const location = useLocation();
-    const { lang, t } = useLanguage();
+    const { t } = useLanguage();
 
     const getTranslationKey = (name: string) => `nav_${name.replace(/ /g, '_')}`;
 
-    const pathnames = location.pathname.split('/').filter(x => x && x !== lang);
+    const pathnames = location.pathname.split('/').filter(x => x);
     
-    const crumbs: { name: string, to: string }[] = [{ name: t('nav_Home' as any), to: `/${lang}` }];
+    const crumbs: { name: string, to: string }[] = [{ name: t('nav_Home' as any), to: `/` }];
 
     let currentPath = '';
     pathnames.forEach((segment, index) => {
         currentPath += `/${segment}`;
-        const to = `/${lang}${currentPath}`;
+        const to = currentPath;
         let name = '';
         
         // Try to find a static name from NAV_LINKS

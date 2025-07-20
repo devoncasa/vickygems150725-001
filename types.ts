@@ -1,5 +1,6 @@
 
 
+
 export enum Material {
   Amber = 'Amber',
   Spinel = 'Spinel',
@@ -271,4 +272,102 @@ export interface CustomTesbihRosaryDetails {
     totalWeight_g: number;
     totalPrice: number;
     // Component details can be added here
+}
+
+// --- New Types for Interactive Prayer Bead Customizer ---
+export interface PrayerBeadComponent {
+  name: string;
+  options: string[];
+}
+
+export interface PrayerBead {
+  name: string;
+  imageUrl: string;
+  components: PrayerBeadComponent[];
+}
+
+export interface PrayerBeadData {
+  rosary: PrayerBead;
+  tasbih: PrayerBead;
+}
+
+
+// --- New Types for Unified Prayer Bead Builder ---
+export enum PrayerBeadTradition {
+    Juzu = 'Juzu',
+    Tesbih = 'Tesbih',
+    Rosary = 'Rosary',
+}
+
+// Juzu Specific
+export enum JuzuGenderStyle {
+    Mens = "Men's",
+    Womens = "Women's",
+}
+
+export enum JuzuType {
+    Formal = "Formal (108 beads)",
+    Informal = "Informal (abbreviated)",
+}
+
+export enum TasselShape {
+    Head = "Tassel with Head",
+    String = "String Tassel",
+    Cut = "Cut Tassel",
+    Bonten = "Bonten Tassel",
+}
+
+export enum TasselMaterial {
+    PureSilk = "Pure Silk (Luxury)",
+    Rayon = "Rayon (Standard)",
+}
+
+// Tesbih Specific
+export type TesbihBeadCount = 33 | 99;
+
+export interface DecorativeComponent {
+    id: string;
+    name: string;
+    price: number;
+    material: string;
+    imageUrl: string;
+}
+
+// Main Configuration Interface
+export interface CustomPrayerBead {
+    tradition: PrayerBeadTradition;
+    mainBeadSize: BeadSize;
+    mainBeadMaterial: string; // ID of the material
+    burmeseAmberColor: AmberColorDetail | null;
+    metalGrade: TesbihRosaryGrade;
+
+    // Tradition-specific fields
+    juzu?: {
+        gender: JuzuGenderStyle;
+        type: JuzuType;
+        tasselShape: TasselShape;
+        tasselMaterial: TasselMaterial;
+    };
+    tesbih?: {
+        beadCount: TesbihBeadCount;
+        tassel: DecorativeComponent | null;
+        imame: DecorativeComponent | null;
+    };
+    rosary?: {
+        crucifix: DecorativeComponent | null;
+        centerpiece: DecorativeComponent | null;
+    };
+}
+
+export interface CustomJuzuDetails {
+    genderStyle: JuzuGenderStyle;
+    juzuType: JuzuType;
+    omodamaMaterial: string;
+    omodamaSize: BeadSize;
+    oyadamaSize: BeadSize;
+    shitentamaSize: BeadSize;
+    deshidamaSize: BeadSize;
+    tasselShape: TasselShape;
+    tasselMaterial: TasselMaterial;
+    totalPrice: number;
 }

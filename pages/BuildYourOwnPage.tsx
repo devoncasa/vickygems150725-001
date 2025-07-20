@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AmberColorDetail, Grade, BeadSize, BeadQuantity, Amulet, Metal, CustomPreOrderDetails, PriceBreakdown } from '../types';
@@ -14,7 +15,7 @@ const formatCurrency = (amount: number) => {
 
 const MalaBuilder: React.FC = () => {
     const navigate = useNavigate();
-    const { t, lang } = useLanguage();
+    const { t } = useLanguage();
 
     // State
     const [selectedAmber, setSelectedAmber] = useState<AmberColorDetail | null>(null);
@@ -68,7 +69,7 @@ const MalaBuilder: React.FC = () => {
             metal: selectedMetal,
             blessing: wantsBlessing,
         };
-        navigate(`/${lang}/order-confirmation`, { state: { details, breakdown: priceBreakdown } });
+        navigate(`/order-confirmation`, { state: { details, breakdown: priceBreakdown } });
     };
     
     const selectClass = "w-full p-3 border border-[var(--c-border)] rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--c-accent-primary)] bg-[var(--c-surface)]";

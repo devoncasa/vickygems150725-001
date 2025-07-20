@@ -497,6 +497,29 @@
       .footer-with-bg .font-semibold.text-\[var\(--c-text-primary\)\] {
         color: var(--c-footer-text); /* Ensure contact subheadings are also light */
       }
+
+      /* NEW GLOBAL STYLE FOR DROPDOWNS */
+      .custom-select, select:not(.custom-slider) {
+        background-color: #F5F5DC;
+        color: #5D4037;
+        border: 2px solid var(--c-border);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%235D4037' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+        padding-right: 2.5rem;
+        font-weight: 600;
+      }
+      .custom-select:focus, select:not(.custom-slider):focus {
+          outline: none;
+          border-color: var(--c-accent-primary);
+          box-shadow: 0 0 0 2px var(--c-accent-primary-hover);
+      }
     </style>
   <link rel="stylesheet" href="/index.css">
 </head>

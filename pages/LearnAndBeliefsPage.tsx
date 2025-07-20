@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import SectionDivider from '../components/SectionDivider';
 import { BACKGROUND_IMAGES } from '../constants';
@@ -75,7 +76,7 @@ const OurGuaranteePage: React.FC = () => {
                              <div className="space-y-4">
                                 <h3 className="text-3xl">Ethical & Transparent Sourcing</h3>
                                 <p className="text-[var(--c-text-secondary)]">
-                                    We are deeply committed to a supply chain that honors both the land and its people. We achieve this through:
+                                    We are deeply committed to a supply chain that honors both the land and its people. All our ethically sourced Myanmar gems, including our world-renowned Burmite, come with a story of respect. We achieve this through:
                                 </p>
                                 <ul className="space-y-2 text-[var(--c-text-secondary)] list-disc list-inside">
                                     <li><strong>Direct Partnerships:</strong> We work directly with small-scale, trusted miners and artisans in the Hukawng Valley, eliminating middlemen.</li>

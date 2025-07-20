@@ -1,10 +1,11 @@
 
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BLOG_POSTS, BACKGROUND_IMAGES } from '../constants';
 import SEO from '../components/SEO';
 
-type FilterType = 'All' | 'Soul' | 'Science';
+type FilterType = 'All' | 'Soul' | 'Science' | 'Craftsmanship';
 
 const BlogPage: React.FC = () => {
   const location = useLocation();
@@ -13,7 +14,7 @@ const BlogPage: React.FC = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const filterParam = params.get('filter');
-    if (filterParam === 'Soul' || filterParam === 'Science') {
+    if (filterParam === 'Soul' || filterParam === 'Science' || filterParam === 'Craftsmanship') {
       setFilter(filterParam);
     } else {
         setFilter('All');
@@ -24,6 +25,18 @@ const BlogPage: React.FC = () => {
     if (filter === 'All') return true;
     return article.category === filter;
   });
+
+  const getCategoryStyles = (category: 'Soul' | 'Science' | 'Craftsmanship') => {
+        switch (category) {
+            case 'Science':
+                return 'text-[var(--c-accent-secondary-hover)]';
+            case 'Craftsmanship':
+                return 'text-blue-600';
+            case 'Soul':
+            default:
+                return 'text-[var(--c-accent-primary)]';
+        }
+    };
 
   const FilterButton: React.FC<{ type: FilterType; label: string }> = ({ type, label }) => (
     <button
@@ -53,10 +66,11 @@ const BlogPage: React.FC = () => {
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold tracking-tight">Our Blog</h1>
           <p className="mt-4 text-xl text-[var(--c-text-secondary)]">A journal of history, science, and timeless wisdom.</p>
-          <div className="mt-8 flex justify-center items-center gap-2">
+          <div className="mt-8 flex justify-center items-center gap-2 flex-wrap">
             <FilterButton type="All" label="All Articles" />
             <FilterButton type="Soul" label="Stories & History" />
             <FilterButton type="Science" label="Guides & Science" />
+            <FilterButton type="Craftsmanship" label="Art & Craftsmanship" />
           </div>
         </div>
 
@@ -68,10 +82,10 @@ const BlogPage: React.FC = () => {
               className="group block bg-[var(--c-surface)] rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-[var(--c-border)]"
             >
               <div className="aspect-w-16 aspect-h-9 overflow-hidden bg-[var(--c-surface-alt)] flex items-center justify-center">
-                <img src={post.featuredImage} alt={post.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <img src={post.featuredImage} alt={`Featured image for blog post titled '${post.title}', discussing ${post.category} and gemstone knowledge.`} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
               </div>
               <div className="p-6">
-                 <span className={`text-sm font-bold uppercase tracking-widest ${post.category === 'Science' ? 'text-[var(--c-accent-secondary-hover)]' : 'text-[var(--c-accent-primary)]'}`}>{post.category}</span>
+                 <span className={`text-sm font-bold uppercase tracking-widest ${getCategoryStyles(post.category)}`}>{post.category}</span>
                 <h2 className="text-2xl mt-2 leading-tight group-hover:text-[var(--c-accent-primary)] transition-colors">{post.title}</h2>
                 <p className="mt-3 text-[var(--c-text-primary)] opacity-90 text-base line-clamp-3">{post.summary}</p>
                 <p className="mt-4 font-semibold text-sm text-[var(--c-accent-primary)] group-hover:text-[var(--c-heading)]">

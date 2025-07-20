@@ -1,4 +1,5 @@
 
+
 import React, { useMemo } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
 import { PRODUCTS, BLOG_POSTS, BACKGROUND_IMAGES, HERO_SLIDESHOW_IMAGES } from '../constants';
@@ -30,7 +31,7 @@ interface OutletContextType {
 
 const HomePage: React.FC = () => {
     const { setCartCount } = useOutletContext<OutletContextType>();
-    const { lang, t } = useLanguage();
+    const { t } = useLanguage();
     const { preferredEnergy, trackProductView } = useUserPreferences();
 
     const newArrivals = useMemo(() => {
@@ -53,8 +54,6 @@ const HomePage: React.FC = () => {
         setCartCount(prev => prev + 1);
         trackProductView(product); // Track preference on add to cart
     };
-    
-    const getTranslatedPath = (path = '#') => `/${lang}${path === '/' ? '' : path}`;
 
     const websiteUrl = window.location.origin;
     const organizationSchema = {
@@ -113,17 +112,17 @@ const HomePage: React.FC = () => {
         "url": websiteUrl,
         "name": "Vicky Lux Gems",
         "description": t('home_meta_description'),
-        "inLanguage": lang,
+        "inLanguage": 'en',
         "potentialAction": {
             "@type": "SearchAction",
-            "target": `${websiteUrl}/#/${lang}/collection?q={search_term_string}`,
+            "target": `${websiteUrl}/#/collection?q={search_term_string}`,
             "query-input": "required name=search_term_string"
         }
     };
      const homePageSchema = {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "url": `${websiteUrl}/#/${lang}`,
+        "url": `${websiteUrl}/#/`,
         "name": t('home_meta_title'),
         "description": t('home_meta_description'),
         "isPartOf": {
@@ -165,7 +164,7 @@ const HomePage: React.FC = () => {
                     
                     {/* Call to action button */}
                     <div className="mt-8">
-                        <Link to={getTranslatedPath('/collection')} className="btn-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg text-lg">
+                        <Link to="/collection" className="btn-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg text-lg">
                             {t('home_hero_cta')}
                         </Link>
                     </div>
@@ -228,16 +227,16 @@ const HomePage: React.FC = () => {
                             <SectionDivider />
                         </div>
                         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                            <Link to={getTranslatedPath('/custom-tesbih')} className="group block relative rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden aspect-w-4 aspect-h-3">
-                                <img src="https://placehold.co/800x600/5C3A21/FFFFFF?text=Custom+Tesbih" alt="Custom Tesbih" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                            <Link to="/custom-tesbih" className="group block relative rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden aspect-w-4 aspect-h-3">
+                                <img src="https://placehold.co/800x600/5C3A21/FFFFFF?text=Custom+Tesbih" alt="A custom Islamic tasbih with dark wooden meditation beads, a luxury spiritual gift." className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
                                 <div className="absolute bottom-0 left-0 p-6 text-white">
                                     <h3 className="text-3xl font-bold font-serif">{t('home_custom_tesbih_title')}</h3>
                                     <p className="mt-2 opacity-90">{t('home_custom_tesbih_desc')}</p>
                                 </div>
                             </Link>
-                             <Link to={getTranslatedPath('/custom-rosary')} className="group block relative rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden aspect-w-4 aspect-h-3">
-                                <img src="https://placehold.co/800x600/A3A3A3/FFFFFF?text=Custom+Rosary" alt="Custom Rosary" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                             <Link to="/custom-rosary" className="group block relative rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden aspect-w-4 aspect-h-3">
+                                <img src="https://placehold.co/800x600/A3A3A3/FFFFFF?text=Custom+Rosary" alt="A custom Catholic rosary with silver and stone prayer beads, a tool for mindfulness and devotion." className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
                                 <div className="absolute bottom-0 left-0 p-6 text-white">
                                     <h3 className="text-3xl font-bold font-serif">{t('home_custom_rosary_title')}</h3>
@@ -270,7 +269,7 @@ const HomePage: React.FC = () => {
                                     <p className="text-sm text-[var(--c-text-secondary)] mt-1">{t('home_confidence_sustain_desc')}</p>
                                 </div>
                             </div>
-                            <Link to={getTranslatedPath('/our-guarantee')} className="mt-8 inline-block btn-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg">
+                            <Link to="/our-guarantee" className="mt-8 inline-block btn-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg">
                                 {t('home_confidence_cta')}
                             </Link>
                         </div>
@@ -291,12 +290,12 @@ const HomePage: React.FC = () => {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                 {blogSnippets.map((post) => (
                                     <Link 
-                                        to={getTranslatedPath(`/blog/${post.id}`)}
+                                        to={`/blog/${post.id}`}
                                         key={post.id} 
                                         className="group block bg-[var(--c-surface)] rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-[var(--c-border)]"
                                     >
                                         <div className="aspect-w-16 aspect-h-9 overflow-hidden bg-[var(--c-surface-alt)] flex items-center justify-center">
-                                            <img src={post.featuredImage} alt={post.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                                            <img src={post.featuredImage} alt={`Featured image for blog post titled '${post.title}', discussing ${post.category} and gemstone knowledge.`} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                         </div>
                                         <div className="p-6">
                                             <span className={`text-sm font-bold uppercase tracking-widest ${post.category === 'Science' ? 'text-[var(--c-accent-secondary-hover)]' : 'text-[var(--c-accent-primary)]'}`}>{post.category}</span>
@@ -310,7 +309,7 @@ const HomePage: React.FC = () => {
                                 ))}
                             </div>
                             <div className="text-center mt-12">
-                                <Link to={getTranslatedPath('/blog')} className="text-[var(--c-accent-primary)] hover:text-[var(--c-heading)] font-semibold transition-colors group">
+                                <Link to="/blog" className="text-[var(--c-accent-primary)] hover:text-[var(--c-heading)] font-semibold transition-colors group">
                                     {t('home_blog_cta')} <span className="transition-transform group-hover:translate-x-1 inline-block">&rarr;</span>
                                 </Link>
                             </div>
@@ -323,7 +322,7 @@ const HomePage: React.FC = () => {
                         title={t('home_cta_title')}
                         subtitle={t('home_cta_subtitle')}
                         buttonText={t('home_cta_button')}
-                        buttonLink={getTranslatedPath('/build-your-set')}
+                        buttonLink="/build-your-set"
                         backgroundImageUrl="https://i.postimg.cc/pXtcbS21/Vicky-Amber-Gems-background-0014.jpg"
                     />
                 </AnimatedSection>

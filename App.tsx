@@ -1,8 +1,6 @@
 
-
-
 import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, Outlet, useParams, useNavigate, Navigate, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import { Footer } from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -28,11 +26,7 @@ import ReturnPolicyPage from './pages/ReturnPolicyPage';
 import GitInfoPage from './pages/GitInfoPage';
 import Breadcrumbs from './components/Breadcrumbs';
 import GlossaryPage from './pages/GlossaryPage';
-
-// Import new Tesbih/Rosary pages
-import CustomTesbihPage from './pages/CustomTesbihPage';
-import CustomRosaryPage from './pages/CustomRosaryPage';
-import TesbihRosaryBuilderPage from './pages/TesbihRosaryBuilderPage';
+import PrayerBeadBuilderPage from './pages/PrayerBeadBuilderPage';
 
 // Import new Amber Guide pages
 import AmberHistoryPage from './pages/AmberHistoryPage';
@@ -56,19 +50,17 @@ import Chatbot from './components/Chatbot';
 import UnderConstructionBanner from './components/UnderConstructionBanner';
 
 // i18n imports
-import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
-import { LanguageCode, languages, DEFAULT_LANG } from './i18n/config';
+import { LanguageProvider } from './i18n/LanguageContext';
 
 const Layout: React.FC = () => {
     const [cartCount, setCartCount] = useState(0);
-    const { lang, dir } = useLanguage();
     const { pathname } = useLocation();
     
-    // Determine if it's the home page for the current language
-    const isHomePage = pathname === `/${lang}` || pathname === `/${lang}/`;
+    // The home page is now just '/'
+    const isHomePage = pathname === `/`;
 
     return (
-        <div className="flex flex-col min-h-screen" dir={dir}>
+        <div className="flex flex-col min-h-screen" dir="ltr">
             <UnderConstructionBanner />
             <Header cartCount={cartCount} />
             {!isHomePage && <Breadcrumbs />}
@@ -82,38 +74,20 @@ const Layout: React.FC = () => {
     );
 };
 
-const LanguageWrapper: React.FC = () => {
-    const { lang } = useParams<{ lang: string }>();
-    const { setLang, availableLanguages } = useLanguage();
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    useEffect(() => {
-        const validLang = lang as LanguageCode;
-        if (lang && availableLanguages[validLang]) {
-            setLang(validLang);
-             document.documentElement.lang = validLang;
-             document.documentElement.dir = availableLanguages[validLang].direction;
-        } else {
-            // Redirect to default language if URL lang is invalid
-            // Preserve the rest of the path
-            const pathWithoutLang = location.pathname.split('/').slice(2).join('/');
-            navigate(`/${DEFAULT_LANG}/${pathWithoutLang}`, { replace: true });
-        }
-    }, [lang, setLang, navigate, availableLanguages, location.pathname]);
-    
-    // This component sets the language context and then renders the main layout.
-    return <Layout />;
-};
-
 
 const App: React.FC = () => {
+    // Set html lang and dir once on mount for English-only site
+    useEffect(() => {
+        document.documentElement.lang = 'en';
+        document.documentElement.dir = 'ltr';
+    }, []);
+
     return (
         <LanguageProvider>
             <HashRouter>
                 <ScrollToTop />
                 <Routes>
-                    <Route path="/:lang" element={<LanguageWrapper />}>
+                    <Route path="/" element={<Layout />}>
                         {/* Main Pages */}
                         <Route index element={<HomePage />} />
                         <Route path="collection" element={<CollectionPage />} />
@@ -124,9 +98,7 @@ const App: React.FC = () => {
                         <Route path="blog/:postId" element={<BlogPostPage />} />
                         
                         {/* Customizer Pages */}
-                        <Route path="custom-tesbih" element={<CustomTesbihPage />} />
-                        <Route path="custom-rosary" element={<CustomRosaryPage />} />
-                        <Route path="tesbih-rosary-builder" element={<TesbihRosaryBuilderPage />} />
+                        <Route path="prayer-bead-builder/:tradition" element={<PrayerBeadBuilderPage />} />
 
                         {/* Detailed Content Pages */}
                         <Route path="our-guarantee" element={<OurGuaranteePage />} />
@@ -150,8 +122,8 @@ const App: React.FC = () => {
                         <Route path="policies/privacy" element={<PrivacyPolicyPage />} />
 
                     </Route>
-                    {/* Redirect from root to default language */}
-                    <Route path="*" element={<Navigate to={`/${DEFAULT_LANG}/`} replace />} />
+                    {/* Redirect from any other path to root */}
+                    <Route path="*" element={<Navigate to={`/`} replace />} />
                 </Routes>
             </HashRouter>
         </LanguageProvider>

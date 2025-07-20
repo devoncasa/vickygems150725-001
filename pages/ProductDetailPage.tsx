@@ -1,4 +1,5 @@
 
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link, useOutletContext } from 'react-router-dom';
 import { PRODUCTS, BLESSING_PRICE, BEAD_SPECS, SHOP_CATEGORIES, BACKGROUND_IMAGES } from '../constants';
@@ -16,21 +17,21 @@ interface OutletContextType {
 }
 
 const ProductFaq: React.FC<{product: Product}> = ({ product }) => {
-    const { lang, t } = useLanguage();
+    const { t } = useLanguage();
     const [open, setOpen] = useState<number | null>(null);
 
     const faqData = [
         {
             q: `Is this real ${product.material}?`,
-            a: `Absolutely. We guarantee that this ${product.name} is made from 100% authentic, natural ${product.material}. Every piece is verified by our expert gemologists. You can learn more about our commitment on the <a href="/#/${lang}/our-guarantee" class="text-[var(--c-accent-primary)] hover:underline">Our Guarantee</a> page.`
+            a: `Absolutely. We guarantee that this ${product.name} is made from 100% authentic, natural ${product.material}. Every piece is verified by our expert gemologists. You can learn more about our commitment on the <a href="/#/our-guarantee" class="text-[var(--c-accent-primary)] hover:underline">Our Guarantee</a> page.`
         },
         {
             q: `How should I care for this piece?`,
-            a: `To maintain its beauty, clean gently with a soft cloth and lukewarm water. Avoid harsh chemicals and extreme temperatures. For detailed instructions, please visit our <a href="/#/${lang}/policies/care-guide" class="text-[var(--c-accent-primary)] hover:underline">Care Guide</a>.`
+            a: `To maintain its beauty, clean gently with a soft cloth and lukewarm water. Avoid harsh chemicals and extreme temperatures. For detailed instructions, please visit our <a href="/#/policies/care-guide" class="text-[var(--c-accent-primary)] hover:underline">Care Guide</a>.`
         },
         {
             q: `What is the return policy?`,
-            a: `Due to the personal nature of our items, we only accept returns for incorrect shipments or authenticity issues proven by a certified lab. Please review our full <a href="/#/${lang}/policies/returns" class="text-[var(--c-accent-primary)] hover:underline">Return Policy</a> before purchasing.`
+            a: `Due to the personal nature of our items, we only accept returns for incorrect shipments or authenticity issues proven by a certified lab. Please review our full <a href="/#/policies/returns" class="text-[var(--c-accent-primary)] hover:underline">Return Policy</a> before purchasing.`
         }
     ];
 
@@ -78,7 +79,7 @@ const ProductFaq: React.FC<{product: Product}> = ({ product }) => {
 const ProductDetailPage: React.FC = () => {
     const { setCartCount } = useOutletContext<OutletContextType>();
     const { productId } = useParams<{ productId: string }>();
-    const { lang, t } = useLanguage();
+    const { t } = useLanguage();
     const { trackProductView } = useUserPreferences();
     const product = PRODUCTS.find(p => p.id === productId);
 
@@ -152,7 +153,7 @@ const ProductDetailPage: React.FC = () => {
                     keywordsKey="seo_product_not_found_keywords"
                 />
                 <h2 className="text-3xl font-semibold">{t('product_not_found_title')}</h2>
-                <Link to={`/${lang}/collection`} className="mt-4 inline-block text-[var(--c-accent-primary)] hover:text-[var(--c-heading)]">{t('product_not_found_cta')}</Link>
+                <Link to="/collection" className="mt-4 inline-block text-[var(--c-accent-primary)] hover:text-[var(--c-heading)]">{t('product_not_found_cta')}</Link>
             </div>
         );
     }
@@ -183,7 +184,7 @@ const ProductDetailPage: React.FC = () => {
             "@type": "Brand",
             "name": "Vicky Lux Gems"
         },
-        "inLanguage": lang,
+        "inLanguage": 'en',
         "review": {
             "@type": "Review",
             "reviewRating": {
@@ -249,7 +250,7 @@ const ProductDetailPage: React.FC = () => {
                     {/* Image Gallery */}
                     <div>
                         <div className="aspect-square bg-[var(--c-surface-alt)] rounded-lg shadow-lg overflow-hidden mb-4 border border-[var(--c-border)] flex items-center justify-center">
-                            <img src={mainImage} alt={product.name} className="w-full h-full object-cover" />
+                            <img src={mainImage} alt={`Detailed view of the ${product.name}, showcasing its ${product.material} beads. An ideal piece of crystal healing jewelry.`} className="w-full h-full object-cover" />
                         </div>
                         <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
                             {galleryImages.map((img, idx) => (
@@ -258,7 +259,7 @@ const ProductDetailPage: React.FC = () => {
                                     className={`aspect-square bg-[var(--c-surface-alt)] rounded-md overflow-hidden cursor-pointer border-2 transition-all ${mainImage === img ? 'border-[var(--c-accent-primary)] scale-105' : 'border-transparent hover:border-[var(--c-accent-primary-hover)]/50'}`}
                                     onClick={() => setMainImage(img)}
                                 >
-                                    <img src={img} alt={`${product.name} thumbnail ${idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
+                                    <img src={img} alt={`Alternate view of the ${product.name}, an example of earth-tone spiritual jewelry.`} loading="lazy" className="w-full h-full object-cover" />
                                 </div>
                             ))}
                         </div>
@@ -271,7 +272,7 @@ const ProductDetailPage: React.FC = () => {
                             <h1 className="text-4xl lg:text-5xl font-bold">{product.name}</h1>
                         </div>
                         
-                        <p className="text-lg text-[var(--c-text-primary)] opacity-90">{product.story}</p>
+                        <p className="text-lg text-[var(--c-text-primary)] opacity-90 whitespace-pre-line">{product.story}</p>
                         
                         {product.specifications.beadSize_mm && (
                             <div className="pt-4 border-t border-[var(--c-border)]">

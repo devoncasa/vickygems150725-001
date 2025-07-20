@@ -47,7 +47,11 @@ const FaqPage: React.FC = () => {
 
     const faqData: FAQItem[] = FAQ_DATA_KEYS.map(key => ({
         q: t((`${key}_q`) as any),
-        a: t((`${key}_a`) as any),
+        a: t((`${key}_a`) as any)
+            .replace(/\/.\/en\//g, '/#/') // Fix links for english only
+            .replace(/\/.\/th\//g, '/#/')
+            .replace(/\/.\/ar\//g, '/#/')
+            .replace(/\/.\/hi\//g, '/#/'),
     })).filter(item => item.q && item.a && !item.q.startsWith('faq_'));
 
     const faqSchema = {

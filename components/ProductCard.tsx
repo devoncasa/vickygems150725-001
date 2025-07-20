@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from '../types';
@@ -32,12 +33,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
     return `Weight: ${product.specifications.totalWeight_grams}g`;
   };
 
+  const altText = `A luxurious ${product.name}, a piece of handmade spiritual jewelry with ${product.material} beads, perfect as a meaningful gift.`;
+
   return (
     <div className="group flex flex-col rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 bg-[var(--c-surface)] border border-[var(--c-border)]">
       <Link to={`/collection/${product.id}`} className="block">
         <div className="relative overflow-hidden aspect-square">
           <div className="w-full h-full bg-[var(--c-surface-alt)] flex items-center justify-center">
-              <img src={product.media.mainImageUrl} alt={product.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+              <img src={product.media.mainImageUrl} alt={altText} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
           </div>
           <div className="absolute top-0 right-0 bg-[var(--c-surface)]/80 text-[var(--c-text-primary)] text-xs font-semibold px-3 py-1 m-3 rounded-full backdrop-blur-sm">{product.material}</div>
           {product.bestseller && (

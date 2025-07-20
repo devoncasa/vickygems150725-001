@@ -1,8 +1,8 @@
+
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext';
 import { translations as enTranslations } from '../i18n/translations/en';
-import { DEFAULT_LANG } from '../i18n/config';
 
 interface SEOProps {
   title?: string;
@@ -32,17 +32,14 @@ const removeMetaTag = (attr: 'name' | 'property', key: string) => {
     }
 };
 
-const setOrRemoveLinkTag = (rel: string, href: string | null, hreflang?: string) => {
-    const selector = `link[rel="${rel}"]` + (hreflang ? `[hreflang="${hreflang}"]` : '');
+const setOrRemoveLinkTag = (rel: string, href: string | null) => {
+    const selector = `link[rel="${rel}"]`;
     let element = document.querySelector(selector) as HTMLLinkElement;
 
     if (href) {
         if (!element) {
             element = document.createElement('link');
             element.setAttribute('rel', rel);
-            if (hreflang) {
-                element.setAttribute('hreflang', hreflang);
-            }
             document.head.appendChild(element);
         }
         element.setAttribute('href', href);
@@ -62,7 +59,7 @@ const SEO: React.FC<SEOProps> = ({
     imageUrl, 
     type = 'website' 
 }) => {
-  const { lang, t, availableLanguages } = useLanguage();
+  const { t } = useLanguage();
   const location = useLocation();
 
   const title = rawTitle || (titleKey ? t(titleKey) as string : 'Vicky Amber & Gems');
@@ -90,33 +87,17 @@ const SEO: React.FC<SEOProps> = ({
 
     // 2. HTML lang and dir
     const htmlTag = document.documentElement;
-    htmlTag.lang = lang;
-    htmlTag.dir = availableLanguages[lang]?.direction || 'ltr';
+    htmlTag.lang = 'en';
+    htmlTag.dir = 'ltr';
 
-    // 3. Canonical and Hreflang URLs
-    const origin = window.location.origin;
-    const pathWithoutHash = window.location.pathname; 
-    const hashPath = location.pathname;
-    
-    const canonicalUrl = `${origin}${pathWithoutHash}#${hashPath}`;
+    // 3. Canonical URL
+    const canonicalUrl = `${window.location.origin}${window.location.pathname}#${location.pathname}`;
     setOrRemoveLinkTag('canonical', canonicalUrl);
     
-    // Hreflang links
+    // 4. Hreflang links removed
     document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(link => link.remove());
     
-    const pathWithoutLang = hashPath.substring(3) || '/';
-
-    // Add x-default
-    const xDefaultHref = `${origin}${pathWithoutHash}#/${DEFAULT_LANG}${pathWithoutLang === '/' ? '' : pathWithoutLang}`;
-    setOrRemoveLinkTag('alternate', xDefaultHref, 'x-default');
-
-    // Add all other languages
-    Object.keys(availableLanguages).forEach(langCode => {
-      const href = `${origin}${pathWithoutHash}#/${langCode}${pathWithoutLang === '/' ? '' : pathWithoutLang}`;
-      setOrRemoveLinkTag('alternate', href, langCode);
-    });
-
-    // 4. Open Graph & Twitter Cards
+    // 5. Open Graph & Twitter Cards
     const ogImage = imageUrl || 'https://i.postimg.cc/Qd8yW639/vkambergems-logo-small.png';
     
     setMetaTag('property', 'og:title', title);
@@ -125,26 +106,17 @@ const SEO: React.FC<SEOProps> = ({
     setMetaTag('property', 'og:image', ogImage);
     setMetaTag('property', 'og:type', type);
     setMetaTag('property', 'og:site_name', 'Vicky Amber & Gems');
-    setMetaTag('property', 'og:locale', lang.replace('-', '_'));
+    setMetaTag('property', 'og:locale', 'en_US');
 
-    // Add alternate locales for OG tags
+    // 6. alternate locales for OG tags removed
     document.querySelectorAll('meta[property="og:locale:alternate"]').forEach(tag => tag.remove());
-    Object.keys(availableLanguages).forEach(langCode => {
-        if (langCode !== lang) {
-            const alternateLocale = langCode.replace('-', '_');
-            const newMeta = document.createElement('meta');
-            newMeta.setAttribute('property', 'og:locale:alternate');
-            newMeta.setAttribute('content', alternateLocale);
-            document.head.appendChild(newMeta);
-        }
-    });
     
     setMetaTag('name', 'twitter:card', 'summary_large_image');
     setMetaTag('name', 'twitter:title', title);
     setMetaTag('name', 'twitter:description', description);
     setMetaTag('name', 'twitter:image', ogImage);
 
-  }, [lang, title, description, keywords, location.pathname, availableLanguages, imageUrl, type, t]);
+  }, [title, description, keywords, location.pathname, imageUrl, type, t]);
 
   return null;
 };

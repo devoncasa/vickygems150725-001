@@ -1,12 +1,11 @@
 
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext';
 import { EmailIcon } from './IconComponents';
 
 export const Footer: React.FC = () => {
-  const { lang, t } = useLanguage();
-  const getTranslatedPath = (path: string) => `/${lang}${path}`;
+  const { t } = useLanguage();
 
   return (
     <>
@@ -23,14 +22,14 @@ export const Footer: React.FC = () => {
             <div>
               <h3 className="text-lg font-semibold text-[var(--c-heading)]">{t('footer_explore_title')}</h3>
               <ul className="mt-2 space-y-2 text-sm">
-                <li><Link to={getTranslatedPath('/collection')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Shop')}</Link></li>
-                 <li><Link to={getTranslatedPath('/blog')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Blogs')}</Link></li>
-                 <li><Link to={getTranslatedPath('/pricing-guide')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_The_Different_Types_of_Amber')}</Link></li>
-                 <li><Link to={getTranslatedPath('/amber-colors')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_The_Variety_of_Colors_&_Tones')}</Link></li>
-                 <li><Link to={getTranslatedPath('/glossary')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Glossary_of_Terms')}</Link></li>
-                <li><Link to={getTranslatedPath('/about')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_About_Us_&_Policies')}</Link></li>
-                <li><Link to={getTranslatedPath('/faqs')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_FAQs')}</Link></li>
-                <li><Link to={getTranslatedPath('/contact')} className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Contact_Us')}</Link></li>
+                <li><Link to="/collection" className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Shop')}</Link></li>
+                 <li><Link to="/blog" className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Blogs')}</Link></li>
+                 <li><Link to="/pricing-guide" className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_The_Different_Types_of_Amber')}</Link></li>
+                 <li><Link to="/amber-colors" className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_The_Variety_of_Colors_&_Tones')}</Link></li>
+                 <li><Link to="/glossary" className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Glossary_of_Terms')}</Link></li>
+                <li><Link to="/about" className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_About_Us_&_Policies')}</Link></li>
+                <li><Link to="/faqs" className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_FAQs')}</Link></li>
+                <li><Link to="/contact" className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Contact_Us')}</Link></li>
               </ul>
             </div>
             <div>
@@ -107,7 +106,7 @@ export const Footer: React.FC = () => {
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-[var(--c-heading)]/10 text-center">
-             <Link to={getTranslatedPath('/')} aria-label="Back to Homepage">
+             <Link to="/" aria-label="Back to Homepage">
               <img 
                   src="https://i.postimg.cc/Prt96m87/VKGems_logo_small_web.webp" 
                   alt="Vicky Lux Gems Logo" 
@@ -122,19 +121,19 @@ export const Footer: React.FC = () => {
       {/* Sticky Mobile Footer Menu */}
       <footer className="md:hidden fixed bottom-0 left-0 right-0 bg-[var(--c-surface)] border-t border-[var(--c-border)] shadow-t-lg z-50">
           <div className="flex justify-around items-center h-16">
-              <Link to={getTranslatedPath('/collection')} className="flex flex-col items-center text-[var(--c-text-secondary)] hover:text-[var(--c-accent-primary)] transition-colors">
+              <Link to="/collection" className="flex flex-col items-center text-[var(--c-text-secondary)] hover:text-[var(--c-accent-primary)] transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
                   <span className="text-xs">{t('footer_mobile_shop')}</span>
               </Link>
-              <Link to={getTranslatedPath('/build-your-set')} className="flex flex-col items-center text-[var(--c-text-secondary)] hover:text-[var(--c-accent-primary)] transition-colors">
+              <Link to="/build-your-set" className="flex flex-col items-center text-[var(--c-text-secondary)] hover:text-[var(--c-accent-primary)] transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4" /></svg>
                   <span className="text-xs">{t('footer_mobile_preorder')}</span>
               </Link>
-              <Link to={getTranslatedPath('/blog')} className="flex flex-col items-center text-[var(--c-text-secondary)] hover:text-[var(--c-accent-primary)] transition-colors">
+              <Link to="/blog" className="flex flex-col items-center text-[var(--c-text-secondary)] hover:text-[var(--c-accent-primary)] transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
                   <span className="text-xs">{t('footer_mobile_blog')}</span>
               </Link>
-              <Link to={getTranslatedPath('/contact')} className="flex flex-col items-center text-[var(--c-text-secondary)] hover:text-[var(--c-accent-primary)] transition-colors">
+              <Link to="/contact" className="flex flex-col items-center text-[var(--c-text-secondary)] hover:text-[var(--c-accent-primary)] transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                   <span className="text-xs">{t('footer_mobile_contact')}</span>
               </Link>

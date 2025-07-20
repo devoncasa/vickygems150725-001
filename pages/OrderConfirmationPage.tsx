@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from 'react';
+
+import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { PriceBreakdown, CustomPreOrderDetails, CustomBraceletFromBuilderDetails, AmberColorDetail } from '../types';
+import { PriceBreakdown, CustomPreOrderDetails, CustomBraceletFromBuilderDetails } from '../types';
 import { BEAD_SPECS, AMBER_COLOR_DETAILS, BACKGROUND_IMAGES } from '../constants';
 import SEO from '../components/SEO';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -11,7 +12,7 @@ const formatCurrency = (amount: number) => {
 
 const OrderConfirmationPage: React.FC = () => {
     const location = useLocation();
-    const { lang, t } = useLanguage();
+    const { t } = useLanguage();
     const [notification, setNotification] = useState<string | null>(null);
     const { details, breakdown } = (location.state || {}) as { details?: CustomPreOrderDetails | CustomBraceletFromBuilderDetails, breakdown?: PriceBreakdown };
 
@@ -197,7 +198,7 @@ Est. Total Price: ${formatCurrency(breakdown.totalPrice)}
                 />
                 <h2 className="text-3xl font-semibold">{t('order_confirmation_no_details_title')}</h2>
                 <p className="mt-2 text-[var(--c-text-secondary)]">{t('order_confirmation_no_details_subtitle')}</p>
-                <Link to={`/${lang}/build-your-set`} className="mt-6 inline-block btn-primary text-white font-bold py-2 px-6 rounded-lg">
+                <Link to="/build-your-set" className="mt-6 inline-block btn-primary text-white font-bold py-2 px-6 rounded-lg">
                     {t('order_confirmation_no_details_cta')}
                 </Link>
             </div>
@@ -253,7 +254,7 @@ Est. Total Price: ${formatCurrency(breakdown.totalPrice)}
                             </div>
                         )}
                         <p className="mt-3 text-sm text-[var(--c-text-secondary)]">{t('order_confirmation_instructions')}</p>
-                         <Link to={`/${lang}/collection`} className="mt-8 inline-block text-[var(--c-accent-primary)] hover:text-[var(--c-heading)] font-semibold transition-colors group">
+                         <Link to="/collection" className="mt-8 inline-block text-[var(--c-accent-primary)] hover:text-[var(--c-heading)] font-semibold transition-colors group">
                            {t('order_confirmation_continue_shopping')} <span className="transition-transform group-hover:translate-x-1 inline-block">&rarr;</span>
                         </Link>
                     </div>
