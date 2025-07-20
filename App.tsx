@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
@@ -47,7 +48,7 @@ import AmberReligionPage from './pages/AmberReligionPage';
 import AmberColorsAndTonesPage from './pages/AmberColorsAndTonesPage';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import Chatbot from './components/Chatbot';
-import UnderConstructionBanner from './components/UnderConstructionBanner';
+import ConstructionPopup from './components/ConstructionPopup';
 
 // i18n imports
 import { LanguageProvider } from './i18n/LanguageContext';
@@ -61,7 +62,7 @@ const Layout: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen" dir="ltr">
-            <UnderConstructionBanner />
+            <ConstructionPopup />
             <Header cartCount={cartCount} />
             {!isHomePage && <Breadcrumbs />}
             <main className="flex-grow pb-16 md:pb-0">

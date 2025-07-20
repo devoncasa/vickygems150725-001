@@ -520,6 +520,159 @@
           border-color: var(--c-accent-primary);
           box-shadow: 0 0 0 2px var(--c-accent-primary-hover);
       }
+
+      /* --- Pop Up Modal --- */
+      .popup-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
+      }
+      .popup-overlay.fade-in {
+        animation: fadeIn 0.3s ease-out forwards;
+      }
+      .popup-overlay.fade-out {
+        animation: fadeOut 0.3s ease-in forwards;
+      }
+      .popup-modal {
+        background-color: var(--c-surface);
+        padding: 2.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        width: 90vw;
+        max-width: 550px;
+        position: relative;
+        border: 1px solid var(--c-border);
+        text-align: center;
+      }
+      .popup-modal.fade-in {
+        animation: slideUpFadeIn 0.4s ease-out forwards;
+      }
+      .popup-modal.fade-out {
+        animation: slideDownFadeOut 0.3s ease-in forwards;
+      }
+      .popup-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--c-heading);
+        margin-bottom: 1rem;
+      }
+      .popup-body {
+        font-family: 'Tenor Sans', sans-serif;
+        color: var(--c-text-secondary);
+        line-height: 1.7;
+        margin-bottom: 1rem;
+      }
+      .popup-date {
+        font-family: 'Tenor Sans', sans-serif;
+        color: var(--c-text-secondary);
+        font-size: 0.875rem;
+        margin-bottom: 2rem;
+      }
+      .popup-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .popup-btn {
+        padding: 0.8rem 1.5rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        transition: all 0.2s ease-out;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        border: 1px solid transparent;
+        cursor: pointer;
+        text-align: center;
+        display: inline-block;
+        text-decoration: none;
+        font-family: 'Tenor Sans', sans-serif;
+      }
+      .popup-btn:hover {
+        box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+        transform: translateY(-2px);
+      }
+      .popup-btn-primary {
+        background-color: var(--c-accent-secondary);
+        color: white;
+      }
+      .popup-btn-primary:hover {
+        background-color: var(--c-accent-secondary-hover);
+      }
+      .popup-btn-secondary {
+        background-color: transparent;
+        color: var(--c-text-primary);
+        border-color: var(--c-border);
+      }
+      .popup-btn-secondary:hover {
+        background-color: var(--c-surface-alt);
+        border-color: var(--c-accent-primary);
+      }
+      .popup-lang-selector {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+      .popup-modal[dir="rtl"] .popup-lang-selector {
+        right: auto;
+        left: 1rem;
+      }
+      .popup-lang-button {
+        background-color: var(--c-surface-alt);
+        border: 1px solid var(--c-border);
+        border-radius: 9999px;
+        padding: 0.25rem 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+      }
+      .popup-lang-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 0.5rem;
+        background-color: var(--c-surface);
+        border: 1px solid var(--c-border);
+        border-radius: 0.5rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 10;
+        overflow: hidden;
+      }
+      .popup-modal[dir="rtl"] .popup-lang-dropdown {
+        right: auto;
+        left: 0;
+      }
+      .popup-lang-dropdown button {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        width: 100%;
+        padding: 0.5rem 1rem;
+        text-align: left;
+        font-size: 0.875rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .popup-lang-dropdown button:hover {
+        background-color: var(--c-surface-alt);
+      }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+      @keyframes slideUpFadeIn {
+        from { opacity: 0; transform: translateY(15px) scale(0.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      @keyframes slideDownFadeOut {
+        from { opacity: 1; transform: translateY(0); }
+        to { opacity: 0; transform: translateY(15px); }
+      }
     </style>
   <link rel="stylesheet" href="/index.css">
 </head>
