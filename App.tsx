@@ -51,8 +51,9 @@ import CookieConsentBanner from './components/CookieConsentBanner';
 import Chatbot from './components/Chatbot';
 import ConstructionPopup from './components/ConstructionPopup';
 import CustomJewelryLandingPage from './pages/CustomJewelryLandingPage';
+import AdminPanel from './components/AdminPanel';
 
-// i18n imports
+import { AppProvider, useAppContext } from './context/AppContext';
 import { LanguageProvider } from './i18n/LanguageContext';
 
 const Layout: React.FC = () => {
@@ -78,7 +79,9 @@ const Layout: React.FC = () => {
 };
 
 
-const App: React.FC = () => {
+const AppContent: React.FC = () => {
+    const { isAdminPanelOpen, setIsAdminPanelOpen } = useAppContext();
+    
     // Set html lang and dir once on mount for English-only site
     useEffect(() => {
         document.documentElement.lang = 'en';
@@ -133,9 +136,18 @@ const App: React.FC = () => {
                     {/* Redirect from any other path to root */}
                     <Route path="*" element={<Navigate to={`/`} replace />} />
                 </Routes>
+                <AdminPanel isOpen={isAdminPanelOpen} onClose={() => setIsAdminPanelOpen(false)} />
             </HashRouter>
         </LanguageProvider>
     );
+};
+
+const App: React.FC = () => {
+  return (
+    <AppProvider>
+      <AppContent />
+    </AppProvider>
+  );
 };
 
 export default App;

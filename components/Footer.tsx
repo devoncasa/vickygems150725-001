@@ -1,11 +1,14 @@
 
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../i18n/LanguageContext';
 import { EmailIcon } from './IconComponents';
+import { useAppContext } from '../context/AppContext';
 
 export const Footer: React.FC = () => {
   const { t } = useLanguage();
+  const { setIsAdminPanelOpen } = useAppContext();
   const copyrightText = t('footer_copyright', { year: new Date().getFullYear() });
   const parts = copyrightText.split('<brand>');
 
@@ -108,13 +111,13 @@ export const Footer: React.FC = () => {
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-white/10 text-center">
-             <Link to="/" aria-label="Back to Homepage">
+             <button onClick={() => setIsAdminPanelOpen(true)} aria-label="Admin Section" className="cursor-pointer">
               <img 
                   src="https://i.postimg.cc/Prt96m87/VKGems_logo_small_web.webp" 
                   alt="Vicky LuxGems Logo" 
                   className="h-10 w-auto block mx-auto mb-4"
               />
-            </Link>
+            </button>
             <p className="text-sm">
                 {parts.length > 1 ? (
                     <>

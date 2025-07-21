@@ -1,12 +1,15 @@
 
+
+
 import React, { useState, useMemo } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
 import { Product, ShopCategory } from '../types';
-import { PRODUCTS, SHOP_CATEGORIES, BACKGROUND_IMAGES } from '../constants';
+import { SHOP_CATEGORIES, BACKGROUND_IMAGES } from '../constants';
 import ProductCard from '../components/ProductCard';
 import { ChevronDownIcon } from '../components/IconComponents';
 import SEO from '../components/SEO';
 import { useLanguage } from '../i18n/LanguageContext';
+import { useAppContext } from '../context/AppContext';
 
 // --- Category Sidebar Component ---
 const CategorySidebar: React.FC<{
@@ -92,17 +95,18 @@ interface OutletContextType {
 
 const CollectionPage: React.FC = () => {
     const { setCartCount } = useOutletContext<OutletContextType>();
+    const { products } = useAppContext();
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const { t } = useLanguage();
 
     const filteredProducts = useMemo(() => {
         if (!selectedCategory) {
-            return PRODUCTS;
+            return products;
         }
-        return PRODUCTS.filter(product => 
+        return products.filter(product => 
             product.category === selectedCategory || product.category.startsWith(selectedCategory + '-')
         );
-    }, [selectedCategory]);
+    }, [selectedCategory, products]);
     
     const handleAddToCart = (product: Product) => {
         setCartCount(prev => prev + 1);

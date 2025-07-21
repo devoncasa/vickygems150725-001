@@ -29,6 +29,10 @@ const amberSpectrumContent = [
         image: 'https://i.postimg.cc/4NZ7bLFC/pigeon-blood-red.webp'
     },
     {
+        id: 'orange',
+        image: 'https://i.postimg.cc/W1YdV2pj/orange-amber.webp',
+    },
+    {
         id: 'black',
         image: 'https://placehold.co/400x400/2A2A2A/FFFFFF?text=Black+Amber',
     }
@@ -63,9 +67,9 @@ const AmberSpectrumSection: React.FC = () => {
     return (
         <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
             <style>{styles}</style>
-            <div className="text-center max-w-3xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto dark-context">
                 <h2 className="text-4xl font-bold">{t('spectrum_section_title')}</h2>
-                <p className="mt-4 text-lg text-[var(--c-text-secondary)]">{t('spectrum_section_subtitle')}</p>
+                <p className="mt-4 text-lg">{t('spectrum_section_subtitle')}</p>
                 <SectionDivider />
             </div>
 

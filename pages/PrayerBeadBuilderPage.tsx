@@ -214,24 +214,24 @@ const PrayerBeadBuilderPage: React.FC = () => {
         switch (currentTradition) {
             case PrayerBeadTradition.Juzu:
                 return (
-                    <ControlGroup title="Step 1: Define Juzu Style">
+                    <ControlGroup title={t('juzu_step1_title')}>
                         <div>
-                            <label className="font-semibold mb-2 block">{t('juzu_gender_style' as any)}</label>
+                            <label className="font-semibold mb-2 block">{t('juzu_gender_style')}</label>
                             <div className="flex gap-2">
                                 <button onClick={() => setJuzuGender(JuzuGenderStyle.Mens)} className={`w-full p-3 text-sm rounded-md border-2 transition-all ${juzuGender === JuzuGenderStyle.Mens ? 'border-[var(--c-accent-primary)] bg-[var(--c-accent-primary)]/10 font-bold' : 'border-[var(--c-border)]'}`}>Men's Style</button>
                                 <button onClick={() => setJuzuGender(JuzuGenderStyle.Womens)} className={`w-full p-3 text-sm rounded-md border-2 transition-all ${juzuGender === JuzuGenderStyle.Womens ? 'border-[var(--c-accent-primary)] bg-[var(--c-accent-primary)]/10 font-bold' : 'border-[var(--c-border)]'}`}>Women's Style</button>
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="juzu-type" className="font-semibold mb-2 block">{t('juzu_type' as any)}</label>
+                            <label htmlFor="juzu-type" className="font-semibold mb-2 block">{t('juzu_type')}</label>
                             <select id="juzu-type" value={juzuType} onChange={e => setJuzuType(e.target.value as JuzuType)} className="w-full custom-select">{Object.values(JuzuType).map(type => <option key={type} value={type}>{type}</option>)}</select>
                         </div>
                         <div>
-                            <label htmlFor="tassel-shape" className="font-semibold mb-2 block">{t('juzu_tassel_shape' as any)}</label>
+                            <label htmlFor="tassel-shape" className="font-semibold mb-2 block">{t('juzu_tassel_shape')}</label>
                             <select id="tassel-shape" value={tasselShape} onChange={e => setTasselShape(e.target.value as TasselShape)} className="w-full custom-select">{Object.values(TasselShape).map(shape => <option key={shape} value={shape}>{shape}</option>)}</select>
                         </div>
                          <div>
-                            <label htmlFor="tassel-material" className="font-semibold mb-2 block">{t('juzu_tassel_material' as any)}</label>
+                            <label htmlFor="tassel-material" className="font-semibold mb-2 block">{t('juzu_tassel_material')}</label>
                             <select id="tassel-material" value={tasselMaterial} onChange={e => setTasselMaterial(e.target.value as TasselMaterial)} className="w-full custom-select">{Object.values(TasselMaterial).map(mat => <option key={mat} value={mat}>{mat}</option>)}</select>
                         </div>
                     </ControlGroup>
@@ -308,7 +308,7 @@ const PrayerBeadBuilderPage: React.FC = () => {
         const translationKey = `juzu_material_${mainBeadMaterial.replace(/['’\s()/]/g, '_')}` as any;
         const translatedBase = t(translationKey) || mainBeadMaterial;
         const materialName = mainBeadMaterial === 'Burmese Amber'
-            ? `${t('juzu_material_Burmese_Amber' as any) || 'Burmese Amber'}${amberText}`
+            ? `${t('juzu_material_Burmese_Amber') || 'Burmese Amber'}${amberText}`
             : translatedBase;
 
         const gradeText = mainBeadMaterial === 'Burmese Amber' ? 'Premium Grade' : metalGrade;
@@ -361,7 +361,7 @@ const PrayerBeadBuilderPage: React.FC = () => {
                             </div>
                             <div className="mt-4">
                                 <label className="font-semibold mb-3 block">Main Bead Material</label>
-                                <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-8 gap-2">
+                                <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-8 gap-1">
                                     {PRAYER_BEAD_VISUAL_MATERIALS.map(material => (
                                         <button 
                                             key={material.id} 
@@ -373,7 +373,11 @@ const PrayerBeadBuilderPage: React.FC = () => {
                                                     setBurmeseAmberColor(AMBER_COLOR_DETAILS.find(c => c.id === 'golden')!);
                                                 }
                                             }}
-                                            className="text-center group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--c-accent-primary)] rounded-lg"
+                                            className={`text-center group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--c-accent-primary)] rounded-lg transition-transform duration-200 ${
+                                                material.mapsTo !== 'Burmese Amber' 
+                                                ? 'scale-[0.7] hover:scale-[0.8]' 
+                                                : 'hover:scale-105'
+                                            }`}
                                             title={material.name}
                                             aria-label={`Select ${material.name} material`}
                                         >
@@ -392,7 +396,7 @@ const PrayerBeadBuilderPage: React.FC = () => {
                             </div>
                             {mainBeadMaterial === 'Burmese Amber' && (
                                 <div className="mt-4 p-4 bg-amber-50/50 rounded-md border border-amber-200">
-                                    <label htmlFor="burmeseAmberColor" className="font-semibold mb-3 block">{t('juzu_burmese_amber_color' as any)}</label>
+                                    <label htmlFor="burmeseAmberColor" className="font-semibold mb-3 block">{t('juzu_burmese_amber_color')}</label>
                                     <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-8 gap-2">
                                         {AMBER_COLOR_DETAILS.map(color => (
                                              <button 

@@ -524,6 +524,14 @@ export const translations = {
     'spectrum_pigeon_blood_red_aspect_wellbeing': 'เป็นตัวกระตุ้นพลังชีวิต (ชี่) ที่ทรงพลัง เพิ่มพลังทางกายภาพและให้เกราะป้องกันที่แข็งแกร่ง',
     'spectrum_pigeon_blood_red_day': 'วันอังคาร',
     'spectrum_pigeon_blood_red_zodiac': 'มะโรง',
+    'spectrum_orange_title': 'Orange Amber',
+    'spectrum_orange_core_meaning': 'The Spark of Creative Fire.',
+    'spectrum_orange_teaser': 'Vibrant and energetic, Orange Amber ignites creative passion and inspires joyful new beginnings.',
+    'spectrum_orange_aspect_love': 'Sparks joy and spontaneity in relationships, encouraging playfulness and passionate expression.',
+    'spectrum_orange_aspect_work': 'Fuels innovative thinking and entrepreneurial spirit. Ideal for launching new projects and overcoming creative blocks.',
+    'spectrum_orange_aspect_wellbeing': 'Boosts mood and vitality, connecting to the sacral chakra to enhance confidence and creative flow.',
+    'spectrum_orange_day': 'Friday',
+    'spectrum_orange_zodiac': 'Monkey',
 
     // --- Cookie Consent ---
     'cookie_title': 'การใช้คุกกี้ของเรา',
@@ -569,6 +577,7 @@ export const translations = {
     'glossary_def_pigeon_blood': 'คำอธิบายสำหรับสีที่เป็นที่ต้องการมากที่สุดในทับทิม หมายถึงสีแดงสดบริสุทธิ์ที่มีโทนสีม่วง-น้ำเงินเล็กน้อย คล้ายกับสีเลือดของนกพิราบที่เพิ่งถูกฆ่า คำนี้มีความเกี่ยวข้องกับทับทิมจากโมก๊ก ประเทศเมียนมามากที่สุด',
     'glossary_term_topical_authority': 'Topical Authority (ความน่าเชื่อถือเฉพาะเรื่อง)',
     'glossary_def_topical_authority': 'แนวคิด SEO ที่เว็บไซต์ได้รับการยอมรับจากเครื่องมือค้นหาว่าเป็นผู้เชี่ยวชาญที่เชื่อถือได้ในหัวข้อเฉพาะ ซึ่งทำได้โดยการสร้างเนื้อหาที่ครอบคลุม มีคุณภาพสูง และเชื่อมโยงกัน ซึ่งครอบคลุมทุกแง่มุมของหัวข้อ เช่นเดียวกับอภิธานศัพท์นี้สำหรับอัญมณี',
+    'glossary_def_xylopal': 'A type of petrified wood where the organic material is replaced by opal, often displaying beautiful iridescence.',
 
     // --- Custom Jewelry Landing Page ---
     'custom_landing_page_title': 'ออกแบบสมบัติทางจิตวิญญาณของคุณ',
@@ -627,7 +636,7 @@ export const translations = {
     'seo_tesbih_rosary_builder_keywords': 'เครื่องมือสร้างประคำ, ตัสบีห์สั่งทำ, ประคำสั่งทำ, สร้างตัสบีห์, ประคำส่วนตัว, ของขวัญอิสลาม, ของขวัญคาทอลิก, ของใช้ทางศาสนา',
     'tesbih_rosary_builder_page_title': 'เครื่องมือสร้างประคำ',
     'tesbih_rosary_builder_page_subtitle': 'สร้างสรรค์ตัสบีห์หรือประคำที่เป็นเอกลักษณ์ซึ่งสะท้อนศรัทธาและสไตล์ส่วนตัวของคุณ เลือกประเพณี, วัสดุ, และข้อมูลจำเพาะของคุณเพื่อสร้างเครื่องมือทางจิตวิญญาณที่อมตะ',
-
+    
     // --- New Prayer Bead Customizer ---
     'pbc_page_title': 'เครื่องมือปรับแต่งลูกประคำแบบโต้ตอบ',
     'pbc_page_subtitle': 'ออกแบบเครื่องมือทางจิตวิญญาณของคุณเองด้วยสายตา เลือกประเพณีเพื่อเริ่มต้น',
@@ -712,10 +721,13 @@ export const translations = {
     'juzu_material_Lapis_Lazuli': 'ลาพิสลาซูลี',
     'juzu_material_Turquoise': 'เทอร์ควอยซ์',
     'juzu_material_Obsidian': 'ออบซิเดียน',
-    'juzu_material_Clear_Quartz': 'ควอตซ์ใส',
-    'juzu_material_Amethyst': 'อเมทิสต์',
-    'juzu_material_Rose_Quartz': 'โรสควอตซ์',
-    'juzu_material_Malachite': 'มาลาไคต์',
-    'juzu_material_Lava_Stone': 'หินลาวา',
-    'juzu_material_Howlite_Magnesite': 'ฮาวไลต์/แมกนีไซต์',
+    'glossary_term_xylopal': 'Xylopal',
+    'juzu_material_Clear_Quartz': 'Clear Quartz',
+    'juzu_material_Amethyst': 'Amethyst',
+    'juzu_material_Rose_Quartz': 'Rose Quartz',
+    'juzu_material_Malachite': 'Malachite',
+    'juzu_material_Lava_Stone': 'Lava Stone',
+    'juzu_material_Howlite_Magnesite': 'Howlite/Magnesite',
+    'juzu_material_Green_Jade': 'Green Jade',
+    'juzu_material_White_Jade': 'White Jade'
 };

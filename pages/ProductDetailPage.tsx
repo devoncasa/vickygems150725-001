@@ -1,8 +1,9 @@
 
 
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link, useOutletContext } from 'react-router-dom';
-import { PRODUCTS, BLESSING_PRICE, BEAD_SPECS, SHOP_CATEGORIES, BACKGROUND_IMAGES } from '../constants';
+import { BLESSING_PRICE, BEAD_SPECS, SHOP_CATEGORIES, BACKGROUND_IMAGES } from '../constants';
 import JsonLd from '../components/JsonLd';
 import SectionDivider from '../components/SectionDivider';
 import { calculateFinalPrice } from '../utils/priceLogic';
@@ -11,6 +12,7 @@ import SEO from '../components/SEO';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useUserPreferences } from '../hooks/useUserPreferences';
 import { ChevronDownIcon } from '../components/IconComponents';
+import { useAppContext } from '../context/AppContext';
 
 interface OutletContextType {
   setCartCount: React.Dispatch<React.SetStateAction<number>>;
@@ -79,9 +81,10 @@ const ProductFaq: React.FC<{product: Product}> = ({ product }) => {
 const ProductDetailPage: React.FC = () => {
     const { setCartCount } = useOutletContext<OutletContextType>();
     const { productId } = useParams<{ productId: string }>();
+    const { products } = useAppContext();
     const { t } = useLanguage();
     const { trackProductView } = useUserPreferences();
-    const product = PRODUCTS.find(p => p.id === productId);
+    const product = products.find(p => p.id === productId);
 
     const [selectedBeadSize, setSelectedBeadSize] = useState<BeadSize | null>(product?.specifications.beadSize_mm || null);
     const [wantsBlessing, setWantsBlessing] = useState(false);

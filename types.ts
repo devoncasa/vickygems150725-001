@@ -1,6 +1,5 @@
 
 
-
 export enum Material {
   Amber = 'Amber',
   Spinel = 'Spinel',
@@ -377,4 +376,29 @@ export interface CustomJuzuDetails {
     tasselShape: TasselShape;
     tasselMaterial: TasselMaterial;
     totalPrice: number;
+}
+
+
+// --- New Types for Admin Panel Gem Data ---
+export interface GemDetails {
+  colors: string[];
+  origins?: string[];
+  cuts?: string[];
+}
+
+export interface GemCategoryData {
+  [gemstoneName: string]: GemDetails;
+}
+
+export interface GemData {
+  cuts: {
+    standard: string[];
+    jade: string[];
+  };
+  origins: {
+    standard: string[];
+  };
+  categories: {
+    [categoryName: string]: GemCategoryData;
+  }
 }
