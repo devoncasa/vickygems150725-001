@@ -2,7 +2,7 @@
 
 import React, { useMemo } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
-import { PRODUCTS, BLOG_POSTS, BACKGROUND_IMAGES, HERO_SLIDESHOW_IMAGES } from '../constants';
+import { PRODUCTS, BLOG_POSTS, HERO_SLIDESHOW_IMAGES } from '../constants';
 import ProductCard from '../components/ProductCard';
 import SectionDivider from '../components/SectionDivider';
 import useScrollAnimation from '../hooks/useScrollAnimation';
@@ -59,7 +59,7 @@ const HomePage: React.FC = () => {
     const organizationSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Vicky Lux Gems",
+        "name": "Vicky LuxGems",
         "url": websiteUrl,
         "logo": "https://i.postimg.cc/Qd8yW639/vkambergems-logo-small.png",
         "contactPoint": [
@@ -110,7 +110,7 @@ const HomePage: React.FC = () => {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "url": websiteUrl,
-        "name": "Vicky Lux Gems",
+        "name": "Vicky LuxGems",
         "description": t('home_meta_description'),
         "inLanguage": 'en',
         "potentialAction": {
@@ -150,11 +150,11 @@ const HomePage: React.FC = () => {
                 <HeroSlideshow images={HERO_SLIDESHOW_IMAGES} />
 
                 {/* Foreground content block with frosted glass effect */}
-                <div className="relative z-10 max-w-3xl text-center bg-[var(--c-bg)]/90 backdrop-blur-md p-8 md:p-12 rounded-2xl shadow-xl border border-white/20">
+                <div className="relative z-10 max-w-3xl text-center bg-gradient-to-b from-white/40 to-white/20 backdrop-blur-xl p-8 md:p-12 rounded-2xl shadow-xl border border-white/30">
                     {/* Logo inside the content block */}
                     <img 
                         src="https://i.postimg.cc/Prt96m87/VKGems_logo_small_web.webp"
-                        alt="Vicky Lux Gems Emblem"
+                        alt="Vicky LuxGems Emblem"
                         className="w-24 md:w-32 mx-auto mb-6"
                     />
 
@@ -173,30 +173,29 @@ const HomePage: React.FC = () => {
             
             <div 
                 className="page-container-with-bg"
-                style={{ backgroundImage: `url('${BACKGROUND_IMAGES[25]}')` }}
             >
                 <div style={{ backgroundColor: 'rgba(180, 149, 94, 0.1)' }}>
                     <AnimatedSection className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
-                        <div className="max-w-4xl mx-auto text-center">
+                        <div className="max-w-4xl mx-auto text-center dark-context">
                             <h2 className="text-4xl font-bold">{t('home_famed_mines_title')}</h2>
-                            <p className="mt-4 text-lg text-[var(--c-text-primary)] opacity-90">{t('home_famed_mines_subtitle')}</p>
+                            <p className="mt-4 text-lg">{t('home_famed_mines_subtitle')}</p>
                         </div>
-                        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 dark-context">
                             <div className="text-center p-4">
                                 <h3 className="text-2xl font-semibold">{t('home_gem_jade')}</h3>
-                                <p className="text-sm mt-2 text-[var(--c-text-secondary)]">{t('home_gem_jade_desc')}</p>
+                                <p className="text-sm mt-2">{t('home_gem_jade_desc')}</p>
                             </div>
                             <div className="text-center p-4">
                                 <h3 className="text-2xl font-semibold">{t('home_gem_rubies')}</h3>
-                                <p className="text-sm mt-2 text-[var(--c-text-secondary)]">{t('home_gem_rubies_desc')}</p>
+                                <p className="text-sm mt-2">{t('home_gem_rubies_desc')}</p>
                             </div>
                             <div className="text-center p-4">
                                 <h3 className="text-2xl font-semibold">{t('home_gem_sapphires')}</h3>
-                                <p className="text-sm mt-2 text-[var(--c-text-secondary)]">{t('home_gem_sapphires_desc')}</p>
+                                <p className="text-sm mt-2">{t('home_gem_sapphires_desc')}</p>
                             </div>
                             <div className="text-center p-4">
                                 <h3 className="text-2xl font-semibold">{t('home_gem_amber')}</h3>
-                                <p className="text-sm mt-2 text-[var(--c-text-secondary)]">{t('home_gem_amber_desc')}</p>
+                                <p className="text-sm mt-2">{t('home_gem_amber_desc')}</p>
                             </div>
                         </div>
                     </AnimatedSection>
@@ -221,26 +220,26 @@ const HomePage: React.FC = () => {
                 {/* New Custom Creations Section */}
                 <div style={{ backgroundColor: 'rgba(108, 90, 78, 0.1)' }}>
                     <AnimatedSection className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
-                        <div className="max-w-4xl mx-auto text-center">
+                        <div className="max-w-4xl mx-auto text-center dark-context">
                             <h2 className="text-4xl font-bold">{t('home_custom_creations_title')}</h2>
-                            <p className="mt-4 text-lg text-[var(--c-text-primary)] opacity-90">{t('home_custom_creations_subtitle')}</p>
+                            <p className="mt-4 text-lg opacity-90">{t('home_custom_creations_subtitle')}</p>
                             <SectionDivider />
                         </div>
                         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                            <Link to="/custom-tesbih" className="group block relative rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden aspect-w-4 aspect-h-3">
+                            <Link to="/prayer-bead-builder/Tesbih" className="group block relative rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden aspect-w-4 aspect-h-3">
                                 <img src="https://placehold.co/800x600/5C3A21/FFFFFF?text=Custom+Tesbih" alt="A custom Islamic tasbih with dark wooden meditation beads, a luxury spiritual gift." className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-                                <div className="absolute bottom-0 left-0 p-6 text-white">
+                                <div className="absolute bottom-0 left-0 p-6 dark-context">
                                     <h3 className="text-3xl font-bold font-serif">{t('home_custom_tesbih_title')}</h3>
-                                    <p className="mt-2 opacity-90">{t('home_custom_tesbih_desc')}</p>
+                                    <p className="mt-2">{t('home_custom_tesbih_desc')}</p>
                                 </div>
                             </Link>
-                             <Link to="/custom-rosary" className="group block relative rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden aspect-w-4 aspect-h-3">
+                             <Link to="/prayer-bead-builder/Rosary" className="group block relative rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden aspect-w-4 aspect-h-3">
                                 <img src="https://placehold.co/800x600/A3A3A3/FFFFFF?text=Custom+Rosary" alt="A custom Catholic rosary with silver and stone prayer beads, a tool for mindfulness and devotion." className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-                                <div className="absolute bottom-0 left-0 p-6 text-white">
+                                <div className="absolute bottom-0 left-0 p-6 dark-context">
                                     <h3 className="text-3xl font-bold font-serif">{t('home_custom_rosary_title')}</h3>
-                                    <p className="mt-2 opacity-90">{t('home_custom_rosary_desc')}</p>
+                                    <p className="mt-2">{t('home_custom_rosary_desc')}</p>
                                 </div>
                             </Link>
                         </div>
@@ -322,7 +321,7 @@ const HomePage: React.FC = () => {
                         title={t('home_cta_title')}
                         subtitle={t('home_cta_subtitle')}
                         buttonText={t('home_cta_button')}
-                        buttonLink="/build-your-set"
+                        buttonLink="/custom-jewelry"
                         backgroundImageUrl="https://i.postimg.cc/pXtcbS21/Vicky-Amber-Gems-background-0014.jpg"
                     />
                 </AnimatedSection>

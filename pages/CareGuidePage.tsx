@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import SectionDivider from '../components/SectionDivider';
 import { BACKGROUND_IMAGES } from '../constants';
@@ -23,7 +24,7 @@ const CareGuidePage: React.FC = () => {
                 imageUrl="https://i.postimg.cc/Twz7P7n1/Vicky-Amber-Gems-background-0017.jpg"
             />
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto">
+                <div className="content-page-block max-w-4xl mx-auto p-8 md:p-12 rounded-lg shadow-xl border border-[var(--c-border-muted)]">
                     {/* Header */}
                     <div className="text-center mb-12">
                         <h1 className="text-5xl font-bold tracking-tight">How to Take Care of Burmese Amber Jewelry</h1>

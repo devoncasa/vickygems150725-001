@@ -23,11 +23,11 @@ const CallToActionSection: React.FC<CallToActionSectionProps> = ({
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-[var(--c-heading)] via-[var(--c-heading)]/70 to-transparent"></div>
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center text-white">
-        <h2 className="text-4xl md:text-5xl font-bold font-serif" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center dark-context">
+        <h2 className="text-4xl md:text-5xl font-bold font-serif">
           {title}
         </h2>
-        <p className="mt-4 max-w-2xl mx-auto text-lg text-white/80" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
+        <p className="mt-4 max-w-2xl mx-auto text-lg">
           {subtitle}
         </p>
         <div className="mt-8">

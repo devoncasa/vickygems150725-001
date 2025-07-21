@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import SEO from '../components/SEO';
-import { BACKGROUND_IMAGES, PRAYER_BEAD_SIZES, JUZU_MATERIAL_PRICES, AMBER_COLOR_DETAILS, TASSEL_OPTIONS, calculateBeadWeightGemstone, METAL_COMPONENT_PRICES, METAL_COMPONENT_MATERIALS, TESBIH_COMPONENT_WEIGHTS, ROSARY_COMPONENT_WEIGHTS } from '../constants';
+import { BACKGROUND_IMAGES, PRAYER_BEAD_SIZES, JUZU_MATERIAL_PRICES, AMBER_COLOR_DETAILS, TASSEL_OPTIONS, calculateBeadWeightGemstone, METAL_COMPONENT_PRICES, METAL_COMPONENT_MATERIALS, TESBIH_COMPONENT_WEIGHTS, ROSARY_COMPONENT_WEIGHTS, PRAYER_BEAD_VISUAL_MATERIALS } from '../constants';
 import SectionDivider from '../components/SectionDivider';
 import { JuzuGenderStyle, JuzuType, TasselShape, TasselMaterial, BeadSize, AmberColorDetail, PrayerBeadTradition, TesbihBeadCount, TesbihRosaryGrade } from '../types';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -19,6 +19,13 @@ const ControlGroup: React.FC<{ title: string, children: React.ReactNode }> = ({ 
         </div>
     </div>
 );
+
+const CheckmarkIcon = () => (
+    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+);
+
 
 const PrayerBeadBuilderPage: React.FC = () => {
     const { t } = useLanguage();
@@ -57,6 +64,22 @@ const PrayerBeadBuilderPage: React.FC = () => {
 
     const [isProcessing, setIsProcessing] = useState(false);
     const [notification, setNotification] = useState<string | null>(null);
+
+    const maxBeadSizes: Record<PrayerBeadTradition, number> = {
+        [PrayerBeadTradition.Juzu]: 12.0,
+        [PrayerBeadTradition.Tesbih]: 12.5,
+        [PrayerBeadTradition.Rosary]: 11.5,
+    };
+
+    const handleBeadSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newSize = Number(e.target.value);
+        const maxSize = maxBeadSizes[currentTradition];
+        if (newSize <= maxSize) {
+            setMainBeadSize(newSize);
+        } else {
+            setMainBeadSize(maxSize);
+        }
+    };
 
     useEffect(() => {
         if (currentTradition === PrayerBeadTradition.Juzu) {
@@ -253,29 +276,32 @@ const PrayerBeadBuilderPage: React.FC = () => {
         }
     };
     
-    const BeadPreview: React.FC<{ size: number; material: string; label: string; amber?: AmberColorDetail | null }> = ({ size, material, label, amber }) => {
-        const color = material === 'Burmese Amber' && amber ? `url(${amber.imageUrl})` : 'var(--c-accent-primary)';
-        return (
-            <div className="flex items-center gap-3">
-                <div style={{ width: `${size*2.5}px`, height: `${size*2.5}px`, backgroundImage: color, backgroundSize: 'cover' }} className="rounded-full shadow-inner border-2 border-white/50 flex-shrink-0"></div>
-                <div>
-                    <div className="font-semibold">{label}</div>
-                    <div className="text-xs text-[var(--c-text-secondary)]">{size.toFixed(1)} mm</div>
-                </div>
+    const BeadPreview: React.FC<{ size: number; imageUrl: string; label: string }> = ({ size, imageUrl, label }) => (
+        <div className="flex items-center gap-3">
+            <div style={{ width: `${size*2.5}px`, height: `${size*2.5}px`, backgroundImage: `url(${imageUrl})`, backgroundSize: 'cover' }} className="rounded-full shadow-inner border-2 border-white/50 flex-shrink-0"></div>
+            <div>
+                <div className="font-semibold">{label}</div>
+                <div className="text-xs text-[var(--c-text-secondary)]">{size.toFixed(1)} mm</div>
             </div>
-        );
-    };
-
-    const renderPreview = () => (
-        <div className="w-full h-full bg-[var(--c-surface)] rounded-lg flex flex-col items-center justify-center p-4 space-y-3">
-            <BeadPreview size={mainBeadSize} material={mainBeadMaterial} label="Main Bead" amber={burmeseAmberColor} />
-            {currentTradition === 'Juzu' && <BeadPreview size={dependentBeadSizes.oyadama} material={mainBeadMaterial} label="Parent Bead (Oyadama)" amber={burmeseAmberColor} />}
-            {currentTradition === 'Juzu' && <BeadPreview size={dependentBeadSizes.shitentama} material={mainBeadMaterial} label="Marker Bead (Shitentama)" amber={burmeseAmberColor} />}
-            {currentTradition === 'Tesbih' && <BeadPreview size={dependentBeadSizes.imame} material={mainBeadMaterial} label="Head Bead (Imame)" amber={burmeseAmberColor} />}
-            {currentTradition === 'Rosary' && <BeadPreview size={dependentBeadSizes.ourFather} material={mainBeadMaterial} label="'Our Father' Bead" amber={burmeseAmberColor} />}
-            <p className="text-xs text-center text-[var(--c-text-secondary)] pt-3">Visual representation of components. Final design will be confirmed during consultation.</p>
         </div>
     );
+
+    const renderPreview = () => {
+        const materialImageUrl = mainBeadMaterial === 'Burmese Amber'
+            ? burmeseAmberColor?.imageUrl || ''
+            : PRAYER_BEAD_VISUAL_MATERIALS.find(m => m.mapsTo === mainBeadMaterial)?.imageUrl || '';
+
+        return (
+            <div className="w-full h-full bg-[var(--c-surface)] rounded-lg flex flex-col items-center justify-center p-4 space-y-3">
+                <BeadPreview size={mainBeadSize} imageUrl={materialImageUrl} label="Main Bead" />
+                {currentTradition === 'Juzu' && <BeadPreview size={dependentBeadSizes.oyadama} imageUrl={materialImageUrl} label="Parent Bead (Oyadama)" />}
+                {currentTradition === 'Juzu' && <BeadPreview size={dependentBeadSizes.shitentama} imageUrl={materialImageUrl} label="Marker Bead (Shitentama)" />}
+                {currentTradition === 'Tesbih' && <BeadPreview size={dependentBeadSizes.imame} imageUrl={materialImageUrl} label="Head Bead (Imame)" />}
+                {currentTradition === 'Rosary' && <BeadPreview size={dependentBeadSizes.ourFather} imageUrl={materialImageUrl} label="'Our Father' Bead" />}
+                <p className="text-xs text-center text-[var(--c-text-secondary)] pt-3">Visual representation of components. Final design will be confirmed during consultation.</p>
+            </div>
+        );
+    }
     
     const renderSummary = () => {
         const amberText = burmeseAmberColor ? ` (${t(`amber_color_${burmeseAmberColor.id}_name` as any) || burmeseAmberColor.name})` : '';
@@ -285,48 +311,36 @@ const PrayerBeadBuilderPage: React.FC = () => {
             ? `${t('juzu_material_Burmese_Amber' as any) || 'Burmese Amber'}${amberText}`
             : translatedBase;
 
-        if (currentTradition === 'Juzu') {
-            return (
-                <div className="space-y-2 text-sm">
-                    <div className="flex justify-between font-bold text-base border-b pb-2 mb-2"><span>Component</span><span>Details</span></div>
-                    <div className="flex justify-between"><span>Style</span><span>{juzuGender}, {juzuType}</span></div>
-                    <div className="flex justify-between"><span>Omodama (x{(componentCounts as any).main})</span><span>{mainBeadSize.toFixed(1)}mm {materialName}</span></div>
-                    <div className="flex justify-between"><span>Oyadama (x{(componentCounts as any).parent})</span><span>{dependentBeadSizes.oyadama.toFixed(1)}mm</span></div>
-                    {(componentCounts as any).marker > 0 && <div className="flex justify-between"><span>Shitentama (x{(componentCounts as any).marker})</span><span>{dependentBeadSizes.shitentama.toFixed(1)}mm</span></div>}
-                    <div className="flex justify-between"><span>Tassel</span><span>{tasselShape}, {tasselMaterial}</span></div>
+        const gradeText = mainBeadMaterial === 'Burmese Amber' ? 'Premium Grade' : metalGrade;
 
-                    <div className="mt-4 pt-4 border-t border-dashed">
-                        <div className="flex justify-between"><span>Main Beads</span><span>{formatCurrency(priceBreakdown.mainBeadsPrice)}</span></div>
-                        <div className="flex justify-between"><span>Accent Beads</span><span>{formatCurrency(priceBreakdown.accentBeadsPrice)}</span></div>
-                        <div className="flex justify-between"><span>Tassel</span><span>{formatCurrency(priceBreakdown.tasselPrice)}</span></div>
-                    </div>
-                </div>
-            );
-        }
-        if (currentTradition === 'Tesbih') {
-            return (
-                <div className="space-y-2 text-sm">
-                    <div className="flex justify-between font-bold text-base border-b pb-2 mb-2"><span>Component</span><span>Price (Est.)</span></div>
-                    <div className="flex justify-between"><span>Main Beads (x{tesbihBeadCount})</span><span>{formatCurrency(priceBreakdown.individualPrices.mainBeads)}</span></div>
-                    <div className="flex justify-between"><span>Disks, Imame, Small Beads</span><span>{formatCurrency(priceBreakdown.accentBeadsPrice)}</span></div>
-                    <div className="flex justify-between"><span>Tepelik ({tesbihTepelikMaterial})</span><span>{formatCurrency(priceBreakdown.individualPrices.tepelik)}</span></div>
-                    <div className="flex justify-between"><span>Tassel (Silk)</span><span>{formatCurrency(priceBreakdown.individualPrices.tassel)}</span></div>
-                    <div className="flex justify-between text-xs opacity-80 pt-2"><span>Grade: {metalGrade}</span><span>Material: {materialName}</span></div>
-                </div>
-            );
-        }
-        if (currentTradition === 'Rosary') {
-            return (
-                <div className="space-y-2 text-sm">
-                    <div className="flex justify-between font-bold text-base border-b pb-2 mb-2"><span>Component</span><span>Price (Est.)</span></div>
-                    <div className="flex justify-between"><span>"Hail Mary" Beads (x53)</span><span>{formatCurrency(priceBreakdown.individualPrices.hailMaryBeads)}</span></div>
-                    <div className="flex justify-between"><span>"Our Father" Beads (x6)</span><span>{formatCurrency(priceBreakdown.individualPrices.ourFatherBeads)}</span></div>
-                    <div className="flex justify-between"><span>Centerpiece ({rosaryCenterpieceMaterial})</span><span>{formatCurrency(priceBreakdown.individualPrices.centerpiece)}</span></div>
-                    <div className="flex justify-between"><span>Crucifix ({rosaryCrucifixMaterial})</span><span>{formatCurrency(priceBreakdown.individualPrices.crucifix)}</span></div>
-                    <div className="flex justify-between text-xs opacity-80 pt-2"><span>Grade: {metalGrade}</span><span>Material: {materialName}</span></div>
-                </div>
-            );
-        }
+        return (
+             <div className="space-y-1 text-sm">
+                <div className="font-bold text-base border-b pb-2 mb-2">Component Details</div>
+                {currentTradition === 'Juzu' && (
+                    <>
+                        <p>Omodama: {materialName} - {mainBeadSize.toFixed(1)}mm (x{(componentCounts as any).main})</p>
+                        <p>Oyadama: {materialName} - {dependentBeadSizes.oyadama.toFixed(1)}mm (x{(componentCounts as any).parent})</p>
+                        {(componentCounts as any).marker > 0 && <p>Shitentama: {materialName} - {dependentBeadSizes.shitentama.toFixed(1)}mm (x{(componentCounts as any).marker})</p>}
+                        <p>Tassel: {tasselShape}, {tasselMaterial}</p>
+                    </>
+                )}
+                {currentTradition === 'Tesbih' && (
+                     <>
+                        <p>Main Beads: {materialName} ({gradeText}) - {mainBeadSize.toFixed(1)}mm (x{tesbihBeadCount})</p>
+                        <p>Imame: {materialName} ({gradeText}) - {dependentBeadSizes.imame.toFixed(1)}mm (x1)</p>
+                        <p>Tepelik: {tesbihTepelikMaterial} ({metalGrade})</p>
+                    </>
+                )}
+                {currentTradition === 'Rosary' && (
+                    <>
+                        <p>"Hail Mary" Beads: {materialName} ({gradeText}) - {mainBeadSize.toFixed(1)}mm (x53)</p>
+                        <p>"Our Father" Beads: {materialName} ({gradeText}) - {dependentBeadSizes.ourFather.toFixed(1)}mm (x6)</p>
+                        <p>Centerpiece: {rosaryCenterpieceMaterial} ({metalGrade})</p>
+                        <p>Crucifix: {rosaryCrucifixMaterial} ({metalGrade})</p>
+                    </>
+                )}
+            </div>
+        );
     }
 
     const tabClasses = (tradition: PrayerBeadTradition) => `px-6 py-3 text-lg font-semibold rounded-t-lg transition-colors duration-200 focus:outline-none w-full sm:w-auto ${currentTradition === tradition ? 'bg-[var(--c-surface)] text-[var(--c-accent-primary-hover)] shadow-sm' : 'bg-[var(--c-heading)]/5 text-[var(--c-text-secondary)] hover:bg-[var(--c-surface)]/80'}`;
@@ -341,15 +355,67 @@ const PrayerBeadBuilderPage: React.FC = () => {
                     <div className="lg:col-span-3 space-y-6 bg-[var(--c-surface)] p-6 md:p-8 rounded-lg shadow-lg border border-[var(--c-border)]">
                         {renderControls()}
                         <ControlGroup title="Step 2: Choose Materials & Sizing">
-                            <div>
+                             <div>
                                 <label className="font-semibold mb-2 block">Main Bead Size: <span className="font-bold text-lg text-[var(--c-accent-primary)]">{mainBeadSize.toFixed(1)} mm</span></label>
-                                <input type="range" min="6" max="14" step="0.5" value={mainBeadSize} onChange={e => setMainBeadSize(Number(e.target.value))} className="w-full custom-slider"/>
+                                <input type="range" min="6" max={maxBeadSizes[currentTradition]} step="0.5" value={mainBeadSize} onChange={handleBeadSizeChange} className="w-full custom-slider"/>
                             </div>
                             <div className="mt-4">
-                                <label htmlFor="main-material" className="font-semibold mb-2 block">Main Bead Material</label>
-                                <select id="main-material" value={mainBeadMaterial} onChange={e => { setMainBeadMaterial(e.target.value); if(e.target.value === 'Burmese Amber' && !burmeseAmberColor) { setBurmeseAmberColor(AMBER_COLOR_DETAILS[4])} }} className="w-full custom-select mb-4">{Object.keys(JUZU_MATERIAL_PRICES).map(materialName => (<option key={materialName} value={materialName}>{t(`juzu_material_${materialName.replace(/['’\s()/]/g, '_')}` as any) || materialName}</option>))} <option value="Burmese Amber">{t('juzu_material_Burmese_Amber' as any) || 'Burmese Amber'}</option></select>
+                                <label className="font-semibold mb-3 block">Main Bead Material</label>
+                                <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-8 gap-2">
+                                    {PRAYER_BEAD_VISUAL_MATERIALS.map(material => (
+                                        <button 
+                                            key={material.id} 
+                                            onClick={() => {
+                                                setMainBeadMaterial(material.mapsTo);
+                                                if (material.mapsTo !== 'Burmese Amber') {
+                                                    setBurmeseAmberColor(null);
+                                                } else if (!burmeseAmberColor) {
+                                                    setBurmeseAmberColor(AMBER_COLOR_DETAILS.find(c => c.id === 'golden')!);
+                                                }
+                                            }}
+                                            className="text-center group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--c-accent-primary)] rounded-lg"
+                                            title={material.name}
+                                            aria-label={`Select ${material.name} material`}
+                                        >
+                                            <div className={`relative w-full pt-[100%] rounded-lg overflow-hidden border-2 transition-all duration-200 ${mainBeadMaterial === material.mapsTo ? 'border-amber-500 shadow-lg' : 'border-transparent group-hover:border-amber-400/50'}`}>
+                                                <img src={material.imageUrl} alt={material.name} className="absolute inset-0 w-full h-full object-cover" />
+                                                {mainBeadMaterial === material.mapsTo && (
+                                                    <div className="absolute inset-0 bg-amber-500/50 flex items-center justify-center">
+                                                        <CheckmarkIcon />
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <span className={`mt-1.5 text-xs font-semibold block truncate ${mainBeadMaterial === material.mapsTo ? 'text-[var(--c-accent-primary)]' : 'text-[var(--c-text-secondary)]'}`}>{t(`juzu_material_${material.name.replace(/['’\s()/]/g, '_')}` as any) || material.name}</span>
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                            {mainBeadMaterial === 'Burmese Amber' && (<div className="mt-4"><label htmlFor="burmeseAmberColor" className="font-semibold mb-2 block">{t('juzu_burmese_amber_color' as any)}</label><select id="burmeseAmberColor" value={burmeseAmberColor?.id} onChange={e => setBurmeseAmberColor(AMBER_COLOR_DETAILS.find(c => c.id === e.target.value)!)} className="w-full custom-select">{AMBER_COLOR_DETAILS.map(color => <option key={color.id} value={color.id}>{color.name}</option>)}</select></div>)}
+                            {mainBeadMaterial === 'Burmese Amber' && (
+                                <div className="mt-4 p-4 bg-amber-50/50 rounded-md border border-amber-200">
+                                    <label htmlFor="burmeseAmberColor" className="font-semibold mb-3 block">{t('juzu_burmese_amber_color' as any)}</label>
+                                    <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-8 gap-2">
+                                        {AMBER_COLOR_DETAILS.map(color => (
+                                             <button 
+                                                key={color.id} 
+                                                onClick={() => setBurmeseAmberColor(color)}
+                                                className="text-center group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--c-accent-primary)] rounded-lg"
+                                                title={color.name}
+                                                aria-label={`Select Burmese Amber color: ${color.name}`}
+                                            >
+                                                <div className={`relative w-full pt-[100%] rounded-lg overflow-hidden border-2 transition-all duration-200 ${burmeseAmberColor?.id === color.id ? 'border-amber-500 shadow-lg' : 'border-transparent group-hover:border-amber-400/50'}`}>
+                                                    <img src={color.imageUrl} alt={color.name} className="absolute inset-0 w-full h-full object-cover" />
+                                                    {burmeseAmberColor?.id === color.id && (
+                                                        <div className="absolute inset-0 bg-amber-500/50 flex items-center justify-center">
+                                                            <CheckmarkIcon />
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <span className={`mt-1.5 text-[10px] leading-tight font-semibold block ${burmeseAmberColor?.id === color.id ? 'text-[var(--c-accent-primary)]' : 'text-[var(--c-text-secondary)]'}`}>{t(`amber_color_${color.id}_name` as any) || color.name}</span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
                              {(currentTradition === 'Tesbih' || currentTradition === 'Rosary') && (<div><label htmlFor="metal-grade" className="font-semibold mb-2 block">Metal Component Grade</label><select id="metal-grade" value={metalGrade} onChange={e => setMetalGrade(e.target.value as TesbihRosaryGrade)} className="w-full custom-select">{Object.values(TesbihRosaryGrade).map(g => <option key={g} value={g}>{g}</option>)}</select></div>)}
                         </ControlGroup>
                     </div>

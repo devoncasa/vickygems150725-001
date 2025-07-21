@@ -62,7 +62,7 @@ const SEO: React.FC<SEOProps> = ({
   const { t } = useLanguage();
   const location = useLocation();
 
-  const title = rawTitle || (titleKey ? t(titleKey) as string : 'Vicky Amber & Gems');
+  const title = rawTitle || (titleKey ? t(titleKey) as string : 'Vicky LuxGems');
   const description = rawDescription || (descriptionKey ? t(descriptionKey) as string : 'Authentic Burmese amber and precious gems.');
   const keywords = rawKeywords || (keywordsKey ? t(keywordsKey) as string : '');
 
@@ -105,7 +105,7 @@ const SEO: React.FC<SEOProps> = ({
     setMetaTag('property', 'og:url', canonicalUrl);
     setMetaTag('property', 'og:image', ogImage);
     setMetaTag('property', 'og:type', type);
-    setMetaTag('property', 'og:site_name', 'Vicky Amber & Gems');
+    setMetaTag('property', 'og:site_name', 'Vicky LuxGems');
     setMetaTag('property', 'og:locale', 'en_US');
 
     // 6. alternate locales for OG tags removed

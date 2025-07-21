@@ -299,6 +299,13 @@ export enum PrayerBeadTradition {
     Rosary = 'Rosary',
 }
 
+export interface VisualMaterial {
+  id: string;
+  name: string;
+  imageUrl: string;
+  mapsTo: string;
+}
+
 // Juzu Specific
 export enum JuzuGenderStyle {
     Mens = "Men's",

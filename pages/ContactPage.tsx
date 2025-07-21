@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { BACKGROUND_IMAGES } from '../constants';
 import SEO from '../components/SEO';
@@ -18,7 +19,7 @@ const ContactPage: React.FC = () => {
     const businessSchema = {
         "@context": "https://schema.org",
         "@type": "JewelryStore",
-        "name": "Vicky Lux Gems",
+        "name": "Vicky LuxGems",
         "image": "https://i.postimg.cc/Qd8yW639/vkambergems-logo-small.png",
         "url": window.location.origin,
         "telephone": "+66631959922",
@@ -79,7 +80,7 @@ const ContactPage: React.FC = () => {
                                 <div>
                                     <h3 className="font-semibold text-[var(--c-heading)] text-lg">Our Showroom</h3>
                                     <address className="not-italic text-sm mt-1">
-                                        Vicky Lux Gems Co., Ltd.<br/>
+                                        <span className="brand-name">Vicky LuxGems</span> Co., Ltd.<br/>
                                         919/1 Jewelry Trade Center Building<br/>
                                         BB038, Silom Rd., Silom, Bangrak<br/>
                                         Bangkok 10500 THAILAND

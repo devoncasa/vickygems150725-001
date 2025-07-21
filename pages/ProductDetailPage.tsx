@@ -158,7 +158,7 @@ const ProductDetailPage: React.FC = () => {
         );
     }
     
-    const seoTitle = `${product.name} (${selectedBeadSize}mm) - Vicky Lux Gems`;
+    const seoTitle = `${product.name} (${selectedBeadSize}mm) - Vicky LuxGems`;
     const seoDesc = t('seo_product_detail_desc', { 
         productName: product.name, 
         beadSize: `${selectedBeadSize}mm`,
@@ -182,7 +182,7 @@ const ProductDetailPage: React.FC = () => {
         "mpn": `${product.sku}-${selectedBeadSize}MM`,
         "brand": {
             "@type": "Brand",
-            "name": "Vicky Lux Gems"
+            "name": "Vicky LuxGems"
         },
         "inLanguage": 'en',
         "review": {

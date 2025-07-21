@@ -4,7 +4,7 @@ const translations: { [key: string]: any } = {
     en: {
         title: "⚠️ This Page is Under Construction",
         body: "Our design and graphic elements are still being finalized. However, you’re welcome to explore — some customizable bead sets are already available and may interest you.",
-        date: "🗓️ Last Updated: 20 July 2025",
+        date: "🗓️ Last Updated: 21 July 2025",
         btn1: "Visit Main Website →",
         btn2: "Go to Facebook Page →",
         btn3: "Continue Browsing →",
@@ -13,7 +13,7 @@ const translations: { [key: string]: any } = {
     th: {
         title: "⚠️ หน้านี้อยู่ระหว่างการปรับปรุง",
         body: "องค์ประกอบด้านกราฟิกและดีไซน์ยังอยู่ในระหว่างการพัฒนา อย่างไรก็ตาม คุณยังสามารถเข้าชมได้ — ขณะนี้มีเมนูชุดเม็ดประคำบางรายการที่สามารถปรับแต่งพร้อมภาพประกอบได้ ซึ่งคุณอาจสนใจ",
-        date: "🗓️ อัปเดตล่าสุด: 20 กรกฎาคม 2025",
+        date: "🗓️ อัปเดตล่าสุด: 21 กรกฎาคม 2025",
         btn1: "เยี่ยมชมเว็บไซต์หลัก →",
         btn2: "ไปที่เพจ Facebook →",
         btn3: "เข้าชมหน้านี้ต่อ",
@@ -22,7 +22,7 @@ const translations: { [key: string]: any } = {
     ar: {
         title: "⚠️ هذه الصفحة قيد الإنشاء",
         body: "لا تزال عناصر التصميم والرسومات قيد التطوير. ولكن يمكنك التصفح الآن — هناك بعض أطقم الخرز القابلة للتخصيص والمتاحة حالياً وقد تعجبك.",
-        date: "🗓️ آخر تحديث: 20 يوليو 2025",
+        date: "🗓️ آخر تحديث: 21 يوليو 2025",
         btn1: "← زيارة الموقع الرئيسي",
         btn2: "← الانتقال إلى صفحة فيسبوك",
         btn3: "المتابعة في تصفح هذه الصفحة",
@@ -31,7 +31,7 @@ const translations: { [key: string]: any } = {
     zh: {
         title: "⚠️ 页面正在建设中",
         body: "我们的网站设计和图形元素仍在开发中。但您仍可以浏览 — 当前已有部分可定制的珠串上架，您可能会感兴趣。",
-        date: "🗓️ 最近更新：2025年7月20日",
+        date: "🗓️ 最近更新：2025年7月21日",
         btn1: "访问主网站 →",
         btn2: "前往 Facebook 页面 →",
         btn3: "继续浏览当前页面",
@@ -40,7 +40,7 @@ const translations: { [key: string]: any } = {
     hi: {
         title: "⚠️ यह पेज अभी निर्माणाधीन है",
         body: "हमारी डिज़ाइन और ग्राफ़िक एलिमेंट्स पर अभी काम चल रहा है। फिर भी आप ब्राउज़ कर सकते हैं — कुछ कस्टमाइज़ करने योग्य मोती सेट उपलब्ध हैं, जो आपको पसंद आ सकते हैं।",
-        date: "🗓️ अंतिम अपडेट: 20 जुलाई 2025",
+        date: "🗓️ अंतिम अपडेट: 21 जुलाई 2025",
         btn1: "मुख्य वेबसाइट पर जाएँ →",
         btn2: "Facebook पेज देखें →",
         btn3: "ब्राउज़ करना जारी रखें",

@@ -10,11 +10,11 @@ const amberSpectrumContent = [
     },
     {
         id: 'honey',
-        image: 'https://i.postimg.cc/MZ1fB25b/light-cognac-amber.webp',
+        image: 'https://i.postimg.cc/MZ1fB25b/light_cognac_amber.webp',
     },
     {
         id: 'root',
-        image: 'https://i.postimg.cc/hvRJYpDd/root-amber.webp',
+        image: 'https://i.postimg.cc/hvRJYpDd/root_amber.webp',
     },
     {
         id: 'mila',
@@ -22,7 +22,7 @@ const amberSpectrumContent = [
     },
     {
         id: 'red_cherry',
-        image: 'https://i.postimg.cc/tC51r3Ls/cherry-red-amber.webp',
+        image: 'https://i.postimg.cc/tC51r3Ls/cherry-red_amber.webp',
     },
     {
         id: 'pigeon_blood_red',
@@ -43,8 +43,26 @@ const AmberSpectrumSection: React.FC = () => {
         setExpandedCard(prevId => (prevId === id ? null : id));
     };
 
+    const styles = `
+        .amber-spectrum-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        .amber-spectrum-details.expanded {
+            max-height: 500px;
+            opacity: 1;
+            padding-top: 1rem;
+            padding-bottom: 1.5rem;
+        }
+    `;
+
     return (
         <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <style>{styles}</style>
             <div className="text-center max-w-3xl mx-auto">
                 <h2 className="text-4xl font-bold">{t('spectrum_section_title')}</h2>
                 <p className="mt-4 text-lg text-[var(--c-text-secondary)]">{t('spectrum_section_subtitle')}</p>

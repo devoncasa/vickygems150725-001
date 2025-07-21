@@ -1,5 +1,4 @@
 
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from '../types';
@@ -44,7 +43,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
           </div>
           <div className="absolute top-0 right-0 bg-[var(--c-surface)]/80 text-[var(--c-text-primary)] text-xs font-semibold px-3 py-1 m-3 rounded-full backdrop-blur-sm">{product.material}</div>
           {product.bestseller && (
-            <div className="absolute top-0 left-0 bg-[var(--c-accent-primary)] text-white text-xs font-bold px-3 py-1 m-3 rounded-full uppercase tracking-wider">Bestseller</div>
+            <div className="absolute top-0 left-0 bg-[var(--c-accent-secondary)] text-white text-xs font-bold px-3 py-1 m-3 rounded-full uppercase tracking-wider">Bestseller</div>
           )}
         </div>
       </Link>

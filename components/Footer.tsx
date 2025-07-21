@@ -6,21 +6,23 @@ import { EmailIcon } from './IconComponents';
 
 export const Footer: React.FC = () => {
   const { t } = useLanguage();
+  const copyrightText = t('footer_copyright', { year: new Date().getFullYear() });
+  const parts = copyrightText.split('<brand>');
 
   return (
     <>
       {/* Full site footer, now visible on all screen sizes */}
-      <footer className="text-[var(--c-footer-text)] footer-with-bg">
+      <footer className="footer-with-bg dark-context">
         <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-serif text-[var(--c-heading)]">{t('footer_address_title')}</h3>
-              <address className="mt-2 text-sm opacity-80 not-italic">
+              <h3 className="text-xl font-serif">{t('footer_address_title')}</h3>
+              <address className="mt-2 text-sm not-italic">
                 {t('footer_address_detail')}
               </address>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[var(--c-heading)]">{t('footer_explore_title')}</h3>
+              <h3 className="text-lg font-semibold">{t('footer_explore_title')}</h3>
               <ul className="mt-2 space-y-2 text-sm">
                 <li><Link to="/collection" className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Shop')}</Link></li>
                  <li><Link to="/blog" className="hover:text-[var(--c-accent-primary)] transition-colors opacity-80 hover:opacity-100">{t('nav_Blogs')}</Link></li>
@@ -33,29 +35,29 @@ export const Footer: React.FC = () => {
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-[var(--c-heading)]">{t('footer_contact_title')}</h3>
+              <h3 className="text-lg font-semibold">{t('footer_contact_title')}</h3>
               <div className="mt-4 space-y-6 text-sm">
                 {/* Vicky S. (Direct Contact) */}
                 <div>
-                  <p className="font-semibold text-[var(--c-text-primary)] mb-2">{t('footer_vicky_direct_contact')}</p>
+                  <p className="font-semibold mb-2">{t('footer_vicky_direct_contact')}</p>
                   <div className="space-y-3">
-                    <a href="tel:+66631959922" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                    <a href="tel:+66631959922" className="flex items-center gap-3 hover:text-[var(--c-accent-primary)] transition-colors group">
                       <img src="https://i.postimg.cc/13NPXHVW/tel-icon-small.webp" alt="Phone" className="w-5 h-5 flex-shrink-0" />
                       <span>{t('footer_vicky_phone')}</span>
                     </a>
-                    <a href="https://wa.me/66631959922" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                    <a href="https://wa.me/66631959922" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-[var(--c-accent-primary)] transition-colors group">
                       <img src="https://i.postimg.cc/gj3p4y3z/whatsapp.webp" alt="WhatsApp" className="w-5 h-5 flex-shrink-0" />
                       <span>{t('footer_whatsapp')}</span>
                     </a>
-                    <a href="https://line.me/ti/p/~vickyamber" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                    <a href="https://line.me/ti/p/~vickyamber" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-[var(--c-accent-primary)] transition-colors group">
                       <img src="https://i.postimg.cc/TPMxDDrT/Line-icon-small.webp" alt="LINE" className="w-5 h-5 flex-shrink-0" />
                       <span>{t('footer_line')}</span>
                     </a>
-                    <a href="https://i.postimg.cc/NfK6M959/wechat-qr-code-placeholder.png" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                    <a href="https://i.postimg.cc/NfK6M959/wechat-qr-code-placeholder.png" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-[var(--c-accent-primary)] transition-colors group">
                       <img src="https://i.postimg.cc/BQz4JybL/wechat-icon-small.webp" alt="WeChat" className="w-5 h-5 flex-shrink-0" />
                       <span>{t('footer_wechat')}</span>
                     </a>
-                    <a href="https://m.me/vkmmamber" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                    <a href="https://m.me/vkmmamber" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-[var(--c-accent-primary)] transition-colors group">
                       <img src="https://i.postimg.cc/gJCdvtXt/messenger.webp" alt="Messenger" className="w-5 h-5 flex-shrink-0" />
                       <span>{t('footer_messenger')}</span>
                     </a>
@@ -64,13 +66,13 @@ export const Footer: React.FC = () => {
                 
                 {/* General Inquiries */}
                 <div>
-                  <p className="font-semibold text-[var(--c-text-primary)] mb-2">{t('footer_general_inquiries')}</p>
+                  <p className="font-semibold mb-2">{t('footer_general_inquiries')}</p>
                   <div className="space-y-3">
-                    <a href="tel:+66818519922" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                    <a href="tel:+66818519922" className="flex items-center gap-3 hover:text-[var(--c-accent-primary)] transition-colors group">
                       <img src="https://i.postimg.cc/13NPXHVW/tel-icon-small.webp" alt="Phone" className="w-5 h-5 flex-shrink-0" />
                       <span>{t('footer_office_phone')}</span>
                     </a>
-                    <a href="mailto:info.vkamber@gmail.com?cc=vkamber91@gmail.com" className="flex items-center gap-3 text-[var(--c-footer-text)] hover:text-[var(--c-accent-primary)] transition-colors group">
+                    <a href="mailto:info.vkamber@gmail.com?cc=vkamber91@gmail.com" className="flex items-center gap-3 hover:text-[var(--c-accent-primary)] transition-colors group">
                       <EmailIcon className="w-5 h-5 text-[var(--c-accent-primary)] flex-shrink-0" />
                       <span>{t('footer_contact_email_1')}</span>
                     </a>
@@ -79,7 +81,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             <div>
-                <h3 className="text-lg font-semibold text-[var(--c-heading)]">{t('footer_follow_us_title')}</h3>
+                <h3 className="text-lg font-semibold">{t('footer_follow_us_title')}</h3>
                 <div className="flex flex-wrap items-center gap-3 mt-4">
                     <a href="https://facebook.com/vkmmamber" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="opacity-80 hover:opacity-100 transition-opacity">
                         <img src="https://i.postimg.cc/YCMfNbVb/facebook.webp" alt="Facebook" className="w-8 h-8" />
@@ -105,15 +107,25 @@ export const Footer: React.FC = () => {
                 </div>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-[var(--c-heading)]/10 text-center">
+          <div className="mt-12 pt-8 border-t border-white/10 text-center">
              <Link to="/" aria-label="Back to Homepage">
               <img 
                   src="https://i.postimg.cc/Prt96m87/VKGems_logo_small_web.webp" 
-                  alt="Vicky Lux Gems Logo" 
+                  alt="Vicky LuxGems Logo" 
                   className="h-10 w-auto block mx-auto mb-4"
               />
             </Link>
-            <p className="text-sm opacity-70">{t('footer_copyright', { year: new Date().getFullYear() })}</p>
+            <p className="text-sm">
+                {parts.length > 1 ? (
+                    <>
+                        {parts[0]}
+                        <span className="brand-name">Vicky LuxGems</span>
+                        {parts[1]}
+                    </>
+                ) : (
+                    copyrightText
+                )}
+            </p>
           </div>
         </div>
       </footer>

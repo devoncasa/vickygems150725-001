@@ -28,6 +28,7 @@ import GitInfoPage from './pages/GitInfoPage';
 import Breadcrumbs from './components/Breadcrumbs';
 import GlossaryPage from './pages/GlossaryPage';
 import PrayerBeadBuilderPage from './pages/PrayerBeadBuilderPage';
+import { BACKGROUND_IMAGES } from './constants';
 
 // Import new Amber Guide pages
 import AmberHistoryPage from './pages/AmberHistoryPage';
@@ -49,6 +50,7 @@ import AmberColorsAndTonesPage from './pages/AmberColorsAndTonesPage';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import Chatbot from './components/Chatbot';
 import ConstructionPopup from './components/ConstructionPopup';
+import CustomJewelryLandingPage from './pages/CustomJewelryLandingPage';
 
 // i18n imports
 import { LanguageProvider } from './i18n/LanguageContext';
@@ -81,6 +83,10 @@ const App: React.FC = () => {
     useEffect(() => {
         document.documentElement.lang = 'en';
         document.documentElement.dir = 'ltr';
+        
+        // Set dynamic background
+        const randomImage = BACKGROUND_IMAGES[Math.floor(Math.random() * BACKGROUND_IMAGES.length)];
+        document.documentElement.style.setProperty('--dynamic-background-image', `url('${randomImage}')`);
     }, []);
 
     return (
@@ -99,6 +105,7 @@ const App: React.FC = () => {
                         <Route path="blog/:postId" element={<BlogPostPage />} />
                         
                         {/* Customizer Pages */}
+                        <Route path="custom-jewelry" element={<CustomJewelryLandingPage />} />
                         <Route path="prayer-bead-builder/:tradition" element={<PrayerBeadBuilderPage />} />
 
                         {/* Detailed Content Pages */}

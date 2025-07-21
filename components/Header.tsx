@@ -179,9 +179,9 @@ const Header: React.FC<HeaderProps> = ({ cartCount }) => {
                         <div className="flex-shrink-0">
                             <Link to="/" className="logo-group flex items-center">
                                 {/* Animated emblem */}
-                                <img src="https://i.postimg.cc/vZjGRFTg/0716-1-unscreen-1.gif" alt="Vicky Lux Gems Animated Logo" className="header-animated-emblem"/>
+                                <img src="https://i.postimg.cc/vZjGRFTg/0716-1-unscreen-1.gif" alt="Vicky LuxGems Animated Logo" className="header-animated-emblem"/>
                                 {/* Name logo */}
-                                <img src="https://i.postimg.cc/ydqBdwMJ/vkgems-name-logo-small.webp" alt="Vicky Lux Gems" className="header-name-logo"/>
+                                <img src="https://i.postimg.cc/ydqBdwMJ/vkgems-name-logo-small.webp" alt="Vicky LuxGems" className="header-name-logo"/>
                             </Link>
                         </div>
 

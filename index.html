@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="algolia-site-verification"  content="0EE8FC782BF450F3" />
-    <title>Vicky Lux Gems | Authentic Precious Gems & Timeless Knowledge</title>
+    <title>Vicky LuxGems | Authentic Precious Gems & Timeless Knowledge</title>
     <script type="importmap">
 {
   "imports": {
@@ -98,16 +98,19 @@
     <style>
       :root {
         --c-bg: #FCFBF9;
-        --c-surface: #F8F5F2;
+        --c-surface: #F8F5F2; /* RGB: 248, 245, 242 */
         --c-surface-alt: #F0EBE6;
         --c-footer-bg: #3D352E;
         --c-footer-text: #EAE3DA;
+        --c-img-placeholder-bg: #EAE0D5;
 
         --c-heading: #534B42;
         --c-text-primary: #534B42;
-        --c-text-secondary: #7E746A;
+        --c-text-secondary: #756A5F; /* Updated for AA contrast */
+        --c-heading-on-dark: #F5F5DC; /* New cream color for headlines */
 
         --c-border: rgba(83, 75, 66, 0.15);
+        --c-border-muted: #C8B5A6;
         --c-accent-primary: #B4955E;
         --c-accent-primary-hover: #A97C50;
         --c-accent-secondary: #C38D6F;
@@ -125,6 +128,7 @@
         color: var(--c-heading);
       }
       .page-container-with-bg {
+        background-image: var(--dynamic-background-image);
         background-color: var(--c-bg);
         background-size: cover;
         background-position: center;
@@ -137,9 +141,42 @@
         position: absolute;
         inset: 0;
         z-index: -1;
-        background-color: var(--c-bg);
-        opacity: 0.8;
+        background-color: rgba(255, 255, 255, 0.4);
+        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
       }
+      .bg-\[var\(--c-surface\)\] {
+          border: 1px solid var(--c-border-muted);
+      }
+      .bg-\[var\(--c-surface-alt\)\] .not-prose {
+          background-color: var(--c-img-placeholder-bg);
+      }
+      .text-shadow-strong {
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+      }
+
+      /* New Global Rule for Dark Backgrounds */
+      .dark-context h1,
+      .dark-context h2,
+      .dark-context h3,
+      .dark-context h4,
+      .dark-context h5,
+      .dark-context h6 {
+        color: var(--c-heading-on-dark);
+        text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+      }
+      .dark-context p,
+      .dark-context li,
+      .dark-context span,
+      .dark-context address,
+      .dark-context a {
+        color: #FFFFFF;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      }
+      .dark-context p, .dark-context li, .dark-context address {
+        opacity: 0.95;
+      }
+
       .prose {
           --tw-prose-body: var(--c-text-primary);
           --tw-prose-headings: var(--c-heading);
@@ -469,6 +506,20 @@
           transform: rotate(90deg) scale(1.1);
       }
 
+      /* --- Amber Spectrum Cards --- */
+      .amber-spectrum-card {
+        background-color: var(--c-surface);
+        border-radius: 0.75rem; /* 12px */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        overflow: hidden;
+        border: 1px solid var(--c-border);
+      }
+      .amber-spectrum-card:hover {
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        transform: translateY(-4px);
+      }
+
       /* --- Footer Background --- */
       .footer-with-bg {
         position: relative;
@@ -490,14 +541,7 @@
         z-index: -1;
         background-color: rgba(61, 53, 46, 0.92); /* Dark overlay based on --c-footer-bg */
       }
-      .footer-with-bg h3 {
-        color: var(--c-accent-primary); /* Lighter headings for contrast */
-        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-      }
-      .footer-with-bg .font-semibold.text-\[var\(--c-text-primary\)\] {
-        color: var(--c-footer-text); /* Ensure contact subheadings are also light */
-      }
-
+      
       /* NEW GLOBAL STYLE FOR DROPDOWNS */
       .custom-select, select:not(.custom-slider) {
         background-color: #F5F5DC;
@@ -672,6 +716,57 @@
       @keyframes slideDownFadeOut {
         from { opacity: 1; transform: translateY(0); }
         to { opacity: 0; transform: translateY(15px); }
+      }
+
+      /* --- Interactive Flipping Cards --- */
+      .flipping-card {
+        perspective: 1500px;
+        display: block;
+      }
+      .flipping-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.7s;
+        transform-style: preserve-3d;
+      }
+      .flipping-card-front, .flipping-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 0.5rem;
+        overflow: hidden;
+      }
+      .flipping-card-back {
+        transform: rotateY(180deg);
+        background-color: #904a21;
+        color: white;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      /* Desktop hover */
+      @media (hover: hover) and (pointer: fine) {
+        .flipping-card:hover .flipping-card-inner {
+          transform: rotateY(180deg);
+        }
+      }
+      /* Mobile tap state */
+      .flipping-card.is-flipped .flipping-card-inner {
+        transform: rotateY(180deg);
+      }
+      .brand-name {
+        font-weight: 700;
+        color: var(--c-heading);
+      }
+      /* NEW STYLE FOR POLICY PAGES */
+      .content-page-block {
+        background-color: rgba(248, 245, 242, 0.95); /* Accessibility Correction: Using 95% opacity instead of 40% */
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
       }
     </style>
   <link rel="stylesheet" href="/index.css">

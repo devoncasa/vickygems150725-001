@@ -20,14 +20,14 @@ const AboutPage: React.FC = () => {
     const webPageSchema = {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "About Vicky Lux Gems",
+        "name": "About Vicky LuxGems",
         "url": window.location.href,
-        "description": "Discover the story behind Vicky Lux Gems, our mission to provide authentic precious gems, and our commitment to transparency and ethical sourcing from around the world.",
+        "description": "Discover the story behind Vicky LuxGems, our mission to provide authentic precious gems, and our commitment to transparency and ethical sourcing from around the world.",
         "inLanguage": lang,
         "isPartOf": {
             "@type": "WebSite",
             "url": window.location.origin,
-            "name": "Vicky Lux Gems"
+            "name": "Vicky LuxGems"
         }
     };
 
@@ -44,16 +44,16 @@ const AboutPage: React.FC = () => {
             />
             <JsonLd data={webPageSchema} />
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto">
+                <div className="content-page-block max-w-4xl mx-auto p-8 md:p-12 rounded-lg shadow-xl border border-[var(--c-border-muted)]">
                     {/* Header */}
                     <div className="text-center mb-12">
-                        <h1 className="text-5xl font-bold tracking-tight">About Vicky Lux Gems</h1>
+                        <h1 className="text-5xl font-bold tracking-tight">About <span className="brand-name">Vicky LuxGems</span></h1>
                         <p className="mt-4 text-xl text-[var(--c-text-secondary)]">Connecting Discerning Individuals to the Spirit of Myanmar</p>
                     </div>
 
                     <div className="mt-12 prose prose-lg lg:prose-xl max-w-none text-[var(--c-text-primary)]/90 mx-auto">
                         <div className="not-prose">
-                           <ImageWithAlt src="https://placehold.co/1200x675/A56C50/F8F5F2?text=Vicky+Lux+Gems" alt="An array of beautiful precious and ethically sourced Myanmar gems, showcasing their natural beauty." />
+                           <ImageWithAlt src="https://placehold.co/1200x675/A56C50/F8F5F2?text=Vicky+LuxGems" alt="An array of beautiful precious and ethically sourced Myanmar gems, showcasing their natural beauty." />
                         </div>
                         
                         <h2>Our Story</h2>
@@ -61,13 +61,13 @@ const AboutPage: React.FC = () => {
                         <div className="not-prose grid md:grid-cols-2 gap-8 items-center text-lg text-[var(--c-text-primary)]/90">
                             <div className="space-y-6 text-left">
                                 <p>
-                                    Founded on a passion for the world's finest gemstones, Vicky Lux Gems began as a personal journey. Vicky Sinchoury, our founder, embarked on a mission to bring these rare treasures from historic mines around the globe to the international stage.
+                                    Founded on a passion for the world's finest gemstones, <span className="brand-name">Vicky LuxGems</span> began as a personal journey. Vicky Sinchoury, our founder, embarked on a mission to bring these rare treasures from historic mines around the globe to the international stage.
                                 </p>
                                 <p>
-                                    What started as a simple appreciation for their beauty grew into a commitment to authenticity, ethical sourcing, and scientific verification. Today, Vicky Lux Gems stands as a trusted bridge between the ancient world of gemstones and discerning collectors worldwide.
+                                    What started as a simple appreciation for their beauty grew into a commitment to authenticity, ethical sourcing, and scientific verification. Today, <span className="brand-name">Vicky LuxGems</span> stands as a trusted bridge between the ancient world of gemstones and discerning collectors worldwide.
                                 </p>
                             </div>
-                            <ImageWithAlt src="https://placehold.co/600x600/7E746A/FFFFFF?text=Vicky+Sinchoury" alt="Portrait of Vicky Sinchoury, Founder of Vicky Lux Gems and expert in heirloom quality jewelry." className="aspect-square" />
+                            <ImageWithAlt src="https://placehold.co/600x600/7E746A/FFFFFF?text=Vicky+Sinchoury" alt="Portrait of Vicky Sinchoury, Founder of Vicky LuxGems and expert in heirloom quality jewelry." className="aspect-square" />
                         </div>
 
                         <h2>Our Mission</h2>
@@ -98,7 +98,7 @@ const AboutPage: React.FC = () => {
                         <h2>Why Choose Us?</h2>
                         <SectionDivider />
                         <p>
-                            Choosing Vicky Lux Gems means choosing unparalleled quality and integrity. We offer:
+                            Choosing <span className="brand-name">Vicky LuxGems</span> means choosing unparalleled quality and integrity. We offer:
                         </p>
                          <ul>
                             <li><strong>Unwavering Authenticity:</strong> Our guarantee is backed by gemological expertise and scientific testing.</li>
