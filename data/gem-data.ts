@@ -1,7 +1,30 @@
 import { GemData } from '../types';
-import { AMBER_COLOR_DETAILS } from '../constants';
 
-const burmeseAmberColors = AMBER_COLOR_DETAILS.map(c => c.name);
+const burmeseAmberColors = [
+    "Mila Amber (Milky)",
+    "Cherry Red Amber",
+    "Pigeon Blood Red",
+    "Orange Amber",
+    "Golden Yellow Amber",
+    "Light Honey Amber",
+    "Deep Honey Amber",
+    "Root Amber (Wood-like Pattern)",
+    "Black Amber"
+];
+
+export const clarityGrades = ["IF", "VVS1", "VVS2", "VS1", "VS2", "SI1", "SI2", "I1", "I2", "I3"];
+export const certifications = [
+    "GIT – Gem and Jewelry Institute of Thailand",
+    "AIGS – Asian Institute of Gemological Sciences",
+    "GIA Bangkok – Gemological Institute of America (Thailand)",
+    "GRS Thailand – GemResearch Swisslab",
+    "Lotus Gemology",
+    "DGL – Diamond Grading Laboratory",
+    "NGI – National Gem Institute",
+    "BGL – Bangkok Gemological Laboratory",
+    "TGL – Thai Gemological Laboratory",
+    "Swiss Gemmological Institute (SSEF)"
+];
 
 export const GEM_DATA: GemData = {
   cuts: {
@@ -16,66 +39,68 @@ export const GEM_DATA: GemData = {
   },
   origins: {
     standard: [
-      "Afghanistan", "Cambodia", "Kenya", "Madagascar", "Mozambique", 
-      "Myanmar", "Nigeria", "Pakistan", "Russia", "Sri Lanka", 
-      "Tajikistan", "Tanzania", "Thailand", "Vietnam"
+      "Afghanistan", "Australia", "Botswana", "Brazil", "Cambodia", "Canada", "China", "Colombia", "Indonesia", "Kashmir", "Kenya", "Madagascar", "Mozambique", 
+      "Myanmar", "Nigeria", "Pakistan", "Russia", "South Africa", "Sri Lanka", 
+      "Tajikistan", "Tanzania", "Thailand", "USA", "Vietnam", "Zambia"
     ],
   },
   categories: {
     "Precious Gemstones": {
         "Ruby": {
-            colors: ["Pink", "Red", "Pigeon's Blood Red", "Purplish Red"],
+            colors: ["Pigeon Blood Red", "Vivid Red", "Deep Red", "Pure Red", "Pinkish Red", "Orangey Red", "Purplish Red", "Brownish Red", "Light Red"],
             origins: ["Myanmar", "Mozambique", "Thailand", "Sri Lanka", "Tanzania"],
         },
         "Sapphire": {
-            colors: ["Blue", "Royal Blue", "Cornflower Blue", "Pink", "Padparadscha", "Yellow", "Green", "Purple", "White", "Black"],
+            colors: ["Royal Blue", "Cornflower Blue", "Deep Blue", "Medium Blue", "Light Blue", "Greenish Blue", "Violetish Blue", "Steel Blue", "Ceylon Blue", "Kashmir Blue", "Pink", "Padparadscha", "Violet", "Purple", "Yellow (Canary, Golden)", "Orange", "Green", "White (Colorless)", "Gray", "Black", "Parti-colored", "Color-change"],
             origins: ["Myanmar", "Sri Lanka", "Madagascar", "Thailand", "Australia", "Kashmir"],
         },
+        "Emerald": {
+            colors: ["Vivid Green", "Deep Green", "Bluish Green", "Yellowish Green", "Medium Green", "Light Green", "Dark Green", "Colombian Green", "Zambian Green"],
+            origins: ["Colombia", "Zambia", "Brazil", "Afghanistan"]
+        },
+        "Diamond": {
+            colors: ["(D-F) Colorless", "(G-J) Near-colorless", "(K-M) Faint yellow", "(N-R) Very light yellow", "(S-Z) Light yellow", "Fancy Yellow", "Fancy Blue", "Fancy Pink", "Fancy Green", "Fancy Brown", "Fancy Orange", "Fancy Red", "Fancy Gray", "Fancy Black", "Salt and Pepper"],
+            origins: ["Russia", "Botswana", "Canada", "South Africa", "Australia"]
+        },
         "Spinel": {
-            colors: [
-                "Black", "Blue", "Cobalt Blue", "Electric Blue", "Blood Red", "Brown", 
-                "Cherry Red", "Green", "Grey", "Lavender", "Orange", "Peach", 
-                "Pink", "Hot Pink", "Fuchsia", "Purple", "Violet", "White", "Yellow"
-            ],
+            colors: ["Red (Blood Red, Deep Red)", "Pink (Light Pink, Fuchsia, Hot Pink)", "Purple (Lavender, Violet)", "Blue (Cobalt Blue, Electric Blue)", "Gray", "Orange", "Peach", "Brown", "Black", "White (Colorless)", "Green", "Mahenge Spinel"],
             origins: ["Myanmar", "Tajikistan", "Tanzania", "Sri Lanka", "Vietnam"],
+        },
+        "Jadeite": {
+            colors: ["Imperial Green", "Apple Green", "Moss Green", "Olive Green", "Yellow-Green", "White", "Lavender", "Gray", "Black", "Reddish Brown", "Yellow", "Blue"],
+            cuts: ["Bangle", "Bead", "Buddha", "Carving", "Coin", "Donut", "Drop", "Figurine", "Gua Sha", "Pendant", "Ring"],
+            origins: ["Myanmar"]
         }
     },
     "Semi-Precious Gemstones": {
         "Agate": {
             colors: ["Banded", "Blue Lace", "Botswana", "Dendritic", "Fire", "Moss", "White"],
         },
-        "Amazonite": { colors: ["Green", "Blue-Green"] },
-        "Amethyst": { colors: ["Purple", "Lavender", "Deep Purple"] },
-        "Apatite": { colors: ["Blue", "Green", "Yellow", "Neon Blue"] },
-        "Aquamarine": { colors: ["Light Blue", "Greenish Blue", "Santa Maria Blue"] },
-        "Aventurine": { colors: ["Green", "Blue", "Peach", "Red"] },
-        "Carnelian": { colors: ["Orange", "Red-Orange", "Brownish Red"] },
-        "Chalcedony": { colors: ["Blue", "White", "Pink", "Grey"] },
-        "Citrine": { colors: ["Yellow", "Golden", "Madeira", "Orange-Brown"] },
-        "Fluorite": { colors: ["Purple", "Green", "Blue", "Rainbow", "Colorless"] },
-        "Garnet": { colors: ["Red (Almandine, Pyrope)", "Green (Tsavorite, Demantoid)", "Orange (Spessartite)", "Purple (Rhodolite)"] },
-        "Iolite": { colors: ["Violet-Blue", "Blue", "Grey"] },
-        "Jade": {
-            colors: ["Green", "Imperial Green", "Lavender", "White", "Black", "Red"],
-            cuts: ["Bangle", "Bead", "Buddha", "Carving", "Coin", "Donut", "Drop", "Figurine", "Gua Sha", "Pendant", "Ring"],
-            origins: ["Myanmar (Jadeite)", "China (Nephrite)"]
-        },
-        "Jasper": { colors: ["Red", "Picture", "Ocean", "Dalmation", "Bumblebee"] },
-        "Kyanite": { colors: ["Blue", "Green", "Black"] },
-        "Labradorite": { colors: ["Grey with Labradorescence", "Blue Flash", "Rainbow (Spectrolite)"] },
-        "Lapis Lazuli": { colors: ["Deep Blue", "Royal Blue with Pyrite"], origins: ["Afghanistan", "Chile", "Russia"] },
-        "Moonstone": { colors: ["White with Blue Sheen", "Rainbow", "Peach", "Grey"] },
-        "Onyx": { colors: ["Black", "Banded", "Sardonyx"] },
-        "Peridot": { colors: ["Olive Green", "Lime Green"], origins: ["Myanmar", "Pakistan", "USA"] },
-        "Quartz": { colors: ["Rose", "Smoky", "Clear", "Rutilated", "Tourmalinated"] },
-        "Tiger's Eye": { colors: ["Golden-Brown", "Blue", "Red"] },
-        "Zircon": { colors: ["Blue", "White (Colorless)", "Red", "Brown", "Green", "Yellow"], origins: ["Cambodia", "Thailand", "Sri Lanka"] }
+         "Fossil Coral": {
+            colors: ["Patterned White", "Patterned Pink", "Patterned Brown"],
+            cuts: ["Sphere", "Slab", "Cabochon", "Carving"],
+            origins: ["Indonesia", "USA"]
+        }
     },
     "Burmese Amber": {
         "Burmese Amber": {
             colors: burmeseAmberColors,
             origins: ["Hukawng Valley, Myanmar"],
-            cuts: [ "Bangle", "Bead", "Buddha", "Carving", "Coin", "Donut", "Drop", "Figurine", "Gua Sha", "Pendant", "Ring"]
+            cuts: [
+                "Cabochon",
+                "Facet Cut (Emerald Shape)",
+                "Facet Cut (Cushion Shape)",
+                "Perfectly Rounded Bead",
+                "Bangle",
+                "Ring",
+                "Pendant",
+                "Earrings",
+                "108 Prayer Beads (Chinese Style)",
+                "108 Prayer Beads (Buddhist Style)",
+                "Setting (Silver Ring)",
+                "Setting (Silver Pendant)",
+                "Setting (Silver Earrings)"
+            ]
         }
     }
   }

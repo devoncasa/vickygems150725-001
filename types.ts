@@ -82,6 +82,7 @@ export interface Product {
     beadCount?: BeadQuantity;
     ringSize?: string;
     pendantMetal?: Metal;
+    dimensions_mm?: string;
     totalWeight_grams: number;
     clarityLevel?: string;
     finish?: string;

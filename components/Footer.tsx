@@ -113,8 +113,8 @@ export const Footer: React.FC = () => {
           <div className="mt-12 pt-8 border-t border-white/10 text-center">
              <button onClick={() => setIsAdminPanelOpen(true)} aria-label="Admin Section" className="cursor-pointer">
               <img 
-                  src="https://i.postimg.cc/Prt96m87/VKGems_logo_small_web.webp" 
-                  alt="Vicky LuxGems Logo" 
+                  src="https://i.postimg.cc/qv6dNrbH/vkamber-gems.webp" 
+                  alt="VickyLuxGems Logo" 
                   className="h-10 w-auto block mx-auto mb-4"
               />
             </button>
